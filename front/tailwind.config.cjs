@@ -6,7 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
+      colors: {
+        sky:'#2EA3F2',
+      },
     },
   },
   plugins: [
