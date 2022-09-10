@@ -2,23 +2,22 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import'./style.css'
-
-
-// alumni 
-import ProfileAlumni from '@/components/alumni/profile/MyProfile';
-import AlumniProfileContainer from '@/components/alumni/profile/ProfileContainer.vue';
-import CardProfile from '@/components/alumni/profile/CardComponent.vue';
-import IconAction from '@/components/alumni/profile/IconsAction';
-import GeneralInfor from '@/components/alumni/profile/GeneralInfor';
 const app = createApp(App);
 
 
+// alumni 
+import ProfileAlumni from '@/components/alumni/profile/my_profile/MyProfile';
+import AlumniProfileContainer from '@/components/alumni/profile/ProfileContainer.vue';
+import CardComponent from '@/components/publicComponents/CardComponents/CardComponent.vue';
+import IconAction from '@/components/publicComponents/iconsComponents/IconsAction';
+import PopupForm from '@/components/publicComponents/widgetsComponents/PopupForm';
+
 // alumni Profile
-app.component('general-infor', GeneralInfor);
+app.component('popup-form', PopupForm);
 app.component('icon-action', IconAction);
 app.component('profile-alumni',ProfileAlumni)
 app.component('alumniProfile-container',AlumniProfileContainer)
-app.component('card-profile',CardProfile)
+app.component('card-component',CardComponent)
 
 
 
