@@ -12,8 +12,8 @@
                 </icon-action>
             </div>
         </div>
-        <div v-for:="experience of allExperience">
-            <card-informations>
+        <div>
+            <card-informations v-for:="experience of allExperience">
                 <template #header>{{ experience.position }}</template>
                 <template #content-1>{{ experience.company }}</template>
                 <template #content-2>{{ experience.start_date }} - {{ experience.end_date }}</template>
