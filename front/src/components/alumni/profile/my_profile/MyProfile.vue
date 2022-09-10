@@ -1,10 +1,10 @@
 
 <template>
-    <card-profile>
+    <card-components>
         <div class="bg-white">
             <div class="flex justify-between bg-white">
                 <div>
-                    <img alt="Vue logo" class="bg-white" src="../../../assets/logo.png" width="120">
+                    <img alt="Vue logo" class="bg-white" src="../../../../assets/logo.png" width="120">
                     <div class="h-8 w-8 rounded-full bg-white mt-[-35px] absolute ml-[4.8rem] flex justify-center items-center">
                         <input id="upload_img"  name="upload_img" type="file" class="hidden">
                         <label for="upload_img" class="cursor-pointer">
@@ -52,14 +52,14 @@
                         <h1 class="ml-2 text-[20px] bg-white">090 599 640</h1>
                     </div>
                     <div class="flex items-center bg-white mt-3 w-/12">
-                        <img class="w-[26px] h-[26px]"  src="../../../assets/telegram.jpg" alt="">
+                        <img class="w-[26px] h-[26px]"  src="../../../../assets/telegram.jpg" alt="">
                         <h1 class="ml-2 text-[20px] bg-white">090 599 640</h1>
                     </div>
                 </div>
 
             </div>
         </div>
-    </card-profile>
+    </card-components>
 </template>
 <script>
 
