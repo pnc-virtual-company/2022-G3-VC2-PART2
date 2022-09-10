@@ -1,14 +1,14 @@
 
 
 <template>
-  
-  <router-view/>
-
+  <div class="mb-[20px]">
+    <router-view/>
+  </div>
 </template>
 
 <style >
-*{
-  background: rgb(217, 235, 228);
+body{
+  background: #E5F2FB;
 }
 
 

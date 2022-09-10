@@ -3,7 +3,7 @@
                 <profile-alumni> </profile-alumni>
         </div>
         <div class=" mt-10">
-                <general-infor> </general-infor>
+                <work-experience> </work-experience>
         </div>
 </template>
 <script>
