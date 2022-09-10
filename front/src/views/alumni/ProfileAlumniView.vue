@@ -1,12 +1,10 @@
 <template>
-    <alumniProfile-container></alumniProfile-container>
+  <alumniProfile-container></alumniProfile-container>
+</template>
 
-  </template>
-  
-  <script>
-  
-  export default {
+<script>
+export default {
 
-  }
-  </script>
+}
+</script>
   
