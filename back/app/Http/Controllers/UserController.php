@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Alumni;
 
 class UserController extends Controller
 {
@@ -46,10 +47,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function UpdateUser(Request $request, $id)
+    public function updateAlumniIntroduction(Request $request, $id)
     {
         $user=User::findOrFail($id);
         $user->email = $request->email;
+        $alumni = Alumni::where('user_id', $user->id)->get()->first()->update(['batch' => $request->batch, 'telegram' => $request->telegram, 'phone' => $request->phone]);
         $user->save();
         return response()->json(['message'=>'updated']);
     }

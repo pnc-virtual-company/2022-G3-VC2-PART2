@@ -18,10 +18,6 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-// alumni introduction
-Route::put('alumni/{id}', [AlumniController::class,'UpdateAlumniIntroduction']);
-Route::apiresource('alumni',AlumniController::class);
 
 
-Route::put('user/{id}', [UserController::class,'UpdateUser']);
-Route::apiresource('user',UserController::class);
+Route::put('alumni_intro/{id}', [UserController::class,'updateAlumniIntroduction']); /* The route to update alumni introduction */

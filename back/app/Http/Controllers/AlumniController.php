@@ -57,17 +57,9 @@ class AlumniController extends Controller
      * @param  \App\Models\Alumni  $alumni
      * @return \Illuminate\Http\Response
      */
-    public function UpdateAlumniIntroduction(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $alumni=Alumni::findOrFail($id);
-        $alumni->major = $request->major;
-        $alumni->batch = $request->batch;
-        $alumni->telegram=$request->telegram;
-        $alumni->address=$request->address;
-        $alumni->address = $request->address;
-        $alumni->gender = $request->gender;
-        $alumni->save();
-        return response()->json(['message'=>'updated']);
+        //
     }
 
     /**
