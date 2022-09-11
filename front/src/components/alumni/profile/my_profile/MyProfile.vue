@@ -3,30 +3,31 @@
     <card-components>
         <div class="bg-white">
             <div class="flex justify-between bg-white">
-                <div>
-                    <img alt="Vue logo" class="bg-white" src="../../../../assets/logo.png" width="120">
-                    <div class="h-8 w-8 rounded-full bg-white mt-[-35px] absolute ml-[4.8rem] flex justify-center items-center">
-                        <input id="upload_img"  name="upload_img" type="file" class="hidden">
-                        <label for="upload_img" class="cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-black cursor-pointer bg-white">
-                                <path class="cursor-pointer" d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
-                                <path class="cursor-pointer" fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
-                            </svg>
-                        </label>
+                <div class="flex flex-col items-center">
+                    <div>
+                        <img alt="Vue logo" class="bg-white" src="../../../../assets/logo.png" width="120">
+                        <div class="h-8 w-8 rounded-full bg-white mt-[-35px] absolute ml-[4.8rem] flex justify-center items-center">
+                            <input id="upload_img"  name="upload_img" type="file" class="hidden">
+                            <label for="upload_img" class="w-full shadow h-full flex justify-center items-center rounded-full cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-[80%] rounded-lg text-black cursor-pointer">
+                                    <path class="cursor-pointer" fill-rule="evenodd" d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
+                                    <path class="cursor-pointer" fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                                </svg>
+                            </label>
+                        </div>
                     </div>
+                    <h1 class="bg-white font-bold text-xl ">Thib Tik</h1>
                 </div>
                 <div class="bg-white">
                     <icon-action @click="$emit('click-popup')">
                         <button class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 bg-white text-sky cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 text-sky cursor-pointer">
                                 <path class="cursor-pointer" d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                             </svg>
                         </button>
                     </icon-action>
-                   
                 </div>
             </div>
-            <h1 class="bg-white font-bold">Phearun Chun</h1>
             <div class="">
                 <div class="bg-white flex">
                     <div class="flex items-center mt-3 w-8/12 bg-white">
