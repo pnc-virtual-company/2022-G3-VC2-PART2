@@ -23,7 +23,7 @@ import CardInformations from '@/components/public_components/card_components/Car
     // alumni popup components
 import MyProfilePopup from '@/components/alumni/profile/my_profile/MyProfilePopup'
 import GeneralInforPopup from '@/components/alumni/profile/general_informations/GeneralInforPopup'
-
+import WorkExperiencePopup from '@/components/alumni/profile/work_experience/WorkExperiencePopup'
 //public component
 app.component('popup-component', PopupComponent);
 app.component('icon-action', IconAction);
@@ -42,5 +42,6 @@ app.component("my-profile-container", MyProfileContainer);
     // alumni popup components register
 app.component('my-profile-popup', MyProfilePopup);
 app.component('general-infor-popup', GeneralInforPopup);
+app.component('work-experience-popup', WorkExperiencePopup);
 
 app.use(router).mount('#app')
