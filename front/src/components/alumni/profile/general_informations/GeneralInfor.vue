@@ -12,15 +12,15 @@
                 </icon-action>
             </div>
             
-            <div class="flex justify-between bg-white w-full">
-                <div class="flex bg-white w-[50%]">
+            <div class="flex justify-between bg-white w-full" >
+                <div class="flex bg-white w-[50%]"  >
                     <div class="font-bold bg-white w-[33%]">
                         <p class="text-[20px] bg-white mt-3">Gender</p>
                         <p class="text-[20px] bg-white mt-3">Major</p>
                     </div>
                     <div class="ml-auto bg-white w-[67%]">
-                        <p class="text-[20px] bg-white mt-3">Female</p>
-                        <p class="text-[20px] bg-white mt-3">WEB Developer</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.gender}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.major}}</p>
                     </div>
                 </div>
 
@@ -30,11 +30,22 @@
                         <p class="text-[20px] bg-white mt-3">Address</p>
                     </div>
                     <div class="bg-white w-[67%]">
-                        <p class="text-[20px] bg-white mt-3">11/08/2000</p>
-                        <p class="text-[20px] bg-white mt-3">Toul Kork, Pursat</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.birthDate}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.address}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </card-components>
 </template>
+
+
+<script>
+    export default {
+        props:{
+            userInformation:Object
+        },
+        data() {
+        },
+    }
+</script>
