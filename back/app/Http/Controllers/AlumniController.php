@@ -15,6 +15,7 @@ class AlumniController extends Controller
     public function index()
     {
         //
+        return Alumni::with(['user'])->get();
     }
 
     /**
@@ -26,6 +27,14 @@ class AlumniController extends Controller
     public function store(Request $request)
     {
         //
+        $alumni = new Alumni();
+        $alumni-> user_id = $request->user_id;
+        $alumni-> major = $request->major;
+        $alumni-> batch = $request->batch;
+        $alumni-> address = $request->address;
+        $alumni-> gender = $request->gender;
+        $alumni-> save();
+        return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
     /**
@@ -46,9 +55,16 @@ class AlumniController extends Controller
      * @param  \App\Models\Alumni  $alumni
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumni $alumni)
+    public function update(Request $request, $id)
     {
-        //
+        $alumni =  Alumni::find($id);
+        $alumni-> user_id = $request->user_id;
+        $alumni-> major= $request->major;
+        $alumni-> batch = $request->batch;
+        $alumni-> address = $request->address;
+        $alumni-> gender = $request->gender;
+        $alumni-> save();
+        return response()->Json(["message"=>"alumni is updated successfully!"]);
     }
 
     /**
@@ -57,8 +73,14 @@ class AlumniController extends Controller
      * @param  \App\Models\Alumni  $alumni
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumni $alumni)
+    public function destroy($id)
     {
-        //
+         $alumni = Alumni::where('id',$id);
+        if(!empty($alumni)){
+            $alumni->delete();
+            
+            return response()->json(['sms'=>'student deleted successfully']);
+        }
+        return response()->json(['sms'=>'student could not be deleted']);
     }
 }

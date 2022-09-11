@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Alumni;
 
 class UserController extends Controller
 {
@@ -14,6 +16,7 @@ class UserController extends Controller
     public function index()
     {
         //
+        return User::all();
     }
 
     /**
@@ -25,6 +28,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+         $user = new User();
+        $user-> first_name = $request->first_name;
+        $user-> last_name = $request->last_name;
+        $user-> email = $request->email;
+        $user-> password = $request->password;
+        $user-> role = $request->role;
+        $user-> image = $request->image;
+        $user-> save();
+        return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
     /**
@@ -45,9 +57,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateAlumniInfo(Request $request, $id)
     {
         //
+          $user =  User::find($id);
+        $user-> first_name = $request->first_name;
+        $user-> last_name = $request->last_name;
+        $user-> email = $request->email;
+        $user-> password = $request->password;
+        $user-> role = $request->role;
+        $user-> image = $request->image;
+         $alumni = Alumni::where('user_id', $user->id)->get()->first()->update(['major' => $request->major,'batch'=>$request->batch,'address' => $request->address]);
+        $user-> save();
+        return response()->Json(["message"=>"alumni is updated successfully!"]);
     }
 
     /**

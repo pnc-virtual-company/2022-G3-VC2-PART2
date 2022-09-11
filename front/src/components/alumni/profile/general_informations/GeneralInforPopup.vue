@@ -7,13 +7,13 @@
                     <div class="w-2/4 bg-white font-medium mr-2">
                         <span class="bg-white">First name:</span>
                         <div class="bg-white mt-1">
-                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full text-sm border-gray-300 border-2 p-2 rounded-md" placeholder="first name">
+                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="first name">
                         </div>
                     </div>
                     <div class="w-2/4 bg-white font-medium ml-2">
                         <span class="bg-white">Last name:</span>
                         <div class="bg-white mt-1">
-                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full text-sm border-gray-300 border-2 p-2 rounded-md" placeholder="last name">
+                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="last name">
                         </div>
                     </div>
                 </div>
