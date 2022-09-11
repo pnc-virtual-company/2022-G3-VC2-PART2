@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telegram');
             $table->string('phone');
             $table->string('gender');
+            $table->string('birth_date');
             $table->timestamps();
         });
     }
