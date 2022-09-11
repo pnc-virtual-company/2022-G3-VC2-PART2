@@ -22,7 +22,7 @@ import CardInformations from '@/components/public_components/card_components/Car
 
     // alumni popup components
 import MyProfilePopup from '@/components/alumni/profile/my_profile/MyProfilePopup'
-// import GeneralInforPopup from '@/components/alumni/profile/general_informations/GeneralInforPopup'
+import GeneralInforPopup from '@/components/alumni/profile/general_informations/GeneralInforPopup'
 
 //public component
 app.component('popup-component', PopupComponent);
@@ -34,12 +34,13 @@ app.component('profile-alumni',ProfileAlumni)
 app.component('alumniProfile-container',AlumniProfileContainer)
 app.component('general-infor', GeneralInfor);
 app.component('general-infor-container', GeneralInforContainer);
-
 app.component('work-experience', WorkExperience);
 app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("my-profile-container", MyProfileContainer);
+
     // alumni popup components register
 app.component('my-profile-popup', MyProfilePopup);
-// app.component('general-infor-popup', GeneralInforPopup);
+app.component('general-infor-popup', GeneralInforPopup);
+
 app.use(router).mount('#app')
