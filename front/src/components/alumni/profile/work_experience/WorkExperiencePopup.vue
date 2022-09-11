@@ -25,7 +25,7 @@
                             <span class="bg-white inline-flex items-center p-2 text-sm  bg-white rounded-l-md border-2 border-r-0 border-gray-300">
                                 <img class="w-[26px] h-[26px]"  src="../../../../assets/position.png" alt="">
                             </span>
-                            <input type="text" id="website-admin" class="rounded-none pl-3 bg-white font-normal text-base  block flex-1 min-w-0 w-full text-sm border-gray-300 border-2 p-2 rounded-r-md" >
+                            <input type="text" id="website-admin" placeholder="position" class="rounded-none pl-3 bg-white font-normal text-base  block flex-1 min-w-0 w-full text-sm border-gray-300 border-2 p-2 rounded-r-md" >
                         </div>
                     </div>
                 </div>
