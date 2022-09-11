@@ -1,11 +1,10 @@
 
 <template>
-  
-<card-profile>
+    <card-components>
         <div class="bg-white">
             <div class="flex justify-between bg-white">
                 <div>
-                    <img alt="Vue logo" class="bg-white" src="../../../assets/logo.png" width="120">
+                    <img alt="Vue logo" class="bg-white" src="../../../../assets/logo.png" width="120">
                     <div class="h-8 w-8 rounded-full bg-white mt-[-35px] absolute ml-[4.8rem] flex justify-center items-center">
                         <input id="upload_img"  name="upload_img" type="file" class="hidden">
                         <label for="upload_img" class="cursor-pointer">
@@ -17,7 +16,7 @@
                     </div>
                 </div>
                 <div class="bg-white">
-                    <icon-action>
+                    <icon-action @click="$emit('click-popup')">
                         <button class="">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 bg-white text-sky cursor-pointer">
                                 <path class="cursor-pointer" d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
@@ -52,14 +51,11 @@
                         <h1 class="ml-2 text-[20px] bg-white">090 599 640</h1>
                     </div>
                     <div class="flex items-center bg-white mt-3 w-/12">
-                        <img class="w-[26px] h-[26px]"  src="../../../assets/telegram.jpg" alt="">
+                        <img class="w-[26px] h-[26px]"  src="../../../../assets/telegram.jpg" alt="">
                         <h1 class="ml-2 text-[20px] bg-white">090 599 640</h1>
                     </div>
                 </div>
             </div>
         </div>
-    </card-profile>
+    </card-components>
 </template>
-<script>
-
-</script>
