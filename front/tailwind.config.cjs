@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         sky:'#2EA3F2',
+        'sky-hover':'#1996EB',
       },
     },
   },
