@@ -14,7 +14,8 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        //
+        return Alumni::orderBy('id','desc')->get();
+
     }
 
     /**
@@ -25,7 +26,17 @@ class AlumniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumni=new Alumni();
+        $alumni->user_id=$request->user_id;
+        $alumni->major=$request->major;
+        $alumni->batch=$request->batch;
+        $alumni->phone=$request->phone;
+        $alumni->telegram=$request->telegram;
+        $alumni->address=$request->address;
+        $alumni->gender=$request->gender;
+        $alumni->save();
+        return response()->json(['message'=>'create successfully']);
+
     }
 
     /**
@@ -46,9 +57,17 @@ class AlumniController extends Controller
      * @param  \App\Models\Alumni  $alumni
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumni $alumni)
+    public function UpdateAlumniIntroduction(Request $request, $id)
     {
-        //
+        $alumni=Alumni::findOrFail($id);
+        $alumni->major = $request->major;
+        $alumni->batch = $request->batch;
+        $alumni->telegram=$request->telegram;
+        $alumni->address=$request->address;
+        $alumni->address = $request->address;
+        $alumni->gender = $request->gender;
+        $alumni->save();
+        return response()->json(['message'=>'updated']);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return User::orderBy('id','desc')->get();
+
     }
 
     /**
@@ -45,9 +46,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function UpdateUser(Request $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+        $user->email = $request->email;
+        $user->save();
+        return response()->json(['message'=>'updated']);
     }
 
     /**
