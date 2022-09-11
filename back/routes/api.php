@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('users', [UserController::class,"index"]);
+Route::post('users', [UserController::class,"store"]);
+    Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
+    Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
+    Route::put('alumniGeneralInfo/{id}', [UserController::class,"updateAlumniInfo"]);
+    Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
