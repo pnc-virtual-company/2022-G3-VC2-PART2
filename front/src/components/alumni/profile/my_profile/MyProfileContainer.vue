@@ -1,9 +1,9 @@
 <template>
     <div class=" mt-[20px]">
-        <profile-alumni @click-popup="isShow = !isShow"> </profile-alumni>
+        <profile-alumni @click-popup ="isShow = !isShow"> </profile-alumni>
     </div>
     <div v-if="isShow" >
-        <my-profile-popup @click-popup="isShow = !isShow"></my-profile-popup>
+        <my-profile-popup @click-popup ="isShow = !isShow"></my-profile-popup>
     </div>
 </template>
 
