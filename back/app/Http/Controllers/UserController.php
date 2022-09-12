@@ -35,7 +35,7 @@ class UserController extends Controller
         $user-> save();
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return User::with(['alumni'])->where('id', $id)->first();
     }
 
     /**
@@ -84,6 +84,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $idDeleted = User::destroy($id);
+        if ($idDeleted) {
+            return response()->json(['message' => 'User have been deleted'], 200);
+        } else {
+            return response()->json(['message' => 'Cannot delete!!'], 404);
+        }
     }
 }

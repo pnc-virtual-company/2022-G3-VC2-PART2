@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AlumniCompanyController;
 use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('users', [UserController::class,"index"]);
 Route::post('users', [UserController::class,"store"]);
+
 Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
 Route::put('alumniGeneralInfo/{id}', [UserController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 Route::put('alumni_intro/{id}', [AlumniController::class,'updateAlumniIntroduction']); /* The route to update alumni introduction */
+
+Route::get('users/{id}', [UserController::class,"show"]);
+Route::delete('users/{id}', [UserController::class,"destroy"]);
+Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
+Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
+
+Route::put('alumniGeneralInfo/{id}', [UserController::class,"updateAlumniInfo"]);
+Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
+Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
+
+Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
+Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);

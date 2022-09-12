@@ -14,7 +14,6 @@ class AlumniCompanyController extends Controller
      */
     public function index()
     {
-        //
         return AlumniCompany::all();
     }
 
@@ -26,7 +25,6 @@ class AlumniCompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $alumniCompany = new AlumniCompany();
         $alumniCompany = company_id -> $request-> company_id;
         $alumniCompany = alumni_id -> $request-> alumni_id;
@@ -35,7 +33,7 @@ class AlumniCompanyController extends Controller
         $alumniCompany = end_date -> $request -> end_date;
         $alumniCompany = position -> $request -> position;
         $alumniCompany->save();
-           return response()->Json(["message"=>"work experince is created!"]);
+        return response()->Json(["message"=>"work experince is created!"]);
     }
 
     /**
@@ -59,12 +57,15 @@ class AlumniCompanyController extends Controller
     public function update(Request $request,$id)
     {
         $alumniCompany =  AlumniCompany::findOrFail($id);
-        $alumniCompany = company_id -> $request-> company_id;
-        $alumniCompany = alumni_id -> $request-> alumni_id;
-        $alumniCompany = is_working -> $request -> is_working;
-        $alumniCompany = start_date -> $request -> start_date;
-        $alumniCompany = end_date -> $request -> end_date;
-        $alumniCompany = position -> $request -> position;
+        $alumniCompany->company_id = $request->company_id;
+        $alumniCompany->is_working = $request->is_working;
+        $alumniCompany->start_date = $request->start_date;
+        if (asset($request->end_date)) {
+            $alumniCompany->end_date = $request->end_date;
+        } else {
+            $alumniCompany->end_date = NULL;
+        }
+        $alumniCompany->position = $request->position;
         $alumniCompany->save();
         return response()->Json(["message"=>"work experince is updated!"]);
     }
