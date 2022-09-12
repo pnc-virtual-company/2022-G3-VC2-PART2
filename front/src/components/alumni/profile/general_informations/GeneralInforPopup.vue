@@ -5,22 +5,8 @@
                 <h1 class="text-center font-bold text-2xl bg-white" >Update general informations</h1>
                 <div class="flex bg-white mt-4">
                     <div class="w-2/4 bg-white font-medium mr-2">
-                        <span class="bg-white">First name:</span>
-                        <div class="bg-white mt-1" >
-                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full  border-gray-300 border-2 p-2 rounded-md" placeholder="first name" v-model="userInformationUpdate.firstName" >
-                        </div>
-                    </div>
-                    <div class="w-2/4 bg-white font-medium ml-2">
-                        <span class="bg-white">Last name:</span>
-                        <div class="bg-white mt-1">
-                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="last name" v-model="userInformationUpdate.lastName">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex bg-white mt-4">
-                    <div class="w-2/4 bg-white font-medium mr-2">
                         <span class="bg-white">Gender:</span>
-                        <select id="" class="mt-1 bg-white border-2 border-gray-300 text-gray-900 font-normal mb-6 rounded-lg  w-full p-2"  v-model="userInformationUpdate.gender">
+                        <select id="" class="mt-1 bg-white border-2 border-gray-300 text-gray-900 font-normal mb-6 rounded-lg  w-full p-2"  v-model="gender">
                             <option value="Male" selected>Male</option>
                             <option value="Female">Female</option>
                         </select>
@@ -28,7 +14,7 @@
                     <div class="w-2/4 bg-white font-medium ml-2">
                         <span class="bg-white">Birth of date:</span>
                         <div class="bg-white mt-1">
-                            <input type="date" id="website-admin" class="bg-white text-base font-normal block flex-1 min-w-0 w-full border-gray-300 border-2 p-1.5 rounded-md" placeholder="Birth of Date" v-model="userInformationUpdate.birthDate">
+                            <input type="date" class="bg-white text-base font-normal block flex-1 min-w-0 w-full border-gray-300 border-2 p-1.5 rounded-md"  placeholder="Birth of date" v-model="birthDate">
                         </div>
                     </div>
                 </div>
@@ -36,35 +22,27 @@
                     <div class="w-2/4 bg-white font-medium mr-2">
                         <span class="bg-white">Major:</span>
                         <div class="bg-white mt-1">
-                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="major" v-model="userInformationUpdate.major">
+                            <input type="text" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="major" v-model="major">
                         </div>
                     </div>
                     <div class="w-2/4 bg-white font-medium ml-2">
                         <span class="bg-white">Address:</span>
                         <div class="bg-white mt-1">
-                            <input type="text" id="website-admin" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="address" v-model="userInformationUpdate.address">
+                            <input type="text" class="bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-md" placeholder="address" v-model="address">
                         </div>
                     </div>
-                    <!-- <div class="w-2/4 bg-white font-medium ml-2">
-                        <span class="bg-white">Address:</span>
-                        <select id="" class="mt-1 bg-white  border-2 border-gray-300 text-gray-900 font-normal mb-6 rounded-lg  w-full p-2">
-                            <option value="Phnom Penh" selected>Phnom Penh</option>
-                            <option v-for="province of provinces" :key="province" :value="province">{{province}}</option>
-                        </select>
-                    </div> -->
                 </div>
                 <div class="bg-white flex justify-end mt-4">
                     <button-components @click="$emit('click-popup')" class="hover:bg-gray-200 hover:text-sky">
                         Cancel
                     </button-components>
-                    <button-components class="ml-3 bg-sky font-medium text-white hover:text-blue-200 hover:bg-sky-hover">
+                    <button-components class="ml-3 bg-sky font-medium text-white hover:text-blue-200 hover:bg-sky-hover" @click="updateUserInformation()">
                         Save
                     </button-components>
                 </div>
             </form>
         </card-components>
     </popup-component>
-
 </template>
 
 <script>
@@ -74,8 +52,29 @@
         },
         data(){
             return {
-                userInformationUpdate:this.userInformation,
+                userInformationUpdate:this.userInformation.alumni,
+                gender: '',
+                major: '',
+                birthDate: '',
+                address: '',
             }
+        },
+        
+        methods:{
+            updateUserInformation(){
+                let alumniData = {gender: this.gender, major: this.major, birthDate: this.birthDate, address: this.address};
+                this.$emit('userInformationUpdate',alumniData);
+                this.$emit('click-popup');
+            },
+            dataUpdate(){
+                this.gender = this.userInformationUpdate.gender;
+                this.major = this.userInformationUpdate.major;
+                this.birthDate = this.userInformationUpdate.birthDate;
+                this.address = this.userInformationUpdate.address;
+            }
+        },
+        mounted(){
+            this.dataUpdate();
         }
     }
 </script>

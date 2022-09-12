@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import'./style.css'
-const app = createApp(App);
+import { createPinia } from 'pinia'
+const app = createApp(App).use(createPinia());
 
 //public component
 import IconAction from '@/components/public_components/icons_components/IconsAction';
@@ -20,9 +21,10 @@ import WorkExperience from '@/components/alumni/profile/work_experience/WorkExpe
 import WorkExperienceContainer from '@/components/alumni/profile/work_experience/WorkExperienceContainer'
 import CardInformations from '@/components/public_components/card_components/CardInformations'
 
-    // alumni popup components
+// alumni popup components
 import MyProfilePopup from '@/components/alumni/profile/my_profile/MyProfilePopup'
 import GeneralInforPopup from '@/components/alumni/profile/general_informations/GeneralInforPopup'
+import WorkExperiencePopup from '@/components/alumni/profile/work_experience/WorkExperiencePopup'
 
 //public component
 app.component('popup-component', PopupComponent);
@@ -39,8 +41,9 @@ app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("my-profile-container", MyProfileContainer);
 
-    // alumni popup components register
+// alumni popup components register
 app.component('my-profile-popup', MyProfilePopup);
 app.component('general-infor-popup', GeneralInforPopup);
+app.component('work-experience-popup', WorkExperiencePopup);
 
 app.use(router).mount('#app')

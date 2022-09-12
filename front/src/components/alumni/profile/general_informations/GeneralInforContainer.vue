@@ -1,27 +1,37 @@
 <template>
     <div>
-        <general-infor @click-popup="isShow = !isShow" :userInformation="userInformation"></general-infor>
-    </div>
-    <div v-if="isShow">
-        <general-infor-popup @click-popup="isShow = !isShow" :userInformation="userInformation"></general-infor-popup>
+        <general-infor @click-popup="isShow = !isShow" :userInformation="getAlumniGeneralInfor"></general-infor>
+        <general-infor-popup v-if="isShow" @click-popup="isShow = !isShow" :userInformation="getAlumniGeneralInfor" @userInformationUpdate="alumniData.updateGerneralInforData"></general-infor-popup>
     </div>
 </template>
 
 <script>
+    import { alumniProfileStore } from '@/store/alumniStore';
     export default {
+        setup(){
+            const alumniData = alumniProfileStore();
+            return {
+                alumniData
+            }
+        },
+
         data(){
             return {
                 isShow: false,
-                userInformation: {firstName: 'Thib', lastName: 'Tik', gender: 'Male',major: 'Web developer',birthDate:'02/06/2022',address:'Tek Tla, Phnom Penh'},
+                userInformation: this.alumniData.getGeneralInforData
             }
         },
         methods: {
+            // updateGeneralInfor(data){
 
+            // }
         },
 
         computed:{
-
-        }
+            getAlumniGeneralInfor(){
+                return this.userInformation
+            }
+        },
     }
 </script>
 

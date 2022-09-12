@@ -19,8 +19,8 @@
                         <p class="text-[20px] bg-white mt-3">Major</p>
                     </div>
                     <div class="ml-auto bg-white w-[67%]">
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.gender}}</p>
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.major}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.gender}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.major}}</p>
                     </div>
                 </div>
 
@@ -30,8 +30,8 @@
                         <p class="text-[20px] bg-white mt-3">Address</p>
                     </div>
                     <div class="bg-white w-[67%]">
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.birthDate}}</p>
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.address}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.birthDate}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.address}}</p>
                     </div>
                 </div>
             </div>

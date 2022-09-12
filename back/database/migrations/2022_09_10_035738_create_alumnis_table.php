@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('major');
             $table->integer('batch');
             $table->string('address');
+            $table->string('telegram');
+            $table->string('phone');
             $table->string('gender');
             $table->timestamps();
         });
