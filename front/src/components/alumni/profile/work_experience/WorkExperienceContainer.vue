@@ -1,9 +1,7 @@
 <template>
     <div>
         <work-experience @click-popup="isShow = !isShow"></work-experience>
-    </div>
-    <div v-if="isShow">
-        <work-experience-popup @click-popup="isShow = !isShow"></work-experience-popup>
+        <work-experience-popup v-if="isShow" @click-popup="isShow = !isShow"></work-experience-popup>
     </div>
 </template>
 

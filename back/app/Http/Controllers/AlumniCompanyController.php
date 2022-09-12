@@ -15,6 +15,7 @@ class AlumniCompanyController extends Controller
     public function index()
     {
         //
+        return AlumniCompany::all();
     }
 
     /**
@@ -26,6 +27,15 @@ class AlumniCompanyController extends Controller
     public function store(Request $request)
     {
         //
+        $alumniCompany = new AlumniCompany();
+        $alumniCompany = company_id -> $request-> company_id;
+        $alumniCompany = alumni_id -> $request-> alumni_id;
+        $alumniCompany = is_working -> $request -> is_working;
+        $alumniCompany = start_date -> $request -> start_date;
+        $alumniCompany = end_date -> $request -> end_date;
+        $alumniCompany = position -> $request -> position;
+        $alumniCompany->save();
+           return response()->Json(["message"=>"work experince is created!"]);
     }
 
     /**
@@ -46,9 +56,17 @@ class AlumniCompanyController extends Controller
      * @param  \App\Models\AlumniCompany  $alumniCompany
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AlumniCompany $alumniCompany)
+    public function update(Request $request,$id)
     {
-        //
+        $alumniCompany =  AlumniCompany::findOrFail($id);
+        $alumniCompany = company_id -> $request-> company_id;
+        $alumniCompany = alumni_id -> $request-> alumni_id;
+        $alumniCompany = is_working -> $request -> is_working;
+        $alumniCompany = start_date -> $request -> start_date;
+        $alumniCompany = end_date -> $request -> end_date;
+        $alumniCompany = position -> $request -> position;
+        $alumniCompany->save();
+        return response()->Json(["message"=>"work experince is updated!"]);
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 | API Routes
 |--------------------------------------------------------------------------
 |
+
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
@@ -20,4 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::put('alumni_intro/{id}', [UserController::class,'updateAlumniIntroduction']); /* The route to update alumni introduction */
+Route::get('users', [UserController::class,"index"]);
+Route::post('users', [UserController::class,"store"]);
+Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
+Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
+Route::put('alumniGeneralInfo/{id}', [UserController::class,"updateAlumniInfo"]);
+Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
+Route::put('alumni_intro/{id}', [AlumniController::class,'updateAlumniIntroduction']); /* The route to update alumni introduction */
