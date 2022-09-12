@@ -1,7 +1,7 @@
 <template>
     <div class=" mt-[20px]">
-        <profile-alumni @click-popup="isShow = !isShow"> </profile-alumni>
-        <my-profile-popup v-if="isShow" @click-popup="isShow = !isShow"></my-profile-popup>
+        <general-information @click-popup="isShow = !isShow"> </general-information>
+        <general-information-popup v-if="isShow" @click-popup="isShow = !isShow"></general-information-popup>
     </div>
 </template>
 
