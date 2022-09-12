@@ -26,11 +26,7 @@ Route::get('users/{id}', [UserController::class,"show"]);
 Route::delete('users/{id}', [UserController::class,"destroy"]);
 Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
-<<<<<<< HEAD
 Route::put('alumniGeneralInfo/{id}', [UserController::class,"updateAlumniInfo"]);
-Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
-=======
 Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
->>>>>>> 5a5525c09c91426d788687e319b98455ccb49c05
