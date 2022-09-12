@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AlumniCompanyController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -27,3 +28,4 @@ Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
 Route::put('alumniGeneralInfo/{id}', [UserController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
+Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
