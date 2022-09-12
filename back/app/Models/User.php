@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * relationship
+     */
+    public function alumni(){
+        return $this->hasOne(Alumni::class);
+    }
+    // public function admin(){
+    //     return $this->hasOne(Alumni::class);
+    // }
+    // public function ero(){
+    //     return $this->hasOne(Alumni::class);
+    // }
+    
 }
