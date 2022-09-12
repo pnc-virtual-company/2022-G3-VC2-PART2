@@ -14,7 +14,7 @@
                     <div class="w-2/4 bg-white font-medium ml-2">
                         <span class="bg-white">Birth of date:</span>
                         <div class="bg-white mt-1">
-                            <input type="date" class="bg-white text-base font-normal block flex-1 min-w-0 w-full border-gray-300 border-2 p-1.5 rounded-md"  placeholder="Birth of date" v-model="birthDate">
+                            <input type="date" class="bg-white text-base font-normal block flex-1 min-w-0 w-full border-gray-300 border-2 p-1.5 rounded-md"  placeholder="Birth of date" v-model="birth_date">
                         </div>
                     </div>
                 </div>
@@ -55,21 +55,21 @@
                 userInformationUpdate:this.userInformation.alumni,
                 gender: '',
                 major: '',
-                birthDate: '',
+                birth_date: '',
                 address: '',
             }
         },
         
         methods:{
             updateUserInformation(){
-                let alumniData = {gender: this.gender, major: this.major, birthDate: this.birthDate, address: this.address};
+                let alumniData = {gender: this.gender, major: this.major, birth_date: this.birth_date, address: this.address};
                 this.$emit('userInformationUpdate',alumniData);
                 this.$emit('click-popup');
             },
             dataUpdate(){
                 this.gender = this.userInformationUpdate.gender;
                 this.major = this.userInformationUpdate.major;
-                this.birthDate = this.userInformationUpdate.birthDate;
+                this.birth_date = this.userInformationUpdate.birth_date;
                 this.address = this.userInformationUpdate.address;
             }
         },

@@ -19,8 +19,8 @@
                         <p class="text-[20px] bg-white mt-3">Major</p>
                     </div>
                     <div class="ml-auto bg-white w-[67%]">
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.gender}}</p>
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.major}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{alumniData.userData.alumni.gender}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{alumniData.userData.alumni.major}}</p>
                     </div>
                 </div>
 
@@ -30,8 +30,8 @@
                         <p class="text-[20px] bg-white mt-3">Address</p>
                     </div>
                     <div class="bg-white w-[67%]">
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.birthDate}}</p>
-                        <p class="text-[20px] bg-white mt-3">{{userInformation.alumni.address}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{alumniData.userData.alumni.birth_date}}</p>
+                        <p class="text-[20px] bg-white mt-3">{{alumniData.userData.alumni.address}}</p>
                     </div>
                 </div>
             </div>
@@ -41,11 +41,22 @@
 
 
 <script>
+import { userInformations } from '@/store/userStore';
+
     export default {
-        props:{
-            userInformation:Object
+        setup(){
+            const alumniData = userInformations();
+            return {
+                alumniData
+            }
         },
+
         data() {
+            return{
+            }
         },
+        mounted() {
+            console.log(this.alumniData.userData)
+        }
     }
 </script>
