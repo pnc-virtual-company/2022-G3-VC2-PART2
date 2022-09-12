@@ -23,26 +23,20 @@ class AlumniController extends  Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-     
-      /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateAlumniInfo(Request $request, $id)
+    public function store(Request $request)
     {
-        $alumni =  Alumni::find($id);
-        $alumni-> major = $request->major;
-        $alumni-> address = $request->address;
-        $alumni-> birth_date = $request->birth_date;
-        $alumni-> gender = $request->gender;
-        $alumni-> save();
-        return response()->Json(["message"=>"alumni is updated successfully!"]);
-
+         $user = new User();
+        $user-> first_name = $request->first_name;
+        $user-> last_name = $request->last_name;
+        $user-> email = $request->email;
+        $user-> password = $request->password;
+        $user-> role = $request->role;
+        $user-> image = $request->image;
+        $user-> save();
+        return response()->Json(["message"=>"alumni is created successfully!"]);
     }
+     
+
     /**
      * Remove the specified resource from storage.
      *

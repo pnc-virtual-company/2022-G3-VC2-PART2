@@ -65,9 +65,13 @@ class UserController extends Controller
         $alumni = Alumni::where('user_id', $id)->update([
             'phone' => $request->phone,
             'telegram' => $request->telegram,
-            'batch' => $request->batch
+            'batch' => $request->batch,
+            'major' => $request->major,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
         ]);
-        return response()->Json(["message"=>"introduction is updated successfully!",'first_name' => $request->first_name, 'telegram' => $request->telegram,'batch' => $request->batch,'first_name' => $request->first_name,'last_name' => $request->last_name,'email' => $request->email]);
+        return response()->Json(["message"=>"introduction is updated successfully!"]);
     }
     /**
      * Remove the specified resource from storage.
