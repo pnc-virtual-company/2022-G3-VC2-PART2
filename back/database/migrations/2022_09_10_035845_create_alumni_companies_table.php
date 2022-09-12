@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('alumni_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_working');
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable();
             $table->string('position');
             $table->timestamps();
         });

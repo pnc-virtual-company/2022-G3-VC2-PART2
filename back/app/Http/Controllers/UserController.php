@@ -59,8 +59,8 @@ class UserController extends Controller
      */
     public function updateAlumniInfo(Request $request, $id)
     {
-        //
-          $user =  User::find($id);
+        
+        $user =  User::find($id);
         $user-> first_name = $request->first_name;
         $user-> last_name = $request->last_name;
         $user-> email = $request->email;
