@@ -32,11 +32,29 @@ class AlumniController extends Controller
         $alumni-> address = $request->address;
         $alumni-> phone = $request->phone;
         $alumni-> telegram = $request->telegram;
+        $alumni-> birth_date = $request->birth_date;
         $alumni-> gender = $request->gender;
         $alumni-> save();
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAlumniInfo(Request $request, $id)
+    {
+        $alumni =  Alumni::find($id);
+        $alumni-> major = $request->major;
+        $alumni-> address = $request->address;
+        $alumni-> birth_date = $request->birth_date;
+        $alumni-> gender = $request->gender;
+        $alumni-> save();
+        return response()->Json(["message"=>"alumni is updated successfully!"]);
+    }
     /**
      * Remove the specified resource from storage.
      *
