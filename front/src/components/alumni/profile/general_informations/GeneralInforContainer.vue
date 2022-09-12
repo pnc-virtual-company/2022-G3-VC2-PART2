@@ -13,7 +13,6 @@
             }
         },
         methods: {
-
         },
 
         computed:{
