@@ -32,6 +32,7 @@
 
 <script>
     export default {
+        props: ['id'],
         data() {
             return {
                 visibleIndex: null,

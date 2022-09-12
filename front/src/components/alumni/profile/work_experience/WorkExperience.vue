@@ -13,7 +13,7 @@
             </div>
         </div>
         <div>
-            <card-informations @click-popup="$emit('click-popup')" v-for:="experience of allExperience">
+            <card-informations v-for:="experience of allExperience" @click-popup="$emit('click-popup', experience.id)">
                 <template #header>{{ experience.position }}</template>
                 <template #content-1>{{ experience.company }}</template>
                 <template #content-2>{{ experience.start_date }} - {{ experience.end_date }}</template>
@@ -27,8 +27,8 @@
         data() {
             return {
                 allExperience: [
-                    {position: 'Laravel Developer', company: 'Z1 Flexible Solution', start_date: 'June, 2020', end_date: 'Present'},
-                    {position: 'WEB Developer', company: 'Zination Cambodia', start_date: 'June, 2020', end_date: 'January, 2022'},
+                    {id: 1, position: 'Laravel Developer', company: 'Z1 Flexible Solution', start_date: 'June, 2020', end_date: 'Present'},
+                    {id: 2, position: 'WEB Developer', company: 'Zination Cambodia', start_date: 'June, 2020', end_date: 'January, 2022'},
                 ],
             }
         },
