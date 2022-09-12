@@ -47,25 +47,6 @@ class UserController extends Controller
     {
         return User::with(['alumni'])->where('id', $id)->first();
     }
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateAlumniInfo(Request $request, $id)
-    {
-          $user =  User::find($id);
-        $user-> first_name = $request->first_name;
-        $user-> last_name = $request->last_name;
-        $user-> email = $request->email;
-        $alumni = Alumni::where('user_id', $user->id)->get()->first()->update(['major' =>$request->major,'phone' =>$request->phone,'telegram' => $request->telegram,'address' =>$request->address]);
-        $user-> save();
-        return response()->Json(["message"=>"alumni is updated successfully!"]);
-    }
-    
     /**
      * Remove the specified resource from storage.
      *
