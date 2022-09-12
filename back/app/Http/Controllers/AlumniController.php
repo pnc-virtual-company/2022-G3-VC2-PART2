@@ -6,7 +6,7 @@ use App\Models\Alumni;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AlumniController extends Controller
+class AlumniController extends  Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,21 +23,8 @@ class AlumniController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $alumni = new Alumni();
-        $alumni-> user_id = $request->user_id;
-        $alumni-> major = $request->major;
-        $alumni-> batch = $request->batch;
-        $alumni-> address = $request->address;
-        $alumni-> phone = $request->phone;
-        $alumni-> telegram = $request->telegram;
-        $alumni-> birth_date = $request->birth_date;
-        $alumni-> gender = $request->gender;
-        $alumni-> save();
-        return response()->Json(["message"=>"alumni is created successfully!"]);
-    }
 
+     
       /**
      * Update the specified resource in storage.
      *
@@ -54,6 +41,7 @@ class AlumniController extends Controller
         $alumni-> gender = $request->gender;
         $alumni-> save();
         return response()->Json(["message"=>"alumni is updated successfully!"]);
+
     }
     /**
      * Remove the specified resource from storage.
@@ -70,7 +58,4 @@ class AlumniController extends Controller
         }
         return response()->json(['sms'=>'student could not be deleted']);
     }
-
-   
-    
 }

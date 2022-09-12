@@ -48,7 +48,27 @@ class UserController extends Controller
         return User::with(['alumni'])->where('id', $id)->first();
     }
 
-
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+      public function updateAlumnIntro(Request $request, $id)
+    {
+        $user =  User::findOrFail($id);
+        $user-> first_name = $request->first_name;
+        $user-> last_name = $request->last_name;
+        $user-> email = $request->email;
+        $user-> save();
+        $alumni = Alumni::where('user_id', $id)->update([
+            'phone' => $request->phone,
+            'telegram' => $request->telegram,
+            'batch' => $request->batch
+        ]);
+        return response()->Json(["message"=>"introduction is updated successfully!",'first_name' => $request->first_name, 'telegram' => $request->telegram,'batch' => $request->batch,'first_name' => $request->first_name,'last_name' => $request->last_name,'email' => $request->email]);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -64,4 +84,9 @@ class UserController extends Controller
             return response()->json(['message' => 'Cannot delete!!'], 404);
         }
     }
+
+
+
+
+
 }
