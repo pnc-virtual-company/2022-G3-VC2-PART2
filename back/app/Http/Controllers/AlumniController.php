@@ -70,4 +70,7 @@ class AlumniController extends Controller
         }
         return response()->json(['sms'=>'student could not be deleted']);
     }
+
+   
+    
 }

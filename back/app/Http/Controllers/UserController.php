@@ -47,6 +47,8 @@ class UserController extends Controller
     {
         return User::with(['alumni'])->where('id', $id)->first();
     }
+
+
     /**
      * Remove the specified resource from storage.
      *
