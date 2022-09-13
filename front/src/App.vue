@@ -12,7 +12,6 @@
     beforeCreate(){
       this.userData.getUserData();
       this.userData.getCompanyList();
-      console.log("created ")
     }
   }
 </script>
