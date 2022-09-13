@@ -10,8 +10,10 @@
     },
 
     beforeCreate(){
+      console.log("Before create")
       this.userData.getUserData();
-      console.log("created ")
+      console.log(this.userData.userData)
+
     }
   }
 </script>
