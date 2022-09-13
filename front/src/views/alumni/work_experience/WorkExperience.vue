@@ -13,24 +13,56 @@
             </div>
         </div>
         <div>
-            <card-informations @click-popup="$emit('click-popup')" v-for:="experience of allExperience">
+            <card-informations v-for:="experience of orderedExperience" @click-popup="$emit('click-popup', experience.id)">
                 <template #header>{{ experience.position }}</template>
-                <template #content-1>{{ experience.company }}</template>
-                <template #content-2>{{ experience.start_date }} - {{ experience.end_date }}</template>
+                <template #content-1>{{ experience.company.name }}</template>
+                <template #content-2>{{ experience.start_date }} - {{ endDate(experience.end_date, experience.is_working) }}</template>
             </card-informations>
         </div>
     </card-components>
 </template>
 
 <script>
+    import {userInformations} from "@/store/userStore"
     export default {
-        data() {
+        setup(){
+            const userData = userInformations();
             return {
-                allExperience: [
-                    {position: 'Laravel Developer', company: 'Z1 Flexible Solution', start_date: 'June, 2020', end_date: 'Present'},
-                    {position: 'WEB Developer', company: 'Zination Cambodia', start_date: 'June, 2020', end_date: 'January, 2022'},
-                ],
+                userData
             }
         },
+
+        methods: {
+            endDate(date, working) {
+                let result = "Present";
+                if (!working) {
+                    result = date;
+                }
+                return result;
+            }
+        },
+
+        computed: {
+            orderedExperience() {
+                let expList = [];
+                this.userData.userData.work_experience.forEach(eachExp => {
+                    if (eachExp.is_working) {
+                        expList.push(eachExp);
+                    }
+                });
+
+                let notPresentExp = [];
+                this.userData.userData.work_experience.forEach(eachExp => {
+                    if (!eachExp.is_working) {
+                        notPresentExp.push(eachExp);
+                    }
+                });
+                notPresentExp.reverse().forEach(eachExp => {
+                    expList.push(eachExp);
+                });
+                
+                return expList;
+            }
+        }
     }
 </script>

@@ -10,10 +10,8 @@
     },
 
     beforeCreate(){
-      console.log("Before create")
       this.userData.getUserData();
-      console.log(this.userData.userData)
-
+      this.userData.getCompanyList();
     }
   }
 </script>

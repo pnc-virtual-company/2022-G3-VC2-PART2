@@ -26,12 +26,16 @@ class AlumniCompanyController extends Controller
     public function store(Request $request)
     {
         $alumniCompany = new AlumniCompany();
-        $alumniCompany = company_id -> $request-> company_id;
-        $alumniCompany = alumni_id -> $request-> alumni_id;
-        $alumniCompany = is_working -> $request -> is_working;
-        $alumniCompany = start_date -> $request -> start_date;
-        $alumniCompany = end_date -> $request -> end_date;
-        $alumniCompany = position -> $request -> position;
+        $alumniCompany->company_id = $request->company_id;
+        $alumniCompany->user_id = $request->user_id;
+        $alumniCompany->is_working = $request->is_working;
+        $alumniCompany->position = $request->position;
+        $alumniCompany->start_date = $request->start_date;
+        if (!$request->is_working) {
+            $alumniCompany->end_date = $request->end_date;
+        } else {
+            $alumniCompany->end_date = NULL;
+        }
         $alumniCompany->save();
         return response()->Json(["message"=>"work experince is created!"]);
     }
@@ -60,7 +64,7 @@ class AlumniCompanyController extends Controller
         $alumniCompany->company_id = $request->company_id;
         $alumniCompany->is_working = $request->is_working;
         $alumniCompany->start_date = $request->start_date;
-        if (asset($request->end_date)) {
+        if (!$request->is_working) {
             $alumniCompany->end_date = $request->end_date;
         } else {
             $alumniCompany->end_date = NULL;

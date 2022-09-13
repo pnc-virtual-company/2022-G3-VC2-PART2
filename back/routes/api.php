@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniCompanyController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +40,6 @@ Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
 Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
 Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
+
+Route::get('/companies', [CompanyController::class, "index"]);
+

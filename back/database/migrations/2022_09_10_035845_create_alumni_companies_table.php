@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('alumni_companies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('alumni_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_working');
             $table->date('start_date');
             $table->date('end_date')->nullable();
