@@ -44,11 +44,6 @@ export const userInformations = defineStore('get-data', {
       })
     },
 
-    updateGerneralInforData(data) {
-      this.userStore.alumni = data;
-      axios.put('/alumniGeneralInfo/'+1, data);
-    },
-
     updateWorkExperience(id, data) {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
