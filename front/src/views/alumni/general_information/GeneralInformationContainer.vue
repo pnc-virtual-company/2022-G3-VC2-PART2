@@ -25,7 +25,6 @@
         },
         methods: {
             updateGeneralInfor(data){
-                console.log(data)
                 this.userInfor.updateAlumniGerneralInfor(data);
             }
         },

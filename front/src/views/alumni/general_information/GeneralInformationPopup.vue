@@ -103,8 +103,8 @@
                                 <img class="w-[26px] h-[26px]"  src="../../../assets/gender.jpg" alt="">
                             </span>
                             <select v-model="gender" id="" class="rounded-none outline-sky bg-white font-normal text-base  block flex-1 min-w-0 w-full  border-gray-300 border-2 p-2 rounded-r-md">
-                                <option value="Male" selected>Male</option>
-                                <option value="Female">Female</option>
+                                <option value="male" selected>Male</option>
+                                <option value="female">Female</option>
                             </select>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="bg-white flex justify-end mt-6">
-                    <button-components @click="$emit('click-popup')" class="bg-[red] hover:bg-[#e60c0c] font-medium border-none text-white">
+                    <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
                     </button-components>
                     <button-components @click="updateGeneralInfor()" class="ml-3 bg-sky font-medium text-white  hover:bg-sky-hover">
