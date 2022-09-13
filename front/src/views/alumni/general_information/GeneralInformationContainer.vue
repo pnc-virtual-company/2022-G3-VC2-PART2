@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <work-experience @click-popup="isShow = !isShow"></work-experience>
-        <work-experience-popup v-if="isShow" @click-popup="isShow = !isShow"></work-experience-popup>
+    <div class=" mt-[20px]">
+        <general-information @click-popup="isShow = !isShow"> </general-information>
+        <general-information-popup v-if="isShow" @click-popup="isShow = !isShow"></general-information-popup>
     </div>
 </template>
 

@@ -31,21 +31,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'updated_at',
+        'created_at',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
     /**
      * relationship
      */
     public function alumni(){
         return $this->hasOne(Alumni::class);
+    }
+    public function work_experience(){
+        return $this->hasMany(AlumniCompany::class);
+    }
+    public function education_backgrounds(){
+        return $this->hasMany(AlumniSchool::class);
     }
     // public function admin(){
     //     return $this->hasOne(Alumni::class);

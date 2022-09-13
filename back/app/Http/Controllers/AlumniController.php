@@ -17,6 +17,7 @@ class AlumniController extends  Controller
     {
         return Alumni::with(['user'])->get();
     }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -51,8 +52,21 @@ class AlumniController extends  Controller
         $alumni-> gender = $request->gender;
         $alumni-> save();
         return response()->Json(["message"=>"alumni is updated successfully!"]);
-
     }
+    public function store(Request $request)
+    {
+         $user = new User();
+        $user-> first_name = $request->first_name;
+        $user-> last_name = $request->last_name;
+        $user-> email = $request->email;
+        $user-> password = $request->password;
+        $user-> role = $request->role;
+        $user-> image = $request->image;
+        $user-> save();
+        return response()->Json(["message"=>"alumni is created successfully!"]);
+    }
+     
+
     /**
      * Remove the specified resource from storage.
      *

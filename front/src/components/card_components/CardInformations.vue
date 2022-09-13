@@ -1,5 +1,5 @@
 <template>
-    <div class="border-b-2 pb-3 text-black" @mouseover="visibleIndex = 0" @mouseout="visibleIndex = null">
+    <div class="border-b-[1px] border-b-gray-300 pb-3 text-black" @mouseover="visibleIndex = 0" @mouseout="visibleIndex = null">
         <div class="flex items-center justify-between mt-3 w-full">
             <h1 class="font-bold text-xl">
                 <slot name="header"></slot>
