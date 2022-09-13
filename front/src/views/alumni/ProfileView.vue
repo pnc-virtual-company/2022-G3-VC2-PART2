@@ -1,6 +1,6 @@
 <template>
         <div class="mt-10">
-                <my-profile-container></my-profile-container>
+                <general-information-container></general-information-container>
         </div>
         <div class="mt-[20px]">
                 <general-infor-container></general-infor-container>
