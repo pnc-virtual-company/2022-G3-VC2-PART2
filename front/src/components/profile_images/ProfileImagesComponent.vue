@@ -28,8 +28,20 @@
                         </label>
                     </div>
                 </div>
-                <h1 class="bg-white font-bold text-xl mt-2">Thib Tik</h1>
+                <h1 class="bg-white font-bold text-xl mt-2">{{userInfor.userData.first_name}} {{userInfor.userData.last_name}}</h1>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+     import {userInformations} from "../../store/userStore"
+    export default {
+      setup(){
+          const userInfor = userInformations();
+          return {
+              userInfor
+          }
+      },
+}
+</script>
