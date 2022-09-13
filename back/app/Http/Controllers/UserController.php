@@ -46,7 +46,6 @@ class UserController extends Controller
     {
         return User::with(['alumni'])->where('id', $id)->first();
     }
-
     /**
      * Update the specified resource in storage.
      *

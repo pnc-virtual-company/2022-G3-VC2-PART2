@@ -23,10 +23,6 @@ class AlumniController extends  Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
-
-
-
 
     public function updateAlumniIntroduction(Request $request, $id)
     {
@@ -36,8 +32,9 @@ class AlumniController extends  Controller
         $alumni-> batch = $request->batch;
         $user = User::where('id', $alumni->user_id)->get()->first()->update(['first_name' => $request->first_name,'last_name' => $request->last_name,'email' => $request->email]);
         $alumni-> save();
-        return response()->Json(["message"=>"introduction is updated successfully!",'phone' => $request->phone, 'telegram' => $request->telegram,'batch' => $request->batch]);
+        return response()->Json(["message"=>"introduction is updated successfully!",'phone' => $request->phone, 'telegram' => $request->telegram,'batch' => $request->batch,'first_name' => $request->first_name,'last_name' => $request->last_name,'email' => $request->email]);
     }
+
       /**
      * Update the specified resource in storage.
      *
