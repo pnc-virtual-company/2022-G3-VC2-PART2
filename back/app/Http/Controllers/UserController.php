@@ -59,8 +59,9 @@ class UserController extends Controller
         }
         abort(404);
     }
+    /**
 
-      /**
+
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
