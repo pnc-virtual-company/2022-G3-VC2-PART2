@@ -14,7 +14,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        return School::all();
     }
 
     /**
@@ -25,7 +25,10 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $school = new School();
+        $school->name = $request->name;
+        $school->save();
+        return response()->Json(['sms'=> "school is added"]);
     }
 
     /**

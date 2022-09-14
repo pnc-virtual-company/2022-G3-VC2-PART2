@@ -13,11 +13,15 @@
             </div>
         </div>
         <div>
-            <card-informations @click-popup="$emit('click-popup')" v-for:="experience of education">
+            <card-informations @click-popup="$emit('click-popup')" >
+                <template #content-1>Passerelles Numeriques Cambodia </template>
+                <template #content-2>VP.Start Co,Ltd </template>
+                <template #content-3>Start date: August 2022</template>
+            </card-informations>
+            <!-- <card-informations @click-popup="$emit('click-popup')" v-for:="experience of education">
                 <template #header>{{ experience.school }}</template>
                 <template #content-1>{{ experience.company }}</template>
-                <template #content-2>{{ experience.start_date }} </template>
-            </card-informations>
+            </card-informations> -->
         </div>
     </card-components>
 </template>
@@ -26,10 +30,10 @@
     export default {
         data() {
             return {
-                education: [
-                    {school: 'Passerelles numeriques Cambodia', company: 'Associate degree, Web developer', start_date: '2020-2022'},
-                    {school: 'University of Puthisas', company: 'Bachelor degree, Web developer', start_date: '2022-2024'},
-                ],
+                // education: [
+                //     {school: 'Passerelles numeriques Cambodia', company: 'Associate degree, Web developer', start_date: '2020-2022'},
+                //     {school: 'University of Puthisas', company: 'Bachelor degree, Web developer', start_date: '2022-2024'},
+                // ],
             }
         },
     }

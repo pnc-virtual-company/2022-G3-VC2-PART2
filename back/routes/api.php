@@ -4,8 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniCompanyController;
+use App\Http\Controllers\AlumniSchoolController;
 use App\Http\Controllers\AlumniSkillController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 
@@ -53,6 +55,12 @@ Route::delete('/skills/{id}', [SkillController::class, "destroy"]);
 Route::get('/alumni/skills/', [AlumniSkillController::class, "index"]);
 Route::post('/alumni/skills/', [AlumniSkillController::class, "store"]);
 Route::delete('/alumni/skills/{id}', [AlumniSkillController::class, "destroy"]);
+
+// Route::get('/school', [AlumniSchoolController::class, "index"]);
+// Route::post('/school', [AlumniSchoolController::class, "store"]);
+
+// Route::get('/schoolName', [SchoolController::class, "index"]);
+// Route::post('/schoolName', [SchoolController::class, "store"]);
 
 
 

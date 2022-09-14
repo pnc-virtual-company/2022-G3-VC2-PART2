@@ -14,7 +14,7 @@ class AlumniSchoolController extends Controller
      */
     public function index()
     {
-        //
+        // return AlumniSchool::all();
     }
 
     /**
@@ -25,7 +25,16 @@ class AlumniSchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $alumniSchool = new AlumniSchool();
+        // $alumniSchool->user_id = $request->user_id;
+        // $alumniSchool->school_id = $request->school_id;
+        // $alumniSchool->start_date = $request->start_date;
+        // $alumniSchool->end_date = $request->end_date;
+        // $alumniSchool->major = $request->major;
+        // $alumniSchool->degree = $request->degree;
+
+        // $alumniSchool->save();
+        // return response()->Json(['sms'=> "school is added"]);
     }
 
     /**
