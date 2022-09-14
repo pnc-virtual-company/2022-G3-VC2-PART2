@@ -48,7 +48,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($user) {
             if ($user->role == 'alumni') {
-                return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
+                return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('id', $id)->first();
             } 
             // else if ($user->role == 'ero') {
             //     return User::with('alumni')->first();
@@ -59,8 +59,9 @@ class UserController extends Controller
         }
         abort(404);
     }
+    /**
 
-      /**
+
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

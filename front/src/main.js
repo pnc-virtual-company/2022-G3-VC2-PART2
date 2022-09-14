@@ -21,6 +21,7 @@ import WorkExperienceContainer from './views/alumni/work_experience/WorkExperien
 import CardInformations from '@/components/card_components/CardInformations'
 import EducationBackground from './views/alumni/education_background/EducationBackground'
 import EducationBackgroundContainer from './views/alumni/education_background/EducationBackgroundContainer'
+import AlumniSkill from './views/alumni/aulmi_skill/AlumniSkill';
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
@@ -54,6 +55,7 @@ app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
 app.component("education_background", EducationBackground);
 app.component("education_background_container", EducationBackgroundContainer);
+app.component("alumni-skill", AlumniSkill);
 
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);
