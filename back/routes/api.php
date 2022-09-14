@@ -56,11 +56,11 @@ Route::get('/alumni/skills/', [AlumniSkillController::class, "index"]);
 Route::post('/alumni/skills/', [AlumniSkillController::class, "store"]);
 Route::delete('/alumni/skills/{id}', [AlumniSkillController::class, "destroy"]);
 
-// Route::get('/school', [AlumniSchoolController::class, "index"]);
-// Route::post('/school', [AlumniSchoolController::class, "store"]);
+Route::get('/school', [AlumniSchoolController::class, "index"]);
+Route::post('/school', [AlumniSchoolController::class, "store"]);
 
-// Route::get('/schoolName', [SchoolController::class, "index"]);
-// Route::post('/schoolName', [SchoolController::class, "store"]);
+Route::get('/schoolName', [SchoolController::class, "index"]);
+Route::post('/schoolName', [SchoolController::class, "store"]);
 
 
 

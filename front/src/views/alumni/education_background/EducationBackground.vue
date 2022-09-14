@@ -14,7 +14,8 @@
         </div>
         <div>
             <card-informations @click-popup="$emit('click-popup')" >
-                <template #content-1>Passerelles Numeriques Cambodia </template>
+                EducationData
+                <template #content-1>Passerelles Numeriques Cambodia{{EducationData.educationBackground.major}} </template>
                 <template #content-2>VP.Start Co,Ltd </template>
                 <template #content-3>Start date: August 2022</template>
             </card-informations>
@@ -27,14 +28,21 @@
 </template>
 
 <script>
+     import {userInformations} from "../../../store/userStore"
     export default {
-        data() {
+        setup(){
+            const EducationData = userInformations();
             return {
-                // education: [
-                //     {school: 'Passerelles numeriques Cambodia', company: 'Associate degree, Web developer', start_date: '2020-2022'},
-                //     {school: 'University of Puthisas', company: 'Bachelor degree, Web developer', start_date: '2022-2024'},
-                // ],
+                EducationData
             }
         },
+        // data() {
+        //     return {
+        //         // education: [
+        //         //     {school: 'Passerelles numeriques Cambodia', company: 'Associate degree, Web developer', start_date: '2020-2022'},
+        //         //     {school: 'University of Puthisas', company: 'Bachelor degree, Web developer', start_date: '2022-2024'},
+        //         // ],
+        //     }
+        // },
     }
 </script>
