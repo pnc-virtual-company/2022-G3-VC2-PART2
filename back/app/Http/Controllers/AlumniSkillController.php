@@ -14,7 +14,7 @@ class AlumniSkillController extends Controller
      */
     public function index()
     {
-        //
+        return AlumniSkill::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class AlumniSkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumniSkill = new AlumniSkill();
+        $alumniSkill->user_id = $request->user_id;
+        $alumniSkill->skill_id = $request->skill_id;
+
+        $alumniSkill->save();
+        return response()->Json(['sms'=> "skill is added"]);
+
+
     }
 
     /**
@@ -57,8 +64,14 @@ class AlumniSkillController extends Controller
      * @param  \App\Models\AlumniSkill  $alumniSkill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AlumniSkill $alumniSkill)
+    public function destroy($id)
     {
-        //
+        $alumniSkill = AlumniSkill::where('id', $id)->get();
+        if(count($alumniSkill)>0){
+            AlumniSkill::destroy($id);
+            return response()->json(['message'=>"skill delete successfully"]);
+        }else{
+            return response()->json(['message'=>"skill cannot delete successfully"]);
+        }
     }
 }

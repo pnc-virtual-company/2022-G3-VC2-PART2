@@ -14,7 +14,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        return Skill::all();
     }
 
     /**
@@ -25,7 +25,11 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $skill = new Skill();
+        $skill->name = $request->name;
+
+        $skill->save();
+        return response()->json(["sms"=>"skill is added"]);
     }
 
     /**
@@ -57,8 +61,14 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        //
+        $skill = Skill::where('id', $id)->get();
+        if(count($skill)>0){
+           Skill::destroy($id);
+           return response()->json(["sms"=>' skill is deleted']);
+        }else{
+            return response()->Json(["sms"=>"skill can't deleted"]);
+        }
     }
 }
