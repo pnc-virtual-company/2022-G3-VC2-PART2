@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Alumni;
-
 class UserController extends Controller
 {
     /**
@@ -100,7 +100,52 @@ class UserController extends Controller
             return response()->json(['message' => 'Cannot delete!!'], 404);
         }
     }
+    
+    public function updateProfileImage(Request $request,$id){
+        $user = User::find($id);
+        if($user->profile != "avatar.png") {
+            $previousImgPath = storage_path('images/') . $user->profile;
+            if (File::exists($previousImgPath)) {
+                File::delete($previousImgPath);
+            }
+        }
+        $profile = $request->profile;
+        $newName = "IMG_". time() . "_" . $profile->getClientOriginalName();
+        $profile->move(storage_path('images'), $newName);
+        $user->profile = $newName;
+        $user->save();
+        return response(['massage'=>"Updated profile Success"]);
+    }
+    public function updateCoverImage(Request $request,$id){
+        $user = User::find($id);
+        if($user->cover != "avatar.png") {
+            $previousImgPath = storage_path('images/') . $user->cover;
+            if (File::exists($previousImgPath)) {
+                File::delete($previousImgPath);
+            }
+        }
+        $cover = $request->cover;
+        $newName = "IMG_". time() . "_" . $cover->getClientOriginalName();
+        $cover->move(storage_path('images'), $newName);
+        $user->cover = $newName;
+        $user->save();
+        return response(['massage'=>"Updated cover Success"]);
+    }
+    
+    public function getImage($imageName)
+    {
+        $path = storage_path('images/' . $imageName);
 
+        if (File::exists($path)) {
+            $file = File::get($path);
+        } else {
+            abort(404);
+        }
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+    }
 
 
 

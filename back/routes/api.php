@@ -28,6 +28,8 @@ Route::get('users', [UserController::class,"index"]);
 Route::post('users', [UserController::class,"store"]);
 Route::get('users/{id}', [UserController::class,"show"]);
 Route::delete('users/{id}', [UserController::class,"destroy"]);
+Route::put('users/updateProfileImage/{id}', [UserController::class,"updateProfileImage"]); 
+Route::get('users/getImages/{imageName}', [UserController::class,"getImage"]); 
 Route::put('alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
 
 Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
