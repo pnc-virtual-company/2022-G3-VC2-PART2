@@ -1,3 +1,10 @@
+<template>
+  <div>
+    <div class="mb-[20px]">
+      <router-view/>
+    </div>
+  </div>
+</template>
 
 <script>
   import {userInformations} from "@/store/userStore"
@@ -12,21 +19,12 @@
     beforeCreate(){
       this.userData.getUserData();
       this.userData.getCompanyList();
-      console.log("created ")
     }
   }
 </script>
-
-<template>
-  <div class="mb-[20px]">
-    <router-view/>
-  </div>
-</template>
 
 <style >
 body{
   background: #E5F2FB;
 }
-
-
 </style>

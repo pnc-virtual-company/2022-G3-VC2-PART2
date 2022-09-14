@@ -64,7 +64,7 @@
                     <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
                     </button-components>
-                    <button-components @click="updateWorkExperience" class="ml-3 bg-sky font-medium text-white hover:text-blue-200 hover:bg-sky-hover">
+                    <button-components @click="updateWorkExperience" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
                         Save
                     </button-components>
                 </div>
