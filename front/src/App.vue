@@ -12,6 +12,7 @@
     beforeCreate(){
       this.userData.getUserData();
       this.userData.getCompanyList();
+      this.userData.getEmails();
     }
   }
 </script>
