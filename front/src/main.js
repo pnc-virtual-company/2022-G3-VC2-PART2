@@ -66,7 +66,4 @@ app.component('the-birthdate', TheBirthDate);
 app.component('the-gender', TheGender);
 app.component('the-major', TheMajor);
 
-// skil information
-// app.component('skill_information',SkillInformation)
-
 app.use(router).mount('#app')
