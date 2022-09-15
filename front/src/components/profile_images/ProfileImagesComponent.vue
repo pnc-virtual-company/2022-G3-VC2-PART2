@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class=" ">
+        <div class="">
             <img alt="Vue logo" class=" w-full h-[182px] rounded-t-lg" :src="urlProfile" >
             <div class="flex justify-end item-center w-full relative -top-[0.30rem] bg-red-700">
                 <div @click="userInfor.showEditProfile=!userInfor.showEditProfile" class="h-8 mr-2 w-8 rounded-full bg-white mt-[-35px] ml-[4.8rem] flex justify-end items-center hover:bg-gray-300">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-between mt-[-6rem] ml-[33px]">
+        <div class="flex justify-between mt-[-6rem] ml-[20px]">
             <div class="flex flex-col items-center">
                 <div>
                     <img alt="Vue logo" class="w-[148px] h-[148px] rounded-full" :src="urlCover" width="120">

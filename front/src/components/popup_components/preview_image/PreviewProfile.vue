@@ -1,6 +1,6 @@
 <template>
     <popup-component>
-        <card-components class="p-[0px] ">
+        <card-components class="p-[0rem] ">
             <!-- <h2 class="mb-5 m-auto text-center font-bold text-3xl">Update your profile image</h2> -->
             <img v-if="!showNewImage" class="w-full m-auto h-[300px] rounded-t-lg" :src="urlProfile" alt="">
             <img v-if="showNewImage" class=" w-full m-auto h-[300px] rounded-t-lg" :src="profileImage" alt="">

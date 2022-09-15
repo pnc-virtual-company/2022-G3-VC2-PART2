@@ -14,7 +14,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        return School::all();
     }
 
     /**
@@ -25,7 +25,20 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $school = new School();
+        $school->name = $request->name;
+        if ($request->logo) {
+            $school->logo = $request->logo;
+        } else {
+            $school->logo = "company_logo.png";
+        }
+        if($request->link){
+            $school->link = $request->link;
+        }
+       
+        $school->save();
+
+        return response()->Json(["sms"=>"school is added"]);
     }
 
     /**
@@ -34,9 +47,9 @@ class SchoolController extends Controller
      * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function show(School $school)
+    public function show($id)
     {
-        //
+        return School::findOrFail($id);
     }
 
     /**
@@ -46,9 +59,19 @@ class SchoolController extends Controller
      * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, $id)
     {
-        //
+         $school = School::findOrFail($id);
+         $school->name = $request->name;
+         if ($request->logo) {
+            $school->logo = $request->logo;
+        }
+        if($request->link){
+            $school->link = $request->link;
+        }
+         $school->save();
+ 
+         return response()->Json(["sms"=>"school is updated"]);
     }
 
     /**
@@ -57,8 +80,8 @@ class SchoolController extends Controller
      * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy($id)
     {
-        //
+        return School::destroy($id);
     }
 }

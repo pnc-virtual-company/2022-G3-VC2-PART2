@@ -17,5 +17,11 @@ class AlumniSkill extends Model
     protected $hidden = [
         'updated_at',
         'created_at',
+        'user_id'
     ];
+
+    // Relationship
+    public function skill(){
+        return $this->belongsTo(Skill::class);
+    }
 }

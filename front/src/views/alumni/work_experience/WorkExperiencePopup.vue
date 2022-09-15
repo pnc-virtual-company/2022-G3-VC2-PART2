@@ -7,12 +7,12 @@
                     <div class="w-full bg-white font-medium">
                         <span class="bg-white">Companies:</span>
                         <div class="flex bg-white mt-1">
-                            <span class="bg-white inline-flex items-center p-2 rounded-l-md border-2 border-r-0 border-gray-300">
+                            <span class="bg-white inline-flex    items-center p-2 rounded-l-md border-2 border-r-0 border-gray-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[26px] h-[26px] text-white bg-sky rounded-full p-1">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
                                 </svg>
                             </span>
-                            <select v-model="company" id="" class="rounded-none bg-white cursor-pointer font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md">
+                            <select v-model="company" id="" class="rounded-none bg-white cursor-pointer font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md  outline-sky">
                                 <option class="cursor-pointer" v-for="company of userData.companyList" :key="company" :value="company.name">{{ company.name }}</option>
                             </select>
                         </div>
@@ -25,7 +25,7 @@
                             <span :class="{ 'border-red-400': isPositionNull }"  class="bg-white inline-flex items-center p-2 rounded-l-md border-2 border-r-0 border-gray-300">
                                 <img class="w-[26px] h-[26px]"  src="../../../assets/position.png" alt="">
                             </span>
-                            <input :class="{ 'border-red-400': isPositionNull }"  v-model ="position"  type="text" id="website-admin" placeholder="Position" class="rounded-none pl-3 bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md ">
+                            <input :class="{ 'border-red-400': isPositionNull }"  v-model ="position"  type="text" id="website-admin" placeholder="Position" class="rounded-none pl-3 bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md  outline-sky">
                         </div>
                     </div>
                 </div>
@@ -33,28 +33,28 @@
                     <div class="w-2/4 bg-white font-medium mr-2">
                         <span class="bg-white">Start date:</span>
                         <div class="flex bg-white mt-1">
-                            <span :class="{ 'border-red-400': isStartDateNull || !isStartDateGreater && !isWorking }" class="bg-white inline-flex items-center p-2 text-sm rounded-l-md border-2 border-r-0 border-gray-300">
+                            <span :class="{ 'border-red-400': isStartDateNull}" class="bg-white inline-flex items-center p-2 text-sm rounded-l-md border-2 border-r-0 border-gray-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[26px] h-[26px] text-white bg-sky rounded-full p-1">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                                 </svg>
                             </span>
-                            <input @input="checkDate" v-model="start_date" :max="max_start_date" :class="{ 'border-red-400': isStartDateNull || !isStartDateGreater && !isWorking }" type="date" id="website-admin" class="rounded-none bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md" placeholder="email">
+                            <input @input="checkDate" v-model="start_date" :max="max_start_date" :class="{ 'border-red-400': isStartDateNull }" type="date" id="website-admin" class="rounded-none bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md  outline-sky" placeholder="email">
                         </div>
                     </div>
                     <div class="w-2/4 bg-white font-medium ml-2">
                         <span class="bg-white">End date:</span>
                         <div class="flex bg-white mt-1">
-                            <span :class="{ 'bg-gray-200': isWorking, 'border-red-400': isEndDateNull && !isWorking || !isStartDateGreater && !isWorking }" class="inline-flex items-center p-2 text-sm bg-white rounded-l-md border-2 border-r-0 border-gray-300">
+                            <span :class="{ 'bg-gray-200': isWorking, 'border-red-400': isEndDateNull && !isWorking}" class="inline-flex items-center p-2 text-sm bg-white rounded-l-md border-2 border-r-0 border-gray-300">
                                 <svg :class="{ 'bg-gray-300': isWorking }"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[26px] h-[26px] text-white bg-sky rounded-full p-1">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                                 </svg>
                             </span>
-                            <input @input="checkDate" :disabled='isWorking' v-model="end_date" :min="start_date" :class="{ 'bg-gray-200 text-gray-300': isWorking, 'border-red-400': isEndDateNull && !isWorking || !isStartDateGreater && !isWorking }" type="date" id="website-admin" class="rounded-none bg-white font-normal text-base block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md" >
+                            <input @input="checkDate" :disabled='isWorking' v-model="end_date" :min="start_date" :max="new Date()" :class="{ 'bg-gray-200 text-gray-300': isWorking, 'border-red-400': isEndDateNull && !isWorking }" type="date" id="website-admin" class="rounded-none bg-white font-normal text-base block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md  outline-sky" >
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center mt-3 bg-white">
-                    <input v-model="isWorking" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <input v-model="isWorking" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600  outline-sky">
                     <label for="default-checkbox" class="ml-2 bg-white font-base">I'm currently working this position</label>
                 </div>
                 <div v-if="errorMessage" class="m-auto">
@@ -91,9 +91,7 @@
                 position: '',
                 start_date: '',
                 end_date:'',
-                // min_end_date: null,
                 max_start_date: null,
-                isStartDateGreater: true,
                 isWorking:false,
                 isPositionNull: false,
                 isStartDateNull: false,
@@ -122,7 +120,6 @@
                 this.isPositionNull = false;
                 this.isStartDateNull = false;
                 this.isEndDateNull = false;
-                this.isStartDateGreater = true;
 
                 if (!this.position || !this.start_date) {
                     isPassedValidate = false;
@@ -141,13 +138,6 @@
                         this.isEndDateNull = true;
                     }
                 }
-                if (this.start_date && this.end_date && this.position) {
-                    if (this.start_date >= this.end_date) {
-                        isPassedValidate = false;
-                        this.isStartDateGreater = false;
-                        this.errorMessage = "End date should be greater than start date!"
-                    }
-                }
 
                 return isPassedValidate;
             },
@@ -163,13 +153,7 @@
                 if (this.end_date) {
                     this.isEndDateNull = false;
                 }
-                if (!this.isStartDateNull && !this.isEndDateNull) {
-                    if (this.start_date < this.end_date) {
-                        this.isStartDateGreater = true;
-                        this.errorMessage = null;
-                    }
-                }
-                if (!this.isPositionNull && !this.isStartDateNull && !this.isEndDateNull && this.isStartDateGreater) {
+                if (!this.isWorking &&!this.isPositionNull && !this.isStartDateNull && !this.isEndDateNull || this.isWorking &&!this.isPositionNull && !this.isStartDateNull) {
                     this.errorMessage = null;
                 }
             },
@@ -188,6 +172,9 @@
             this.start_date = experience.start_date;
             this.end_date = experience.end_date;
             this.isWorking = experience.is_working;
+            if (!experience.is_working) {
+                this.max_start_date = experience.end_date;
+            }
         }
     }
 </script>

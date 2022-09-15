@@ -7,9 +7,9 @@ export const userInformations = defineStore('get-data', {
       companiesStore: null,
       showEditProfile: false,
       showEditCover: false,
+      emails:null,
     }
   },
-
   getters: {
     userData () {
       return this.userStore
@@ -17,6 +17,9 @@ export const userInformations = defineStore('get-data', {
     companyList () {
       return this.companiesStore;
     },
+    userEmails () {
+      return this.emails;
+    }
   },
 
   actions: {
@@ -25,6 +28,12 @@ export const userInformations = defineStore('get-data', {
         this.userStore = res.data ;
       })
     },
+    getEmails(){
+      axios.get('/emails/'+1).then((res)=>{
+        this.emails = res.data ;
+      })
+    },
+
     updateAlumniGerneralInfor(data) {
       this.userStore.first_name = data.first_name;
       this.userStore.last_name = data.last_name;
