@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="border-b-[1px] border-b-gray-300 pb-3 text-black" @mouseover="visibleIndex = 0" @mouseout="visibleIndex = null">
         <div class="flex justify-between ">
             <div class="flex justify-between ">
@@ -17,10 +17,6 @@
                     <p class="ml-5 mt-1"><slot name="content-3"></slot></p>
                 </div>
             </div>
-            <!-- <div>
-                <p class="ml-5"><slot name="content-2"></slot></p>
-                <p class="ml-5"><slot name="content-3"></slot></p>
-            </div> -->
             
             <div class="flex items-center  mt-3 justify-between">
                 <div class="flex relative  " :class="{'invisible': visibleIndex != 0, 'visible': visibleIndex == 0}">
@@ -52,19 +48,10 @@
             }
         },
     }
-</script>
-<!-- <template>
+</script> -->
+<template>
     <div class="border-b-[1px] border-b-gray-300 pb-3 text-black" @mouseover="visibleIndex = 0" @mouseout="visibleIndex = null">
         <div class="flex items-center justify-between mt-3 w-full">
-<<<<<<< HEAD
-            <h1 class="font-bold text-xl">
-                <slot name="header"></slot>
-            </h1>
-            <div>
-                <img alt="Vue logo" class=" w-16 h-16 rounded-full" src="../../assets/bg.jpg" >
-            </div>
-            <div class="flex relative" :class="{'invisible': visibleIndex != 0, 'visible': visibleIndex == 0}">
-=======
             <div class="flex items-center w-[87%]">
                 <slot name="logo"></slot>
                 <div class="w-full flex flex-col">
@@ -100,7 +87,6 @@
                 </div>
             </div>
             <div class="w-[13%] flex relative" :class="{'invisible': visibleIndex != 0, 'visible': visibleIndex == 0}">
->>>>>>> cec39f94f81d6015a65c67f9456f26e97eca8c06
                 <icon-action class="mr-3">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 text-sky cursor-pointer">
@@ -128,4 +114,4 @@
             }
         },
     }
-</script> -->
+</script>
