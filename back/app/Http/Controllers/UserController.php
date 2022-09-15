@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Alumni;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -100,7 +101,21 @@ class UserController extends Controller
             return response()->json(['message' => 'Cannot delete!!'], 404);
         }
     }
-
+    public function resetPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if (Hash::check($request->confirm_current_password, $user->password)) {
+            if (!Hash::check($request->new_password, $user->password)) {
+                $user->password = Hash::make($request->new_password);
+                $user->save();
+                return Response()->json(['message' => 'password is changed']);
+            } else {
+                return Response()->json(['message' => 'you must add a new password']);
+            }
+        } else {
+            return Response()->json(['message' => 'incorrect current password']);
+        }
+    }
 
 
 
