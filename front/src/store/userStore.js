@@ -19,7 +19,7 @@ export const userInformations = defineStore('get-data', {
     },
     userEmails () {
       return this.emails;
-    }
+    },
   },
 
   actions: {

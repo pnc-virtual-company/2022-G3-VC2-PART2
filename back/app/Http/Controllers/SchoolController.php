@@ -27,6 +27,7 @@ class SchoolController extends Controller
     {
         $school = new School();
         $school->name = $request->name;
+        $school->location = $request->location;
         if ($request->logo) {
             $school->logo = $request->logo;
         } else {
