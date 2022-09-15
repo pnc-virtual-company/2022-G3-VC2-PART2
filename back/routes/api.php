@@ -56,11 +56,21 @@ Route::get('/alumni/skills/', [AlumniSkillController::class, "index"]);
 Route::post('/alumni/skills/', [AlumniSkillController::class, "store"]);
 Route::delete('/alumni/skills/{id}', [AlumniSkillController::class, "destroy"]);
 
-Route::get('/school', [AlumniSchoolController::class, "index"]);
-Route::post('/school', [AlumniSchoolController::class, "store"]);
+Route::get('/schools/', [SchoolController::class, "index"]);
+Route::post('/schools/', [SchoolController::class, "store"]);
+Route::get('/schools/{id}', [SchoolController::class, "show"]);
+Route::put('/schools/{id}', [SchoolController::class, "update"]);
+Route::delete('/schools/{id}', [SchoolController::class, "destroy"]);
 
-Route::get('/schoolName', [SchoolController::class, "index"]);
-Route::post('/schoolName', [SchoolController::class, "store"]);
+
+Route::get('/alumni/schools', [AlumniSchoolController::class, "index"]);
+Route::post('/alumni/schools/', [AlumniSchoolController::class, "store"]);
+Route::get('/alumni/schools/{id}', [AlumniSchoolController::class, "show"]);
+Route::put('/alumni/schools/{id}', [AlumniSchoolController::class, "update"]);
+Route::delete('/alumni/schools/{id}', [AlumniSchoolController::class, "destroy"]);
+
+
+
 
 
 

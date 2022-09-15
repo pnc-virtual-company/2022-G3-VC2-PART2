@@ -32,7 +32,8 @@ class UserController extends Controller
         $user-> email = $request->email;
         $user-> password = $request->password;
         $user-> role = $request->role;
-        $user-> image = $request->image;
+        $user-> profile = $request->profile;
+        $user-> cover = $request->cover;
         $user-> save();
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }

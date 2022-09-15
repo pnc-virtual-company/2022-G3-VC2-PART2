@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlumniSchool;
 use App\Models\AlumniSkill;
 use Illuminate\Http\Request;
 
@@ -66,12 +67,6 @@ class AlumniSkillController extends Controller
      */
     public function destroy($id)
     {
-        $alumniSkill = AlumniSkill::where('id', $id)->get();
-        if(count($alumniSkill)>0){
-            AlumniSkill::destroy($id);
-            return response()->json(['message'=>"skill delete successfully"]);
-        }else{
-            return response()->json(['message'=>"skill cannot delete successfully"]);
-        }
+        return AlumniSkill::destroy($id);
     }
 }

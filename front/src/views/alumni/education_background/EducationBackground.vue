@@ -37,7 +37,7 @@
 
 
 <template>
-    <card-components>
+    <card-components v-if="educationData.userData !=null">
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Education Background</h1>
             <div >
@@ -51,15 +51,18 @@
             </div>
         </div>
         <div>
-            <card-informations  @click-popup="$emit('click-popup')">
+            <card-informations  @click-popup="$emit('click-popup')" v-for:="education of orderedBackground">
                 <template #logo>
                     <img class="w-14 mr-3 align-items-sm-center" src="../../../assets/logo.png">
                 </template>
-                <template #header>Passerelles Numeriques Cambodia  <span class="text-green-500 text-[16px]">(Associat Degree)</span></template>
-                <template #content-1> <p >I am a bad boy{{educationData.educationBackgound.user_id}}</p></template>
-                <template #content-2>Address: Phnom Penh</template>
-                <template #content-3>Start year:2021</template>
-                <template #content-4>End year: 2022</template>
+                <template #header>{{education.major}} <span class="text-green-500 text-[16px]">({{education.degree}})</span></template>
+                <template #content-1>
+                    <a v-if="education.school.link" :href="education.school.link" target="blank" class="text-blue-800 underline decoration-[blue] hover:animate-pulse hover:pl-[1px]">{{ education.school.name }}</a>
+                    <p v-else>{{education.school.name}}</p>
+                </template>
+                <template #content-2>Address: {{education.school.location}}</template>
+                <template #content-3>Start year:{{education.start_date}}</template>
+                <template #content-4>End year: {{education.end_date}}</template>
             </card-informations>
         </div>
     </card-components>
@@ -70,9 +73,9 @@
     import {userInformations} from "@/store/userStore"
     export default {
         setup(){
-            const userData = userInformations();
+            const educationData = userInformations();
             return {
-                userData
+                educationData
             }
         },
 
@@ -81,6 +84,27 @@
         },
 
         computed: {
+            orderedBackground() {
+                let eduList = [];
+                this.educationData.userData.education_backgrounds.forEach(eachBg => {
+                    console.log(eachBg);
+                    if (!eachBg.end_date) {
+                        eduList.push(eachBg);
+                    }
+                });
+
+                let notPresentBg = [];
+                this.educationData.userData.education_backgrounds.forEach(eachBg => {
+                    if (eachBg.end_date) {
+                        notPresentBg.push(eachBg);
+                    }
+                });
+                notPresentBg.reverse().forEach(eachBg => {
+                    eduList.push(eachBg);
+                });
+                
+                return eduList;
+            }
         }
     }
 </script>
