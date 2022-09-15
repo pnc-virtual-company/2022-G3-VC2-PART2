@@ -153,4 +153,4 @@ class UserController extends Controller
         $response->header("Content-Type", $type);
         return $response;
     }
-}
+    }

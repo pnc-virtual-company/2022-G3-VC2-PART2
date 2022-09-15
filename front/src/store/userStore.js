@@ -8,9 +8,13 @@ export const userInformations = defineStore('get-data', {
       showEditProfile: false,
       showEditCover: false,
       emails:null,
+      isShowAddExperienceForm:false,
     }
   },
   getters: {
+    showFormAddExperience(){
+      return this.isShowAddExperienceForm;
+    },
     userData () {
       return this.userStore
     },
@@ -47,13 +51,11 @@ export const userInformations = defineStore('get-data', {
       this.userStore.alumni.address = data.address;
       axios.put('/alumniIntro/'+1, data);
     },
-
     getCompanyList() {
       axios.get('/companies/').then((res)=>{
         this.companiesStore = res.data;
       })
     },
-
     updateWorkExperience(id, data) {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
@@ -71,12 +73,19 @@ export const userInformations = defineStore('get-data', {
         } 
       });
     },
-
     getImage(name) {
           return axios.defaults.baseURL + "users/image/" + name;
     },
     uploadImage(path, image){
       axios.post(path, image)
+    },
+    addExperience(data){
+      axios.post('/alumnis/experience', data).then(res => {
+        console.log(res)
+        this.getUserData()
+
+      }
+      )
     }
   }
 });
