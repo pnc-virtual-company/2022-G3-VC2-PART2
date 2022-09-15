@@ -38,7 +38,7 @@ export const userInformations = defineStore('get-data', {
     getEducationBackground(){
       axios.get('/school').then((res)=>{
         this.educationStore = res.data ;
-        console.log(this.educationStore+'dfd')
+        console.log(this.educationStore+'dfddf')
       })
     },
 

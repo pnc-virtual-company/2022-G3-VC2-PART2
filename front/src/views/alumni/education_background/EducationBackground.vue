@@ -15,7 +15,7 @@
         <div>
             <card-informations @click-popup="$emit('click-popup')" >
                 EducationData
-                <template #content-1>Passerelles Numeriques Cambodia{{EducationData.educationBackground.major}} </template>
+                <template #content-1>Passerelles Numeriques Cambodia{{EducationData.educationBackground}} </template>
                 <template #content-2>VP.Start Co,Ltd </template>
                 <template #content-3>Start date: August 2022</template>
             </card-informations>
