@@ -61,8 +61,11 @@
                     <p v-else>{{education.school.name}}</p>
                 </template>
                 <template #content-2>Address: {{education.school.location}}</template>
-                <template #content-3>Start year:{{education.start_date}}</template>
-                <template #content-4>End year: {{education.end_date}}</template>
+                <template #content-3>
+                    <p v-if="!education.end_date">Start year: {{education.start_date}} - <span class="font-medium">Present</span></p>
+                    <p v-else>Start year: {{education.start_date}}</p>
+                </template>
+                <template v-if="education.end_date" #content-4>End year: {{education.end_date}}</template>
             </card-informations>
         </div>
     </card-components>
