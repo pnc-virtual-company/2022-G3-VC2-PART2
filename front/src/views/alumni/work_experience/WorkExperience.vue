@@ -14,9 +14,17 @@
         </div>
         <div>
             <card-informations v-for:="experience of orderedExperience" @click-popup="$emit('click-popup', experience.id)">
-                <template #header>{{ experience.position }}</template>
-                <template #content-1>{{ experience.company.name }}</template>
-                <template #content-2>{{ experience.start_date }} - {{ endDate(experience.end_date, experience.is_working) }}</template>
+                <template #logo>
+                    <img class="w-14 mr-3 align-items-sm-center" src="../../../assets/logo.png">
+                </template>
+                <template #header>{{ experience.position }} <span class="text-green-500 text-[16px]">({{ duration(experience.start_date, experience.end_date) }})</span></template>
+                <template #content-1>
+                    <a v-if="experience.company.link" :href="experience.company.link" target="blank" class="text-blue-800 underline decoration-[blue] hover:animate-pulse hover:pl-[1px]">{{ experience.company.name }}</a>
+                    <p v-else>{{ experience.company.name }}</p>
+                </template>
+                <template #content-2>Address: {{experience.company.location }}</template>
+                <template #content-3>Start date: {{ experience.start_date }}</template>
+                <template #content-4>End date: {{experience.end_date }}</template>
             </card-informations>
         </div>
     </card-components>
@@ -39,6 +47,40 @@
                     result = date;
                 }
                 return result;
+            },
+
+            duration(start, end) {
+                let startDate = new Date(start);
+                let endDate = new Date(end);
+                let totalMillieconds = endDate - startDate;
+                let result = totalMillieconds / 31536000000;
+                if (result < 1) {
+                    let numberOfMonths = result.toString().substring(2, 3);
+                    if (numberOfMonths > 1) {
+                        return numberOfMonths + " Months";
+                    } else {
+                        return numberOfMonths + " Month";
+                    }
+                } else {
+                    let numberOfYears = result.toString().substring(0, 4);
+                    if (numberOfYears % 1 == 0) {
+                        if(numberOfYears >= 10) {
+                            return numberOfYears.toString().substring(0, 2) + " Years";
+                        } else if (numberOfYears >= 2) {
+                            return numberOfYears.toString().substring(0, 1) + " Years";
+                        } else {
+                            return numberOfYears.toString().substring(0, 1) + " Year";
+                        }
+                    }else {
+                        if(numberOfYears >= 10) {
+                            return numberOfYears.toString().substring(0, 4) + " Years";
+                        } else if (numberOfYears >= 2) {
+                            return numberOfYears.toString().substring(0, 3) + " Years";
+                        } else {
+                            return numberOfYears.toString().substring(0, 3) + " Year";
+                        }
+                    }
+                }
             }
         },
 

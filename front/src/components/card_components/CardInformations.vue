@@ -1,10 +1,41 @@
 <template>
     <div class="border-b-[1px] border-b-gray-300 pb-3 text-black" @mouseover="visibleIndex = 0" @mouseout="visibleIndex = null">
         <div class="flex items-center justify-between mt-3 w-full">
-            <h1 class="font-bold text-xl">
-                <slot name="header"></slot>
-            </h1>
-            <div class="flex relative" :class="{'invisible': visibleIndex != 0, 'visible': visibleIndex == 0}">
+            <div class="flex items-center w-[87%]">
+                <slot name="logo"></slot>
+                <div class="w-full flex flex-col">
+                    <h1 class="font-bold text-xl text-[20px] truncate">
+                        <slot name="header"></slot>
+                    </h1>
+                    <div class="flex">
+                        <div class="w-[50%]">
+                            <div>
+                                <p class="text-[16px] font-medium truncate">
+                                    <slot name="content-1"></slot>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="text-[16px] truncate">
+                                    <slot name="content-3"></slot>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-[50%]">
+                            <div>
+                                <p class="text-[16px] truncate">
+                                    <slot name="content-2"></slot>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="text-[16px] truncate">
+                                    <slot name="content-4"></slot>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-[13%] flex relative" :class="{'invisible': visibleIndex != 0, 'visible': visibleIndex == 0}">
                 <icon-action class="mr-3">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 text-sky cursor-pointer">
@@ -21,12 +52,6 @@
                 </icon-action>
             </div>
         </div>
-        <p class="text-[18px] mt-3">
-            <slot name="content-1"></slot>
-        </p>
-        <p class="text-[18px] mt-3">
-            <slot name="content-2"></slot>
-        </p>
     </div>
 </template>
 
