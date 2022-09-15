@@ -12,6 +12,9 @@ import ButtonComponent from '@/components/button_components/ButtonComponent'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
+import PreviewProfile from "@/components/popup_components/preview_image/PreviewProfile"
+import PreviewCover from "@/components/popup_components/preview_image/PreviewCover"
+
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
 import GeneralInformation from './views/alumni/general_information/GeneralInformation';
@@ -22,7 +25,6 @@ import CardInformations from '@/components/card_components/CardInformations'
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
-
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
 import TheBatch from '@/components/general_information/icon_informations/TheBatch';
@@ -42,6 +44,9 @@ app.component('button-components', ButtonComponent);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
+app.component('preview-profile', PreviewProfile)
+app.component('preview-cover', PreviewCover)
+
 // alumni Profile
 app.component('general-information',GeneralInformation)
 app.component('alumniProfile-container',AlumniProfileContainer)

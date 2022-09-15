@@ -1,6 +1,6 @@
 
 <template>
-    <card-components v-if="alumniData.userData !=null">
+    <card-components class="p-[0px]" v-if="alumniData.userData !=null">
         <div class="">
             <div class="border-b-[1px] border-b-gray-300 pb-4">
                 <profile-images-component></profile-images-component>

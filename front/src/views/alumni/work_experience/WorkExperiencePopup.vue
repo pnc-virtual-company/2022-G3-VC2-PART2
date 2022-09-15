@@ -105,17 +105,15 @@
         methods: {
             updateWorkExperience(){
                 if(this.isValidated()){
-                    // console.log();
-                    // console.log("error : "+this.errorMessage);
-                    // let userExperience = {
-                    //     company: this.userData.companyList.find((company) => company.name == this.company),
-                    //     position: this.position,
-                    //     start_date: this.start_date,
-                    //     end_date: this.end_date,
-                    //     is_working: this.isWorking
-                    // }
-                    // this.$emit('update-experience', this.experienceId, userExperience);
-                    // this.$emit('click-popup');
+                    let userExperience = {
+                        company: this.userData.companyList.find((company) => company.name == this.company),
+                        position: this.position,
+                        start_date: this.start_date,
+                        end_date: this.end_date,
+                        is_working: this.isWorking
+                    }
+                    this.$emit('update-experience', this.experienceId, userExperience);
+                    this.$emit('click-popup');
                 }
             },
 

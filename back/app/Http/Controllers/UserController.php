@@ -110,12 +110,13 @@ class UserController extends Controller
             }
         }
         $profile = $request->profile;
-        $newName = "IMG_". time() . "_" . $profile->getClientOriginalName();
+        $newName = "IMG_PROFILE_". time() . "_" . $profile->getClientOriginalName();
         $profile->move(storage_path('images'), $newName);
         $user->profile = $newName;
         $user->save();
         return response(['massage'=>"Updated profile Success"]);
     }
+
     public function updateCoverImage(Request $request,$id){
         $user = User::find($id);
         if($user->cover != "avatar.png") {
@@ -125,7 +126,7 @@ class UserController extends Controller
             }
         }
         $cover = $request->cover;
-        $newName = "IMG_". time() . "_" . $cover->getClientOriginalName();
+        $newName = "IMG_COVER_". time() . "_" . $cover->getClientOriginalName();
         $cover->move(storage_path('images'), $newName);
         $user->cover = $newName;
         $user->save();
@@ -135,7 +136,6 @@ class UserController extends Controller
     public function getImage($imageName)
     {
         $path = storage_path('images/' . $imageName);
-
         if (File::exists($path)) {
             $file = File::get($path);
         } else {
@@ -146,8 +146,4 @@ class UserController extends Controller
         $response->header("Content-Type", $type);
         return $response;
     }
-
-
-
-
 }

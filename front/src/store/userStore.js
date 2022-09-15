@@ -5,6 +5,8 @@ export const userInformations = defineStore('get-data', {
     return{
       userStore: null,
       companiesStore: null,
+      showEditProfile: false,
+      showEditCover: false,
     }
   },
 
@@ -14,7 +16,7 @@ export const userInformations = defineStore('get-data', {
     },
     companyList () {
       return this.companiesStore;
-    }
+    },
   },
 
   actions: {
@@ -23,7 +25,6 @@ export const userInformations = defineStore('get-data', {
         this.userStore = res.data ;
       })
     },
-
     updateAlumniGerneralInfor(data) {
       this.userStore.first_name = data.first_name;
       this.userStore.last_name = data.last_name;
@@ -60,6 +61,13 @@ export const userInformations = defineStore('get-data', {
           axios.put('/alumnis/experience/' + id, newExperience);
         } 
       });
+    },
+
+    getImage(name) {
+          return axios.defaults.baseURL + "users/image/" + name;
+    },
+    uploadImage(path, image){
+      axios.post(path, image)
     }
   }
 });
