@@ -6,7 +6,7 @@ export const userInformations = defineStore('get-data', {
       userStore: null,
       companiesStore: null,
       emails:null,
-      education:null,
+      educationStore:null,
     }
   },
   getters: {
@@ -20,7 +20,7 @@ export const userInformations = defineStore('get-data', {
       return this.emails;
     },
     educationBackground(){
-      return this.education;
+      return this.educationStore;
     }
   },
 
@@ -37,8 +37,8 @@ export const userInformations = defineStore('get-data', {
     },
     getEducationBackground(){
       axios.get('/school').then((res)=>{
-        this.education = res.data ;
-        console.log(this.education+'dfd')
+        this.educationStore = res.data ;
+        console.log(this.educationStore+'dfd')
       })
     },
 
