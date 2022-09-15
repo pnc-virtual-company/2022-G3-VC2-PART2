@@ -123,6 +123,18 @@
                 <alert_missing v-if="isFirstName || isLastName  || isEmail || isPhone || isTelegram || isGender || isBatch || isBirthDate || isAddress || isMajor">
                     Please fill all input here !
                 </alert_missing>
+                <alert_missing v-else-if="isEmailError">
+                    Email invalid
+                </alert_missing>
+                <alert_missing v-else-if="isPhoneError">
+                    Not a valid Phone Number
+                </alert_missing>
+                <alert_missing v-else-if="isTelegramError">
+                    Not a valid Telegram
+                </alert_missing>
+                <alert_missing v-else-if="existEmail">
+                    This email already exist
+                </alert_missing>
                 <div class="bg-white flex justify-end mt-6">
                     <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
@@ -147,6 +159,7 @@
       data(){
         return {
             userGeneralInfor: this.userInfor.userData,
+            userEmails: this.userInfor.userEmails,
             firstName: "",
             lastName: "",
             email: "",
@@ -167,11 +180,16 @@
             isAddress:false,
             isPhone:false,
             isTelegram:false,
+            isEmailError:'',
+            isPhoneError:'',
+            isTelegramError:'',
+            existEmail:false,
+
         }
       },
       methods:{
         updateGeneralInfor(){
-            if (this.firstName.trim() != "" && this.lastName.trim() != "" && this.emailValidation(this.email) && this.gender.trim() !="" && this.major.trim() !="" && this.batch !="" && this.birthDate.trim() !="" && this.address.trim() !="" && this.phone.trim() !="" && this.telegram.trim() !=""){
+            if (this.firstName.trim() != "" && this.lastName.trim() != "" && this.emailValidation(this.email)&& this.emailExisting(this.email) && this.gender.trim() !="" && this.major.trim() !="" && this.batch !="" && this.birthDate.trim() !="" && this.address.trim() !="" && this.phone.trim() !="" && this.telegram.trim() !="" && this.phoneValidation(this.phone) && this.telegramValidation(this.telegram)){
                 let dataUpdate = {
                     first_name: this.firstName, 
                     last_name: this.lastName, 
@@ -200,6 +218,27 @@
             return false
 
         },
+        emailExisting(myEmail){
+            for (let eachEmail of this.userEmails){
+                if(eachEmail.email == myEmail){
+                    return false;
+                }
+            }
+            return true;
+        },
+        phoneValidation(phone){
+            if (phone.length>7){
+                return true
+            }
+            return false
+        },
+        telegramValidation(telegram){
+            if (telegram.length>7){
+                return true
+            }
+            return false
+
+        },
         setData(){
             this.firstName = this.userGeneralInfor.first_name;
             this.lastName = this.userGeneralInfor.last_name;
@@ -224,6 +263,16 @@
                 this.isLastName = false;
             }
             if(!this.emailValidation(this.email)){
+                this.isEmailError = true;
+            }else{
+                this.isEmailError = false;
+            }
+            if(!this.emailExisting(this.email)){
+                this.existEmail = true;
+            }else{
+                this.existEmail = false;
+            }
+            if(this.email ==""){
                 this.isEmail = true;
             }else{
                 this.isEmail = false;
@@ -238,6 +287,11 @@
             }else{
                 this.isPhone = false;
             }
+            if(!this.phoneValidation(this.phone)){
+                this.isPhoneError = true;
+            }else{
+                this.isPhoneError = false;
+            }
             if(this.address.trim() == ""){
                 this.isAddress = true;
             }else{
@@ -247,6 +301,11 @@
                 this.isTelegram = true;
             }else{
                 this.isTelegram = false;
+            }
+            if(!this.telegramValidation(this.telegram)){
+                this.isTelegramError = true;
+            }else{
+                this.isTelegramError = false;
             }
             if(this.major.trim() == ""){
                 this.isMajor = true;
@@ -274,6 +333,7 @@
             }
             if(this.email){
                 this.isEmail = false;
+                this.isEmailError = false
             }
             if(this.gender){
                 this.isGender = false;
@@ -299,7 +359,7 @@
         }
       },
       mounted(){
-        this.setData()
+        this.setData();
       }
     }
 </script>

@@ -5,15 +5,18 @@ export const userInformations = defineStore('get-data', {
     return{
       userStore: null,
       companiesStore: null,
+      emails:null,
     }
   },
-
   getters: {
     userData () {
       return this.userStore
     },
     companyList () {
       return this.companiesStore;
+    },
+    userEmails () {
+      return this.emails;
     }
   },
 
@@ -21,6 +24,11 @@ export const userInformations = defineStore('get-data', {
     getUserData(){
       axios.get('/users/'+1).then((res)=>{
         this.userStore = res.data ;
+      })
+    },
+    getEmails(){
+      axios.get('/emails/'+1).then((res)=>{
+        this.emails = res.data ;
       })
     },
 

@@ -103,6 +103,11 @@ class UserController extends Controller
         }
     }
 
+    public function getEmails($id)
+    {
+        return User::select('email')->where('id','!=', $id)->get();
+    }
+
 
 
 

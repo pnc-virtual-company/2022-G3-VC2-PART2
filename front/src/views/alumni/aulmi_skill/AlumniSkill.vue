@@ -22,7 +22,7 @@
             </div>
         </div> 
         <div class="flex flex-wrap justify-between">
-            <p v-for:="skill of skills" class="bg-gray-300 text-[18px] text-center rounded-[15px] py-[0.30rem] px-4 mt-4">{{ skill }}</p>
+            <p v-for:="skill of skills" class="bg-gray-300 text-[18px] text-center rounded-[15px] py-[0.30rem] px-4 mt-4 mr-4">{{ skill }}</p>
         </div>
     </div>
 </template>
