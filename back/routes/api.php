@@ -4,8 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniCompanyController;
+use App\Http\Controllers\AlumniSchoolController;
 use App\Http\Controllers\AlumniSkillController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 
@@ -52,6 +54,22 @@ Route::delete('/skills/{id}', [SkillController::class, "destroy"]);
 Route::get('/alumni/skills/', [AlumniSkillController::class, "index"]);
 Route::post('/alumni/skills/', [AlumniSkillController::class, "store"]);
 Route::delete('/alumni/skills/{id}', [AlumniSkillController::class, "destroy"]);
+
+Route::get('/schools/', [SchoolController::class, "index"]);
+Route::post('/schools/', [SchoolController::class, "store"]);
+Route::get('/schools/{id}', [SchoolController::class, "show"]);
+Route::put('/schools/{id}', [SchoolController::class, "update"]);
+Route::delete('/schools/{id}', [SchoolController::class, "destroy"]);
+
+
+Route::get('/alumni/schools', [AlumniSchoolController::class, "index"]);
+Route::post('/alumni/schools/', [AlumniSchoolController::class, "store"]);
+Route::get('/alumni/schools/{id}', [AlumniSchoolController::class, "show"]);
+Route::put('/alumni/schools/{id}', [AlumniSchoolController::class, "update"]);
+Route::delete('/alumni/schools/{id}', [AlumniSchoolController::class, "destroy"]);
+
+
+
 
 
 
