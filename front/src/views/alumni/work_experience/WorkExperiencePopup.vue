@@ -131,19 +131,17 @@
                         this.isStartDateNull = true;
                     }
                 }
-                if (!this.isWorking) {
+                if (!this.isWorking) {                                                                                                         
                     if (!this.end_date) {
                         isPassedValidate = false;
                         this.errorMessage = "Please input all fields!";
                         this.isEndDateNull = true;
                     }
                 }
-
                 return isPassedValidate;
             },
 
             checkValidation() {
-                console.log("log");
                 if (this.position) {
                     this.isPositionNull = false;
                 }

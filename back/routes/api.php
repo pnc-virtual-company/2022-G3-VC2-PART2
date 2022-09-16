@@ -43,10 +43,13 @@ Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
 
 Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
+Route::post('/alumnis/experience', [AlumniCompanyController::class, 'store']);
+Route::get('/alumnis/experience', [AlumniCompanyController::class, 'index']);
 Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 
 Route::get('/companies', [CompanyController::class, "index"]);
+Route::post('/companies', [CompanyController::class, "store"]);
 
 Route::get('/skills/', [SkillController::class, "index"]);
 Route::post('/skills/', [SkillController::class, "store"]);

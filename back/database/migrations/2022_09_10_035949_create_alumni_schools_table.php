@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('school_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('is_studying');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('major');

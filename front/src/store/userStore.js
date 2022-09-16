@@ -6,6 +6,7 @@ export const userInformations = defineStore('get-data', {
       userStore: null,
       companiesStore: null,
       emails:null,
+      schoolStore:null,
     }
   },
   getters: {
@@ -17,6 +18,9 @@ export const userInformations = defineStore('get-data', {
     },
     userEmails () {
       return this.emails;
+    },
+    schoolList(){
+      return this.schoolStore;
     },
   },
 
@@ -51,7 +55,11 @@ export const userInformations = defineStore('get-data', {
         this.companiesStore = res.data;
       })
     },
-
+    getSchoolList(){
+      axios.get('/schools/').then((res)=>{
+        this.schoolStore = res.data;
+      })
+    },
     updateWorkExperience(id, data) {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
@@ -68,6 +76,24 @@ export const userInformations = defineStore('get-data', {
           axios.put('/alumnis/experience/' + id, newExperience);
         } 
       });
-    }
+    },
+    updateEducationBackground(id, data) {
+      this.userStore.education_backgrounds.forEach((education, index) => {
+        if (education.id == id) {
+          this.userStore.education_backgrounds[index].degree = data.degree;
+          this.userStore.education_backgrounds[index].school.name = data.school.name;
+          this.userStore.education_backgrounds[index].major= data.major;
+          this.userStore.education_backgrounds[index].is_studying = data.is_studying;
+          this.userStore.education_backgrounds[index].start_date = data.start_date;
+          if (!data.is_studying) {
+            this.userStore.education_backgrounds[index].end_date = data.end_date;
+          } else {
+            this.userStore.education_backgrounds[index].end_date = null;
+          }
+          let newEducation = {degree: data.degree, school_id: data.school.id,major:data.major, start_date: data.start_date, end_date: data.end_date, is_studying:data.is_studying};
+          axios.put('/alumni/schools/' + id, newEducation)
+        } 
+      });
+    },
   }
 });
