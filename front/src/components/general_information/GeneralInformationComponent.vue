@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-2 flex  bg-white">
+    <div class="mt-2 p-[20px] flex  bg-white">
         <div class="w-11/12 bg-white">
             <div class="flex bg-white">
                 <slot name="slot1"></slot>

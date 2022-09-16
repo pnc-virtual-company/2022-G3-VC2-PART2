@@ -1,11 +1,11 @@
 
 <template>
-    <card-components v-if="alumniData.userData !=null">
+    <card-components class="p-[0rem]" v-if="alumniData.userData !=null">
         <div class="">
             <div class="border-b-[1px] border-b-gray-300 pb-4">
-                <profile-images-component></profile-images-component>
+                <profile-images-component class=""></profile-images-component>
             </div>
-            <general-information-component @click-popup="$emit('click-popup')">
+            <general-information-component class=" w-full" @click-popup="$emit('click-popup')">
                 <template #slot1>
                     <the-email>{{alumniData.userData.email}}</the-email>
                 </template>
@@ -33,7 +33,7 @@
             </general-information-component>
         </div>
         
-        <alumni-skill></alumni-skill>
+        <alumni-skill class="p-[20px]"></alumni-skill>
     </card-components>
 </template>
 <script>

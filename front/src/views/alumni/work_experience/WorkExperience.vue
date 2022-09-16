@@ -3,7 +3,7 @@
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Work Experience</h1>
             <div >
-                <icon-action>
+                <icon-action @click="showFormAddExp">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 rounded-full hover:text-blue-700 text-sky cursor-pointer font-bold">
                             <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
@@ -41,6 +41,10 @@
         },
 
         methods: {
+            showFormAddExp(){
+                this.$emit('click-popup');
+                this.userData.isShowAddExperienceForm = true;
+            },
             endDate(date, working) {
                 let result = "Present";
                 if (!working) {
@@ -100,9 +104,9 @@
                     }
                 });
                 notPresentExp.reverse().forEach(eachExp => {
-                    expList.push(eachExp);
+                    expList.push(eachExp);  
                 });
-                
+                // console.log(this.userData.userData);
                 return expList;
             }
         }

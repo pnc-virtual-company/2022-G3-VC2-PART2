@@ -33,6 +33,9 @@ Route::get('emails/{id}', [UserController::class,"getEmails"]);
 Route::post('users', [UserController::class,"store"]);
 Route::get('users/{id}', [UserController::class,"show"]);
 Route::delete('users/{id}', [UserController::class,"destroy"]);
+Route::put('users/update_profile/{id}', [UserController::class,"updateProfileImage"]); 
+Route::put('users/update_cover/{id}', [UserController::class,"updateCoverImage"]); 
+Route::get('users/image/{image_name}', [UserController::class,"getImage"]); 
 Route::put('alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
 
 Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
@@ -42,9 +45,9 @@ Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
 
+Route::get('/alumnis/experience', [AlumniCompanyController::class, 'index']);
 Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
 Route::post('/alumnis/experience', [AlumniCompanyController::class, 'store']);
-Route::get('/alumnis/experience', [AlumniCompanyController::class, 'index']);
 Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 
