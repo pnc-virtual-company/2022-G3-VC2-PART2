@@ -78,8 +78,11 @@
                     <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
                     </button-components>
-                    <button-components @click="updateEducationBackground" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
+                    <button-components v-if="educationId==null" @click="addEducationBackground" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
                         Save
+                    </button-components>
+                    <button-components v-else @click="updateEducationBackground" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
+                        Update
                     </button-components>
                 </div>
             </form>
@@ -118,6 +121,25 @@
         },
 
         methods: {
+            addEducationBackground(){
+                if(this.isValidated()){
+                    let school = this.educationData.schoolList.find((school)=>school.name == this.school)
+                    let educationBackground = {
+                        school_id: school.id,
+                        degree: this.degree,
+                        start_date: this.start_date,
+                        end_date: this.end_date,
+                        major: this.major,
+                        is_studying:this.isStudying,
+                        user_id: 1,
+                    }
+                    let educationBackgroundFront = educationBackground
+                    educationBackgroundFront.school = school;
+                    this.educationData.userStore.education_backgrounds.push(educationBackgroundFront)
+                    this.educationData.addEducationBackground(educationBackground);
+                    this.$emit('click-popup');
+                }
+            },
             updateEducationBackground(){
                 if(this.isValidated()){
                     let educationBackground = {
@@ -131,7 +153,6 @@
                     this.$emit('update-education',this.educationId,educationBackground);
                     this.$emit('click-popup')
                 }
-
             },
             checkDate() {
                 if (this.end_date) {
@@ -181,17 +202,21 @@
             },
         },
         created() {
-            let education = this.educationData.userData.education_backgrounds.find((education) => education.id == this.educationId);
-            this.degree = education.degree;
-            this.school = education.school.name;
-            this.start_date = education.start_date;
-            this.end_date = education.end_date;
-            this.major = education.major;
-            this.isStudying = education.is_studying;
-            if (!education.is_studying) {
-                this.max_start_date = education.end_date;
+            if(this.educationId != null) {
+                let education = this.educationData.userData.education_backgrounds.find((education) => education.id == this.educationId);
+                this.degree = education.degree;
+                this.school = education.school.name;
+                this.start_date = education.start_date;
+                this.end_date = education.end_date;
+                this.major = education.major;
+                this.isStudying = education.is_studying;
+                if (!education.is_studying) {
+                    this.max_start_date = education.end_date;
+                }
+            }else{
+                this.school = this.educationData.schoolList[0].name;
+                this.degree = 'Associat Degree';
             }
-        }
-
+        },
     }
 </script>

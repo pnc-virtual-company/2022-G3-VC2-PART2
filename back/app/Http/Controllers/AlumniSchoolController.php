@@ -29,9 +29,9 @@ class AlumniSchoolController extends Controller
         $alumniSchool = new AlumniSchool();
         $alumniSchool->user_id = $request->user_id;
         $alumniSchool->school_id = $request->school_id;
-        $alumniSchool->is_studying = $request->is_studying;
         $alumniSchool->start_date = $request->start_date;
         $alumniSchool->end_date = $request->end_date;
+        $alumniSchool->is_studying = $request->is_studying;
         $alumniSchool->major = $request->major;
         $alumniSchool->degree = $request->degree;
         if (!$request->is_studying) {

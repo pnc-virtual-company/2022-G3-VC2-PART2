@@ -107,11 +107,15 @@ export const userInformations = defineStore('get-data', {
       axios.post(path, image)
     },
     addExperience(data){
-      axios.post('/alumnis/experience', data).then(res => {
-        console.log(res)
+      axios.post('/alumnis/experience', data).then(() => {
         this.getUserData()
-
-      }
+        }
+      )
+    },
+    addEducationBackground(data){
+      axios.post('/alumni/schools', data).then(() => {
+        this.getUserData()
+        }
       )
     }
   }
