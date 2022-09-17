@@ -5,8 +5,6 @@ export const userInformations = defineStore('get-data', {
     return{
       userStore: null,
       companiesStore: null,
-      showEditProfile: false,
-      showEditCover: false,
       emails:null,
     }
   },
@@ -58,7 +56,7 @@ export const userInformations = defineStore('get-data', {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
           this.userStore.work_experience[index].position = data.position;
-          this.userStore.work_experience[index].company.name = data.company.name;
+          this.userStore.work_experience[index].company = data.company;
           this.userStore.work_experience[index].is_working = data.is_working;
           this.userStore.work_experience[index].start_date = data.start_date;
           if (!data.is_working) {
@@ -72,8 +70,12 @@ export const userInformations = defineStore('get-data', {
       });
     },
 
+    createCompany(company) {
+      this.companiesStore.push(company);
+    },
+
     getImage(name) {
-          return axios.defaults.baseURL + "users/image/" + name;
+      return axios.defaults.baseURL + "users/image/" + name;
     },
     uploadImage(path, image){
       axios.post(path, image)

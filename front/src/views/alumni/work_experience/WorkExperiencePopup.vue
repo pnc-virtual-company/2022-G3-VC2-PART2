@@ -1,21 +1,31 @@
 <template>
-    <popup-component>
+    <popup-component @click="onClickPopup">
         <card-components>
             <form @input="checkValidation" class="bg-white">
                 <h1 class="text-center font-bold text-2xl bg-white" >Update work experience</h1>
                 <div class="flex bg-white mt-4">
                     <div class="w-full bg-white font-medium">
-                        <span class="bg-white">Companies:</span>
-                        <div class="flex bg-white mt-1">
-                            <span class="bg-white inline-flex    items-center p-2 rounded-l-md border-2 border-r-0 border-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[26px] h-[26px] text-white bg-sky rounded-full p-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
-                                </svg>
-                            </span>
-                            <select v-model="company" id="" class="rounded-none bg-white cursor-pointer font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md  outline-sky">
-                                <option class="cursor-pointer" v-for="company of userData.companyList" :key="company" :value="company.name">{{ company.name }}</option>
-                            </select>
+                        <div class="w-full bg-white font-medium">
+                            <span class="bg-white">Company:</span>
+                            <div class="flex bg-white mt-1">
+                                <span class="bg-white inline-flex items-center p-2 rounded-l-md border-2 border-r-0 border-gray-300">
+                                    <img class="w-[26px] h-[26px]"  src="../../../assets/position.png" alt="">
+                                </span>
+                                <input @focus="isShowCompanies = true" v-model="company" id="company" type="text" placeholder="Company" class="rounded-none pl-3 bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md  outline-sky">
+                            </div>
                         </div>
+                        <div v-if="isShowCompanies" class="absolute w-fit ml-11 overflow-auto border-l-[1px] border-r-[1px] border-b-[1px] border-sky bg-white rounded-none cursor-pointer font-normal text-base block flex-1">
+                            <div @click="$emit('create-company'); isShowCompanies = false" class="flex items-center py-2 pl-6 hover:bg-[#d9eafd]">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 rounded-full border-[2px] border-[blue] text-[blue] font-bold mr-[10px]">
+                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                                </svg>
+                                <p class="text-[blue]">Add new company</p>
+                            </div>
+                            <div v-for:="eachCompany of userData.companyList" @click="company = eachCompany.name; companyId = eachCompany.id; isShowCompanies = false" class="flex items-center py-2 pl-4 pr-20 hover:bg-[#d9eafd]">
+                                <img src="./../../../assets/logo.png" class="w-10 h-10 rounded-full mr-[10px]">
+                                <p>{{ eachCompany.name }}</p>
+                            </div>
+                        </div>                    
                     </div>
                 </div>
                 <div class="flex bg-white mt-4">
@@ -88,6 +98,7 @@
         data(){
             return {
                 company:'',
+                companyId: null,
                 position: '',
                 start_date: '',
                 end_date:'',
@@ -97,14 +108,18 @@
                 isStartDateNull: false,
                 isEndDateNull: false,
                 errorMessage: null,
+                isShowCompanies: false,
             }
         },
 
         methods: {
             updateWorkExperience(){
                 if(this.isValidated()){
+                    if (this.isWorking) {
+                        this.end_date = null;
+                    }
                     let userExperience = {
-                        company: this.userData.companyList.find((company) => company.name == this.company),
+                        company: this.userData.companyList.find((company) => company.id == this.companyId),
                         position: this.position,
                         start_date: this.start_date,
                         end_date: this.end_date,
@@ -143,7 +158,6 @@
             },
 
             checkValidation() {
-                console.log("log");
                 if (this.position) {
                     this.isPositionNull = false;
                 }
@@ -161,6 +175,14 @@
             checkDate() {
                 if (this.end_date) {
                     this.max_start_date = this.end_date;
+                }
+            },
+
+            onClickPopup(e) {
+                if (e.target.id == undefined) {
+                    this.isShowCompanies = false;
+                } else if (e.target.id != 'company') {
+                    this.isShowCompanies = false;
                 }
             }
         },

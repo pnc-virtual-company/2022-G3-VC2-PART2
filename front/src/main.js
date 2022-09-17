@@ -14,6 +14,7 @@ import GeneralInformationComponent from '@/components/general_information/Genera
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
 import PreviewProfile from "@/components/popup_components/preview_image/PreviewProfile"
 import PreviewCover from "@/components/popup_components/preview_image/PreviewCover"
+import PreviewLogo from "@/components/popup_components/preview_image/PreviewLogo";
 
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
@@ -29,6 +30,7 @@ import AlumniSkill from './views/alumni/aulmi_skill/AlumniSkill';
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
 import EducationBackgroundPopup from './views/alumni/education_background/EducationBackgroundPopup'
+import ComponentCreate from '@/components/component_create/ComponentCreate';
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -51,6 +53,8 @@ app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
 app.component('preview-profile', PreviewProfile)
 app.component('preview-cover', PreviewCover)
+app.component('preview-logo', PreviewLogo);
+app.component('component-create', ComponentCreate);
 
 // alumni Profile
 app.component('general-information',GeneralInformation)

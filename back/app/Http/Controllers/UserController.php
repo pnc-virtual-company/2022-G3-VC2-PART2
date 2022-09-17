@@ -121,7 +121,7 @@ class UserController extends Controller
         $profile->move(storage_path('images'), $newName);
         $user->profile = $newName;
         $user->save();
-        return response(['massage'=>"Updated profile Success"]);
+        return $user->profile;
     }
 
     public function updateCoverImage(Request $request,$id){
@@ -137,7 +137,7 @@ class UserController extends Controller
         $cover->move(storage_path('images'), $newName);
         $user->cover = $newName;
         $user->save();
-        return response(['massage'=>"Updated cover Success"]);
+        return $user->cover;
     }
     
     public function getImage($imageName)
