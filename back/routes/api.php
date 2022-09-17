@@ -52,6 +52,7 @@ Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 
 Route::get('/companies', [CompanyController::class, "index"]);
+Route::get('/companies/{id}', [CompanyController::class, "index"]);
 Route::post('/companies', [CompanyController::class, "store"]);
 
 Route::get('/skills/', [SkillController::class, "index"]);

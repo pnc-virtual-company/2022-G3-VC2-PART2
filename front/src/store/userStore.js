@@ -54,7 +54,7 @@ export const userInformations = defineStore('get-data', {
       axios.put('/alumniIntro/'+1, data);
     },
     getCompanyList() {
-      axios.get('/companies/').then((res)=>{
+      axios.get('/companies').then((res)=>{
         this.companiesStore = res.data;
       })
     },
