@@ -1,7 +1,5 @@
 <template>
     <div class=" mt-[20px]">
-        <preview-profile v-if="userInfor.showEditProfile"></preview-profile>
-        <preview-cover v-if="userInfor.showEditCover"></preview-cover>
         <general-information @click-popup="isShow = !isShow"> </general-information>
         <general-information-popup 
         v-if="isShow" 
@@ -30,6 +28,9 @@
         methods: {
             updateGeneralInfor(data){
                 this.userInfor.updateAlumniGerneralInfor(data);
+            },
+            aa(){
+                console.log('hellow')
             }
         },
 

@@ -3,7 +3,7 @@
     <card-components class="p-[0rem]" v-if="alumniData.userData !=null">
         <div class="">
             <div class="border-b-[1px] border-b-gray-300 pb-4">
-                <profile-images-component class=""></profile-images-component>
+                <profile-images-component @click-profile="showEditProfile = !showEditProfile" @click-cover="showEditCover = !showEditCover" class=""></profile-images-component>
             </div>
             <general-information-component class=" w-full" @click-popup="$emit('click-popup')">
                 <template #slot1>
@@ -35,6 +35,8 @@
         
         <alumni-skill class="p-[20px]"></alumni-skill>
     </card-components>
+    <preview-profile v-if="showEditProfile" @click-popup="showEditProfile = !showEditProfile" ></preview-profile>
+    <preview-cover v-if="showEditCover" @click-popup="showEditCover = !showEditCover"></preview-cover>
 </template>
 <script>
     import {userInformations} from "../../../store/userStore"
@@ -47,5 +49,11 @@ import AlumniSkill from '../aulmi_skill/AlumniSkill.vue';
               alumniData
           }
       },
+      data(){
+        return{
+            showEditProfile: false,
+            showEditCover: false
+        }
+      }
     }
   </script>

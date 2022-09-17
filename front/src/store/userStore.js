@@ -4,9 +4,7 @@ export const userInformations = defineStore('get-data', {
   state () { 
     return{
       userStore: null,
-      companiesStore: null,
-      showEditProfile: false,
-      showEditCover: false,
+      companiesStore: null, 
       emails:null,
       schoolStore:null,
       isShowAddExperienceForm:false,
