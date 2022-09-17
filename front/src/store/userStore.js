@@ -56,7 +56,7 @@ export const userInformations = defineStore('get-data', {
       axios.put('/alumniIntro/'+1, data);
     },
     getCompanyList() {
-      axios.get('/companies/').then((res)=>{
+      axios.get('/companies').then((res)=>{
         this.companiesStore = res.data;
       })
     },
@@ -108,7 +108,7 @@ export const userInformations = defineStore('get-data', {
     },
     addExperience(data){
       axios.post('/alumnis/experience', data).then(res => {
-        console.log(res)
+        console.log(res.data)
         this.getUserData()
 
       }

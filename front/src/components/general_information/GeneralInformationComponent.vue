@@ -17,6 +17,10 @@
                 <slot name="slot7"></slot>
                 <slot name="slot8"></slot>
             </div>
+            <div class="flex bg-white ">
+                <slot name="slot9"></slot>
+                <slot name="slot10"></slot>
+            </div>
         </div>
         <div class="w-1/12 flex justify-end bg-white">
             <icon-action @click="$emit('click-popup')">
