@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Alumni;
+use App\Models\Ero;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -27,14 +29,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         $user = new User();
-        $user-> first_name = $request->first_name;
-        $user-> last_name = $request->last_name;
-        $user-> email = $request->email;
-        $user-> password = $request->password;
-        $user-> role = $request->role;
-        $user-> image = $request->image;
-        $user-> save();
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->profile = 'avatar.png';
+        $user->cover = 'avatar.png'; 
+        $user->save();
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
     
@@ -117,6 +120,33 @@ class UserController extends Controller
         }
     }
 
+    public function logIn(Request $request)
+    {
+        //check email
+        $user = User::where('email', $request->email)->first();
+        //check password
+        if($user){
+            if(Hash::check($request->password, $user->password)){
+                $token = $user->createToken('mytoken')->plainTextToken;
+                $respone = [
+                    'user'=>$user,
+                    'token'=>$token
+                ];
+                return response()->json($respone);
+            } else {
+                return response()->json(['sms'=>'Invalid password'],401);
+            }
+        } else {
+           return response()->json(['sms'=>'Log in fail'],401);
+        }
+      
+    }
+
+    public function logOut(Request $request)
+    {
+        Auth()->user()->tokens()->delete();
+        return response()->Json(["sms"=>"log out succes"]);
+    }
 
 
 

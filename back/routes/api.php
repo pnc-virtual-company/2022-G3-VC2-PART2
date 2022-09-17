@@ -44,3 +44,9 @@ Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 Route::get('/companies', [CompanyController::class, "index"]);
 
 Route::put('/users/update/password/{id}', [UserController::class, "resetPassword"]); /* The route to update user's password */
+
+Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
+
+Route::group(['middleware'=>['auth:sanctum']], function(){
+    Route::post('users/logout/', [UserController::class, "logOut"]); /* The route to logout user account */
+});
