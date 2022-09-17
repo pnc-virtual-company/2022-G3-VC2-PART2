@@ -106,6 +106,7 @@
                 this.userData.userStore.work_experience.push(experience);
             },
             addWorkExperience(){
+            
                 if(this.isValidated()){
                     let companyInfor = this.userData.companyList.find((company) => company.name == this.company)
                     let userExperience = {
