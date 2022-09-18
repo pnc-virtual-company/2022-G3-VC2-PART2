@@ -32,6 +32,15 @@
                 <template v-if="!education.is_studying" #content-4>End year: {{education.end_date}}</template>
             </card-informations>
         </div>
+        <pagination-component>
+            <button-number class="hover:bg-blue-100" @click="previous">
+                <svg  class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </button-number>
+            <button-number v-for="index in numberGination" :key="index" @click="changePagination(index)" :class="{'bg-sky' : paginationStand==index}" >{{index}}</button-number>
+            <button-number class="hover:bg-blue-100" @click="next">
+                <svg class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </button-number>
+        </pagination-component>
     </card-components>
 </template>
 
@@ -45,12 +54,38 @@
                 educationData
             }
         },
-
+        data(){
+            return{
+                lastIndexSelect: 3,
+                paginationIndex: 1,
+            }
+        },
         methods: {
-           
+            next() {
+                if(this.paginationIndex < this.educationData.userData.education_backgrounds.length/3){
+                    this.lastIndexSelect += 3;
+                    this.paginationIndex ++;
+                }
+            },
+            previous() {
+                if(this.lastIndexSelect > 3){
+                    this.lastIndexSelect -= 3;
+                    this.paginationIndex --;
+                }
+            },
+            changePagination(page){
+                this.paginationIndex = page
+                this.lastIndexSelect = page * 3
+            },
         },
 
         computed: {
+            paginationStand(){
+                return this.paginationIndex;
+            },
+            numberGination(){
+                return Math.ceil(this.educationData.userData.education_backgrounds.length/3)
+            },
             orderedBackground() {
                 let eduList = [];
                 this.educationData.userData.education_backgrounds.forEach(eachBg => {
@@ -68,7 +103,13 @@
                 notPresentBg.reverse().forEach(eachBg => {
                     eduList.push(eachBg);
                 });
-                return eduList;
+                let ThreeEducationBackground = []
+                for(let i = 0; i < eduList.length; i++) {   
+                    if(i >= this.lastIndexSelect-3 && i < this.lastIndexSelect){
+                        ThreeEducationBackground.push(eduList[i])
+                    }
+                }   
+                return ThreeEducationBackground; 
             }
         }
     }
