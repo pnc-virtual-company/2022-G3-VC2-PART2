@@ -4,11 +4,16 @@ export const userInformations = defineStore('get-data', {
   state () { 
     return{
       userStore: null,
-      companiesStore: null,
+      companiesStore: null, 
       emails:null,
+      schoolStore:null,
+      isShowAddExperienceForm:false,
     }
   },
   getters: {
+    showFormAddExperience(){
+      return this.isShowAddExperienceForm;
+    },
     userData () {
       return this.userStore
     },
@@ -17,7 +22,10 @@ export const userInformations = defineStore('get-data', {
     },
     userEmails () {
       return this.emails;
-    }
+    },
+    schoolList(){
+      return this.schoolStore;
+    },
   },
 
   actions: {
@@ -45,13 +53,16 @@ export const userInformations = defineStore('get-data', {
       this.userStore.alumni.address = data.address;
       axios.put('/alumniIntro/'+1, data);
     },
-
     getCompanyList() {
-      axios.get('/companies/').then((res)=>{
+      axios.get('/companies').then((res)=>{
         this.companiesStore = res.data;
       })
     },
-
+    getSchoolList(){
+      axios.get('/schools/').then((res)=>{
+        this.schoolStore = res.data;
+      })
+    },
     updateWorkExperience(id, data) {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
@@ -68,6 +79,42 @@ export const userInformations = defineStore('get-data', {
           axios.put('/alumnis/experience/' + id, newExperience);
         } 
       });
+    },
+    updateEducationBackground(id, data) {
+      this.userStore.education_backgrounds.forEach((education, index) => {
+        if (education.id == id) {
+          this.userStore.education_backgrounds[index].degree = data.degree;
+          this.userStore.education_backgrounds[index].school.name = data.school.name;
+          this.userStore.education_backgrounds[index].major= data.major;
+          this.userStore.education_backgrounds[index].is_studying = data.is_studying;
+          this.userStore.education_backgrounds[index].start_date = data.start_date;
+          if (!data.is_studying) {
+            this.userStore.education_backgrounds[index].end_date = data.end_date;
+          } else {
+            this.userStore.education_backgrounds[index].end_date = null;
+          }
+          let newEducation = {degree: data.degree, school_id: data.school.id,major:data.major, start_date: data.start_date, end_date: data.end_date, is_studying:data.is_studying};
+          axios.put('/alumni/schools/' + id, newEducation)
+        } 
+      });
+    },
+    getImage(name) {
+          return axios.defaults.baseURL + "users/image/" + name;
+    },
+    uploadImage(path, image){
+      axios.post(path, image)
+    },
+    addExperience(data){
+      axios.post('/alumnis/experience', data).then(() => {
+        this.getUserData()
+        }
+      )
+    },
+    addEducationBackground(data){
+      axios.post('/alumni/schools', data).then(() => {
+        this.getUserData()
+        }
+      )
     }
   }
 });

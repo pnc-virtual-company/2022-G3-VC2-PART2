@@ -2,7 +2,7 @@
     <popup-component>
         <card-components>
             <form @input="checkValidation" class="bg-white">
-                <h1 class="text-center font-bold text-2xl bg-white" >Update work experience</h1>
+                <h1 class="text-center font-bold text-2xl bg-white" >Update work experience</h1> 
                 <div class="flex bg-white mt-4">
                     <div class="w-full bg-white font-medium">
                         <span class="bg-white">Companies:</span>
@@ -61,10 +61,13 @@
                     <p class="text-red-500 text-center">{{ errorMessage }}</p>
                 </div>
                 <div class="bg-white flex justify-end mt-4">
-                    <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
+                    <button-components @click="$emit('click-popup', userData.isShowAddExperienceForm=false)" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
                     </button-components>
-                    <button-components @click="updateWorkExperience" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
+                    <button-components v-if="!userData.isShowAddExperienceForm" @click="updateWorkExperience" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
+                        Update
+                    </button-components>
+                    <button-components v-else @click="addWorkExperience" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
                         Save
                     </button-components>
                 </div>
@@ -72,7 +75,6 @@
         </card-components>
     </popup-component>
 </template>
-
 <script>
     import {userInformations} from "@/store/userStore"
     export default {
@@ -82,15 +84,13 @@
                 userData
             }
         },
-
         props: ['experienceId'],
-
         data(){
             return {
-                company:'',
+                company: '',
                 position: '',
                 start_date: '',
-                end_date:'',
+                end_date:null,
                 max_start_date: null,
                 isWorking:false,
                 isPositionNull: false,
@@ -99,8 +99,29 @@
                 errorMessage: null,
             }
         },
-
         methods: {
+            addExperienceFront(experience){
+                this.userData.userStore.work_experience.push(experience);
+            },
+            addWorkExperience(){
+                if(this.isValidated()){
+                    let companyInfor = this.userData.companyList.find((company) => company.name == this.company)
+                    let userExperience = {
+                        user_id: 1,
+                        company_id: companyInfor.id,
+                        position: this.position,
+                        start_date: this.start_date,
+                        end_date: this.end_date,
+                        is_working: this.isWorking,
+                    }
+                    let userExperienceFront = userExperience
+                    userExperienceFront.company= companyInfor
+                    this.addExperienceFront(userExperienceFront);
+                    this.userData.isShowAddExperienceForm=false;
+                    this.$emit('click-popup');
+                    this.userData.addExperience(userExperience)
+                }
+            },
             updateWorkExperience(){
                 if(this.isValidated()){
                     let userExperience = {
@@ -114,13 +135,12 @@
                     this.$emit('click-popup');
                 }
             },
-
+            
             isValidated() {
                 let isPassedValidate = true;
                 this.isPositionNull = false;
                 this.isStartDateNull = false;
                 this.isEndDateNull = false;
-
                 if (!this.position || !this.start_date) {
                     isPassedValidate = false;
                     this.errorMessage = "Please input all fields!";
@@ -131,19 +151,17 @@
                         this.isStartDateNull = true;
                     }
                 }
-                if (!this.isWorking) {
+                if (!this.isWorking) {                                                                                                         
                     if (!this.end_date) {
                         isPassedValidate = false;
                         this.errorMessage = "Please input all fields!";
                         this.isEndDateNull = true;
                     }
                 }
-
                 return isPassedValidate;
             },
-
+            
             checkValidation() {
-                console.log("log");
                 if (this.position) {
                     this.isPositionNull = false;
                 }
@@ -164,16 +182,20 @@
                 }
             }
         },
-
         created() {
-            let experience = this.userData.userData.work_experience.find((experience) => experience.id == this.experienceId);
-            this.position = experience.position;
-            this.company = experience.company.name;
-            this.start_date = experience.start_date;
-            this.end_date = experience.end_date;
-            this.isWorking = experience.is_working;
-            if (!experience.is_working) {
-                this.max_start_date = experience.end_date;
+            if(!this.userData.isShowAddExperienceForm){
+                let experience = this.userData.userData.work_experience.find((experience) => experience.id == this.experienceId);
+                this.position = experience.position;
+                this.start_date = experience.start_date;
+                this.end_date = experience.end_date;
+                this.isWorking = experience.is_working;
+                this.company = experience.company.name;
+                if (!experience.is_working) {
+                    this.max_start_date = experience.end_date;
+                }
+            }else{
+                this.company = this.userData.companyList[0].name;
+
             }
         }
     }

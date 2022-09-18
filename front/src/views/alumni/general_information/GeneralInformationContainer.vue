@@ -21,16 +21,24 @@
         data(){
             return {
                 isShow: false,
+                showEditProfile: false,
+                showEditCover: false,
             }
         },
         methods: {
             updateGeneralInfor(data){
                 this.userInfor.updateAlumniGerneralInfor(data);
+            },
+            aa(){
+                console.log('hellow')
             }
         },
 
         computed:{
 
+        },
+        mounted(){
+            
         }
     }
 </script>

@@ -19,6 +19,10 @@ class AlumniSchool extends Model
         'created_at',
         'user_id'
     ];
+    protected $casts = [
+        'is_studying' => 'boolean',
+    ];
+
 
     // Relationship
     public function school(){

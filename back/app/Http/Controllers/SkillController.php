@@ -63,12 +63,6 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        $skill = Skill::where('id', $id)->get();
-        if(count($skill)>0){
-           Skill::destroy($id);
-           return response()->json(["sms"=>' skill is deleted']);
-        }else{
-            return response()->Json(["sms"=>"skill can't deleted"]);
-        }
+        return Skill::destroy($id);
     }
 }

@@ -1,39 +1,49 @@
 
 <template>
-    <card-components v-if="alumniData.userData !=null">
+    <card-components class="p-[0rem]" v-if="alumniData.userData !=null">
         <div class="">
             <div class="border-b-[1px] border-b-gray-300 pb-4">
-                <profile-images-component></profile-images-component>
+                <profile-images-component @click-profile="showEditProfile = !showEditProfile" @click-cover="showEditCover = !showEditCover" class=""></profile-images-component>
             </div>
-            <general-information-component @click-popup="$emit('click-popup')">
+            <general-information-component class=" w-full" @click-popup="$emit('click-popup')">   
                 <template #slot1>
-                    <the-email>{{alumniData.userData.email}}</the-email>
+                    <h1 class="ml-2 text-[20px] text-sky font-bold italic">Current work: {{currenWork.position}}</h1>
                 </template>
                 <template #slot2>
-                    <the-batch>{{alumniData.userData.alumni.batch}}</the-batch>
+                    <h1 class="ml-[4.5rem] text-[20px] text-sky font-bold italic" >Company: {{currenWork.company.name}} </h1>
                 </template>
                 <template #slot3>
-                    <the-phone>{{alumniData.userData.alumni.phone}}</the-phone>
+                    <the-email>{{alumniData.userData.email}}</the-email>
                 </template>
                 <template #slot4>
-                    <the-telegram>{{alumniData.userData.alumni.telegram}}</the-telegram>
+                    <the-batch>{{alumniData.userData.alumni.batch}}</the-batch>
                 </template>
                 <template #slot5>
-                    <the-major>{{alumniData.userData.alumni.major}}</the-major>
+                    <the-phone>{{alumniData.userData.alumni.phone}}</the-phone>
                 </template>
                 <template #slot6>
-                    <the-address>{{alumniData.userData.alumni.address}}</the-address>
+                    <the-major>{{alumniData.userData.alumni.major}}</the-major>
                 </template>
                 <template #slot7>
-                    <the-gender>{{alumniData.userData.alumni.gender}}</the-gender>
+                    <the-telegram>{{alumniData.userData.alumni.telegram}}</the-telegram>
                 </template>
                 <template #slot8>
+                    <the-address>{{alumniData.userData.alumni.address}}</the-address>
+                </template>
+                <template #slot9>
+                    <the-gender>{{alumniData.userData.alumni.gender}}</the-gender>
+                </template>
+                <template #slot10>
                     <the-birthdate>{{alumniData.userData.alumni.birth_date}}</the-birthdate>
                 </template>
             </general-information-component>
             
         </div>
+        
+        <!-- <alumni-skill class="p-[20px]"></alumni-skill> -->
     </card-components>
+    <preview-profile v-if="showEditProfile" @click-popup="showEditProfile = !showEditProfile" ></preview-profile>
+    <preview-cover v-if="showEditCover" @click-popup="showEditCover = !showEditCover"></preview-cover>
 </template>
 <script>
     import {userInformations} from "../../../store/userStore"
@@ -41,8 +51,20 @@
       setup(){
           const alumniData = userInformations();
           return {
-              alumniData
+              alumniData,
           }
       },
+      data(){
+        return{
+            showEditProfile: false,
+            showEditCover: false
+        }
+    },
+        computed: {
+        currenWork(){
+            let currenWork = this.alumniData.userData.work_experience.filter(company => company.is_working = true)[0];
+            return currenWork;
+        }
+      }
     }
   </script>

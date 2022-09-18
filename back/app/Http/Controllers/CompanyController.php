@@ -25,7 +25,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = new Company();
+        $company->name = $request->name;
+        $company->location = $request->location;
+        $company->logo = $request->logo;
+        $company->link = $request->link;
+
+        $company->save();
+        return response()->json(["sms"=>"company is added"]);
     }
 
     /**

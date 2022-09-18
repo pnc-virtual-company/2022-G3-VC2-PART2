@@ -4,7 +4,7 @@
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Work Experience</h1>
             <div >
-                <icon-action>
+                <icon-action @click="showFormAddExp">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 rounded-full hover:text-blue-700 text-sky cursor-pointer font-bold">
                             <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
@@ -28,6 +28,15 @@
                 <template #content-4>End date: {{experience.end_date }}</template>
             </card-informations>
         </div>
+        <pagination-component>
+            <button-number class="hover:bg-blue-100" @click="previous">
+                <svg  class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </button-number>
+            <button-number v-for="index in numberGination" :key="index" @click="changePagination(index)" :class="{'bg-sky' : paginationStand==index}" >{{index}}</button-number>
+            <button-number class="hover:bg-blue-100" @click="next">
+                <svg class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </button-number>
+        </pagination-component>
     </card-components>
 </div>
 </template>
@@ -40,8 +49,33 @@
                 userData
             }
         },
-
+        data(){
+            return{
+                lastIndexSelect: 3,
+                paginationIndex: 1,
+            }
+        },
         methods: {
+            next() {
+                if(this.lastIndexSelect < this.userData.userData.work_experience.length){
+                    this.lastIndexSelect += 3;
+                    this.paginationIndex ++;
+                }
+            },
+            previous() {
+                if(this.lastIndexSelect > 3){
+                    this.lastIndexSelect -= 3;
+                    this.paginationIndex --;
+                }
+            },
+            changePagination(page){
+                this.paginationIndex = page
+                this.lastIndexSelect = page * 3
+            },
+            showFormAddExp(){
+                this.$emit('click-popup');
+                this.userData.isShowAddExperienceForm = true;
+            },
             endDate(date, working) {
                 let result = "Present";
                 if (!working) {
@@ -86,6 +120,12 @@
         },
 
         computed: {
+            paginationStand(){
+                return this.paginationIndex;
+            },
+            numberGination(){
+                return Math.ceil(this.userData.userData.work_experience.length/3)
+            },
             orderedExperience() {
                 let expList = [];
                 this.userData.userData.work_experience.forEach(eachExp => {
@@ -101,10 +141,15 @@
                     }
                 });
                 notPresentExp.reverse().forEach(eachExp => {
-                    expList.push(eachExp);
+                    expList.push(eachExp);  
                 });
-                
-                return expList;
+                let ThreeWorkExp = []
+                for(let i = 0; i < expList.length; i++) {   
+                    if(i >= this.lastIndexSelect-3 && i < this.lastIndexSelect){
+                        ThreeWorkExp.push(expList[i])
+                    }
+                }   
+                return ThreeWorkExp;    
             }
         }
     }

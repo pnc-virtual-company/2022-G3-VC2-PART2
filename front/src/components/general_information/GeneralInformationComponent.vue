@@ -28,6 +28,10 @@
                     </button>
                 </icon-action>
             </div>
+            <div class="flex bg-white ">
+                <slot name="slot9"></slot>
+                <slot name="slot10"></slot>
+            </div>
         </div>
         <alumni-skill-container></alumni-skill-container>
     </div>

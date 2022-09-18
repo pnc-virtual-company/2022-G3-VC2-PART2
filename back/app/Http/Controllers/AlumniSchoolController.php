@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AlumniSchool;
+use App\Models\AlumniSkill;
 use Illuminate\Http\Request;
 
 class AlumniSchoolController extends Controller
@@ -14,7 +15,7 @@ class AlumniSchoolController extends Controller
      */
     public function index()
     {
-        //
+        return AlumniSchool::all();
     }
 
     /**
@@ -25,7 +26,21 @@ class AlumniSchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumniSchool = new AlumniSchool();
+        $alumniSchool->user_id = $request->user_id;
+        $alumniSchool->school_id = $request->school_id;
+        $alumniSchool->start_date = $request->start_date;
+        $alumniSchool->end_date = $request->end_date;
+        $alumniSchool->is_studying = $request->is_studying;
+        $alumniSchool->major = $request->major;
+        $alumniSchool->degree = $request->degree;
+        if (!$request->is_studying) {
+            $alumniSchool->end_date = $request->end_date;
+        } else {
+            $alumniSchool->end_date = NULL;
+        }
+        $alumniSchool->save();
+        return response()->json(['sms'=> "school is added"]);
     }
 
     /**
@@ -34,9 +49,9 @@ class AlumniSchoolController extends Controller
      * @param  \App\Models\AlumniSchool  $alumniSchool
      * @return \Illuminate\Http\Response
      */
-    public function show(AlumniSchool $alumniSchool)
+    public function show($id)
     {
-        //
+        return AlumniSchool::findOrFail($id);
     }
 
     /**
@@ -46,9 +61,21 @@ class AlumniSchoolController extends Controller
      * @param  \App\Models\AlumniSchool  $alumniSchool
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AlumniSchool $alumniSchool)
+    public function update(Request $request, $id)
     {
-        //
+        $alumniSchool = AlumniSchool::findOrFail($id);
+        $alumniSchool->school_id = $request->school_id;
+        $alumniSchool->start_date = $request->start_date;
+        $alumniSchool->end_date = $request->end_date;
+        $alumniSchool->major = $request->major;
+        $alumniSchool->degree = $request->degree;
+        $alumniSchool->is_studying =  $request->is_studying;
+        if ($request->is_studying) {
+            $alumniSchool->end_date = NULL;
+        }
+        $alumniSchool->save();
+        return $alumniSchool;
+        return response()->json(['sms'=> "school is updated"]);
     }
 
     /**
@@ -57,8 +84,8 @@ class AlumniSchoolController extends Controller
      * @param  \App\Models\AlumniSchool  $alumniSchool
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AlumniSchool $alumniSchool)
+    public function destroy($id)
     {
-        //
+        return AlumniSchool::destroy($id);
     }
 }
