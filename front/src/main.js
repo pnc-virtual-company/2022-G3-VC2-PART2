@@ -27,6 +27,7 @@ import CardInformations from '@/components/card_components/CardInformations'
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
+import AlumniInvitePopup from './views/admin/alumni_controll/AlumniInvitePopup'
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -40,6 +41,7 @@ import TheTelegram from '@/components/general_information/icon_informations/TheT
 import { createPinia } from 'pinia'
 // admin 
 import AdminManagementView from '@/views/admin/AdminManagementView'
+import ListAlumniView from '@/views/admin/alumni_controll/ListAlumniView'
 import AlumniController from '@/views/admin/alumni_controll/AlumniController'
 import ManuView from '@/views/admin/components/ManuView'
 // nav bar
@@ -67,6 +69,7 @@ app.component("general-information-container", GeneralInformationContainer);
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);
 app.component('work-experience-popup', WorkExperiencePopup);
+app.component('alumni-invite-popup', AlumniInvitePopup);
 
 // icon informations
 app.component('the-email', TheEmail);
@@ -81,5 +84,6 @@ app.component('the-major', TheMajor);
 // admin
 app.component('manu-view', ManuView);
 app.component('admin-management-view', AdminManagementView);
+app.component('list-alumni-view', ListAlumniView);
 app.component('alumni-controller', AlumniController);
 app.use(router).mount('#app')

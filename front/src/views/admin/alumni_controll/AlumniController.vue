@@ -1,22 +1,22 @@
 <template>
-    <div>
-        <input-search></input-search>
-        <div class="mt-4 flex justify-end">
-            <button-components class="py-2 bg-sky text-white hover:bg-sky-hover hover:text-white font-bold">Invite</button-components>
-        </div>
-        <div class="">
-            <card-list v-for="i in 3" :key="i" >
-                <template #title-1>name</template>
-                <template #text-1>Khy Phat</template>
-
-                <template #title-2>email</template>
-                <template #text-2>khy.phat@gmail.com</template>
-                <template #title-3>gender</template>
-                <template #text-3>Male</template>
-                <template #title-4>batch</template>
-                <template #text-4>2022</template>
-               
-            </card-list>
-        </div>
+    <div class="m-auto">
+        <list-alumni-view  @click-popup="isShow = !isShow"></list-alumni-view>
+        <alumni-invite-popup v-if="isShow" @click-popup="isShow = !isShow" ></alumni-invite-popup>
     </div>
 </template>
+<script>
+    import {userInformations} from "@/store/userStore"
+    export default {
+        setup(){
+            const userData = userInformations();
+            return {
+                userData
+            }
+        },
+        data(){
+            return {
+                isShow: false,
+            }
+        },
+    }
+</script>
