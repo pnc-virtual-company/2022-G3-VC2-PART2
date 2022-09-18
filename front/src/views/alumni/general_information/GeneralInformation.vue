@@ -31,16 +31,13 @@
                     <the-birthdate>{{alumniData.userData.alumni.birth_date}}</the-birthdate>
                 </template>
             </general-information-component>
+            
         </div>
-        
-        <alumni-skill></alumni-skill>
     </card-components>
 </template>
 <script>
     import {userInformations} from "../../../store/userStore"
-import AlumniSkill from '../aulmi_skill/AlumniSkill.vue';
     export default {
-  components: { AlumniSkill },
       setup(){
           const alumniData = userInformations();
           return {

@@ -1,4 +1,5 @@
 <template>
+    <div>
     <card-components>
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Work Experience</h1>
@@ -28,8 +29,8 @@
             </card-informations>
         </div>
     </card-components>
+</div>
 </template>
-
 <script>
     import {userInformations} from "@/store/userStore"
     export default {
