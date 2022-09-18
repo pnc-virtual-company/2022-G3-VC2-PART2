@@ -7,6 +7,7 @@ const routes = [
     name: 'profile',
     component: ProfileAlumniView
   },
+
  
 ]
 
