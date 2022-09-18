@@ -8,6 +8,7 @@ const app = createApp(App).use(createPinia());
 import NavBar from '@/components/nav_bar/NavBar';
 
 //public component
+import InputSearch from '@/components/input_components/InputSearch';
 import IconAction from '@/components/icons_components/IconsAction';
 import CardComponent from '@/components/card_components/CardComponent.vue';
 import PopupComponent from '@/components/popup_components/PopupComponent';
@@ -15,6 +16,7 @@ import ButtonComponent from '@/components/button_components/ButtonComponent'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
+import CardList from '@/components/card_components/CardList';
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
 import GeneralInformation from './views/alumni/general_information/GeneralInformation';
@@ -36,11 +38,16 @@ import TheMajor from '@/components/general_information/icon_informations/TheMajo
 import ThePhone from '@/components/general_information/icon_informations/ThePhone';
 import TheTelegram from '@/components/general_information/icon_informations/TheTelegram';
 import { createPinia } from 'pinia'
-
+// admin 
+import AdminManagementView from '@/views/admin/AdminManagementView'
+import AlumniController from '@/views/admin/alumni_controll/AlumniController'
+import ManuView from '@/views/admin/components/ManuView'
 // nav bar
 app.component('nav-bar', NavBar);
 
 //public component
+app.component('card-list', CardList)
+app.component('input-search', InputSearch);
 app.component('popup-component', PopupComponent);
 app.component('icon-action', IconAction);
 app.component('card-components',CardComponent);
@@ -61,7 +68,6 @@ app.component("general-information-container", GeneralInformationContainer);
 app.component('general-information-popup', GeneralInformationPopup);
 app.component('work-experience-popup', WorkExperiencePopup);
 
-
 // icon informations
 app.component('the-email', TheEmail);
 app.component('the-batch', TheBatch);
@@ -72,4 +78,8 @@ app.component('the-birthdate', TheBirthDate);
 app.component('the-gender', TheGender);
 app.component('the-major', TheMajor);
 
+// admin
+app.component('manu-view', ManuView);
+app.component('admin-management-view', AdminManagementView);
+app.component('alumni-controller', AlumniController);
 app.use(router).mount('#app')

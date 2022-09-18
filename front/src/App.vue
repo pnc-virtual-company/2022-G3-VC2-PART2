@@ -4,6 +4,7 @@
     <div class="mb-[20px]">
       <router-view/>
     </div>
+    <admin-view></admin-view>
   </div>
 </template>
 
