@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileAlumniView from '../views/alumni/ProfileView'
 import AdminManagementView from '../views/admin/AdminManagementView'
+import LoginView from '../views/LoginView.vue'
+
 const routes = [
   {
     path: '/profile',
@@ -8,10 +10,15 @@ const routes = [
     component: ProfileAlumniView
   },
   {
-    path: '/admin-management',
-    name: 'admin-management',
+    path: '/manage',
+    name: 'manage',
     component: AdminManagementView
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
  
 ]
 

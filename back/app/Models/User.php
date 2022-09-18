@@ -53,5 +53,10 @@ class User extends Authenticatable
     // public function ero(){
     //     return $this->hasOne(Alumni::class);
     // }
+
+    public function eros()
+    {
+        return $this->hasMany(Ero::class);
+    }
     
 }

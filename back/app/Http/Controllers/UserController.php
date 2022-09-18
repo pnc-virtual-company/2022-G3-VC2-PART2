@@ -40,6 +40,23 @@ class UserController extends Controller
         $user->save();
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
+
+    public function createEro(Request $request)
+    {
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = 'ero';
+        $user->profile = 'avatar.png';
+        $user->cover = 'avatar.png';
+        $user->save();
+
+        $ero = new Ero();
+        $ero->user_id = $user->id;
+        $ero->save();
+        return response()->Json(["message"=>"ero is created successfully!"]);
+        
+    }
     
     /**
      * Display the specified resource.
