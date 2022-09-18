@@ -26,6 +26,9 @@ import CardInformations from '@/components/card_components/CardInformations'
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
 
+//Ero informations
+import RegesterEro from '@/views/ero/ResgesterEro'
+
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
 import TheBatch from '@/components/general_information/icon_informations/TheBatch';
@@ -55,6 +58,10 @@ app.component('work-experience', WorkExperience);
 app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
+
+//Ero informations
+app.component("regester-ero-account",RegesterEro );
+
 
 
 // alumni popup components register

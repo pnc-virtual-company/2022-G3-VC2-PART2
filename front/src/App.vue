@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div >
     <nav-bar></nav-bar>
     <div class="mb-[20px]">
       <router-view/>
     </div>
+    <regester-ero-account></regester-ero-account>
   </div>
 </template>
 
@@ -26,7 +27,7 @@
 
 <style >
 body{
-  background: #E5F2FB;
+  background:#ADD8E6;
 }
 a.router-link-exact-active {
   background: #2EA3F2;
