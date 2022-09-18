@@ -8,12 +8,14 @@
                         <span class="bg-white">University:</span>
                         <div class="flex bg-white mt-1">
                             <span :class="{ 'border-red-400': isSchoolNull, 'border-gray-300': !isSchoolNull }" class="bg-white inline-flex items-center p-2 rounded-l-md border-2 border-r-0">
-                                <img class="w-[26px] h-[26px]"  src="../../../assets/position.png" alt="">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[26px] h-[26px] text-white bg-sky rounded-full p-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                                </svg>
                             </span>
                             <div :class="{ 'border-red-400': isSchoolNull, 'border-gray-300': !isSchoolNull && !isFocusSchool, 'border-sky rounded-l-md':isFocusSchool }" class="w-full flex items-center border-2 rounded-r-md">
-                                <div v-if="schoolId" class="flex justify-end items-center ml-3 bg-gray-300 h-[75%] rounded-2xl px-2">
+                                <div v-if="schoolId" class="flex justify-end items-center ml-3 bg-gray-300 h-[75%] rounded-2xl px-3">
                                     <span class="font-normal">{{ selectedSchool }}</span>
-                                    <svg @click="schoolId = null; school = null;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-600 ml-1 cursor-pointer">
+                                    <svg @click="schoolId = null; school = null;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-red-600 ml-1 cursor-pointer">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
@@ -292,7 +294,7 @@
                     this.max_start_date = education.end_date;
                 }
             }else{
-                this.school = this.educationData.schoolList[0].name;
+                this.placeholder = 'Type to find schools';
                 this.degree = 'Associat Degree';
             }
         },

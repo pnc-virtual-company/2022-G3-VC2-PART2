@@ -48,6 +48,7 @@ Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
 Route::get('/alumnis/experience', [AlumniCompanyController::class, 'index']);
 Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
 Route::post('/alumnis/experience', [AlumniCompanyController::class, 'store']);
+Route::delete('/alumnis/experience/{id}', [AlumniCompanyController::class, 'destroy']);
 Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 

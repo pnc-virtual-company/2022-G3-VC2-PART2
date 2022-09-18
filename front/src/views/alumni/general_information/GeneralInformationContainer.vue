@@ -1,8 +1,7 @@
 <template>
     <div class=" mt-[20px]">
         <general-information @click-popup="isShow = !isShow"> </general-information>
-        <general-information-popup v-if="isShow" @click-popup="isShow = !isShow" @update-data="updateGeneralInfor">
-        </general-information-popup>
+        <general-information-popup v-if="isShow" @click-popup="isShow = !isShow" @update-data="updateGeneralInfor"></general-information-popup>
     </div>
 </template>
 
@@ -26,9 +25,6 @@
             updateGeneralInfor(data){
                 this.userInfor.updateAlumniGerneralInfor(data);
             },
-            aa(){
-                console.log('hellow')
-            }
         },
     }
 </script>

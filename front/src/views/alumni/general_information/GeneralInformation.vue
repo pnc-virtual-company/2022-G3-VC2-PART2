@@ -7,7 +7,7 @@
                     <profile-images-component @click-profile="showEditProfile = !showEditProfile" @click-cover="showEditCover = !showEditCover" class=""></profile-images-component>
                 </div>
                 <hr class="w-[95%] m-auto border-gray-300">
-                <general-information-component class="w-full" @click-popup="$emit('click-popup')">   
+                <general-information-component class="w-full m-auto p-[20px]" @click-popup="$emit('click-popup')">   
                     <template #slot1>
                         <p class="text-[20px] text-sky font-bold italic m-0 w-[50%]">Current work: {{currenWork.position}}</p>
                     </template>
@@ -40,8 +40,7 @@
                     </template>
                 </general-information-component>
             </div>
-            
-            <alumni-skill class="p-[20px] pt-0"></alumni-skill>
+            <alumni-skill-container class="p-[20px] pt-0"></alumni-skill-container>
         </card-components>
         <preview-profile v-if="showEditProfile" @click-popup="showEditProfile = !showEditProfile" ></preview-profile>
         <preview-cover v-if="showEditCover" @click-popup="showEditCover = !showEditCover"></preview-cover>
@@ -50,7 +49,9 @@
 
 <script>
     import {userInformations} from "../../../store/userStore"
+import AlumniSkillContainer from '../aulmi_skill/AlumniSkillContainer.vue';
     export default {
+  components: { AlumniSkillContainer },
         setup(){
             const alumniData = userInformations();
             return {

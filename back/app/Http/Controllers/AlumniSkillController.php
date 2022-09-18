@@ -31,7 +31,7 @@ class AlumniSkillController extends Controller
         $alumniSkill->skill_id = $request->skill_id;
 
         $alumniSkill->save();
-        return response()->Json(['sms'=> "skill is added"]);
+        return AlumniSkill::with('skill')->where('id', $alumniSkill->id)->first();
 
 
     }

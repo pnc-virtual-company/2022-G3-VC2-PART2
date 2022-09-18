@@ -16,6 +16,8 @@ import ErrorMessage from '@/components/alert_component/ErrorMessage.vue';
 import PreviewProfile from "@/components/popup_components/preview_image/PreviewProfile"
 import PreviewCover from "@/components/popup_components/preview_image/PreviewCover"
 import PreviewLogo from "@/components/popup_components/preview_image/PreviewLogo";
+import PaginationComponent from "@/components/pagination/PaginationComponent"
+import ButtonNumber from "@/components/pagination/ButtonNumber"
 
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
@@ -27,6 +29,8 @@ import CardInformations from '@/components/card_components/CardInformations'
 import EducationBackground from './views/alumni/education_background/EducationBackground'
 import EducationBackgroundContainer from './views/alumni/education_background/EducationBackgroundContainer'
 import AlumniSkill from './views/alumni/aulmi_skill/AlumniSkill';
+import AlumniSkillPopUp from './views/alumni/aulmi_skill/AlumniSkillPopUp';
+import AlumniSkillContainer from './views/alumni/aulmi_skill/AlumniSkillContainer';
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
@@ -57,6 +61,8 @@ app.component('preview-profile', PreviewProfile)
 app.component('preview-cover', PreviewCover)
 app.component('preview-logo', PreviewLogo);
 app.component('component-create', ComponentCreate);
+app.component('pagination-component', PaginationComponent);
+app.component('button-number', ButtonNumber);
 
 // alumni Profile
 app.component('general-information',GeneralInformation)
@@ -68,6 +74,8 @@ app.component("general-information-container", GeneralInformationContainer);
 app.component("education-background", EducationBackground);
 app.component("education-background-container", EducationBackgroundContainer);
 app.component("alumni-skill", AlumniSkill);
+app.component("alumni-skill-popup", AlumniSkillPopUp);
+app.component("alumni-skill-container", AlumniSkillContainer);
 
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);

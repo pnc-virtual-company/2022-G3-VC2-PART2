@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div class="mb-[20px]">
+  <div class="bg-light-blue">
+    <!-- <div class="mb-[20px]"> -->
       <router-view/>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -21,12 +21,14 @@
       this.userData.getCompanyList();
       this.userData.getEmails();
       this.userData.getSchoolList();
+      this.userData.getSkills();
     }
   }
 </script>
 
 <style >
 body{
-  background: #E5F2FB;
+  background: #abd8ff;
 }
 </style>
+  

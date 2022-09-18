@@ -8,6 +8,7 @@ export const userInformations = defineStore('get-data', {
       emails:null,
       schoolStore:null,
       isShowAddExperienceForm:false,
+      skillStore: null,
     }
   },
   getters: {
@@ -26,6 +27,9 @@ export const userInformations = defineStore('get-data', {
     schoolList(){
       return this.schoolStore;
     },
+    skillList() {
+      return this.skillStore;
+    }
   },
 
   actions: {
@@ -64,7 +68,6 @@ export const userInformations = defineStore('get-data', {
       })
     },
     updateWorkExperience(id, data) {
-      console.log(data.company);
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
           this.userStore.work_experience[index].position = data.position;
@@ -80,6 +83,15 @@ export const userInformations = defineStore('get-data', {
           axios.put('/alumnis/experience/' + id, newExperience);
         } 
       });
+    },
+
+    deleteWorkExperience(id) {
+      this.userStore.work_experience.forEach((experience, index) => {
+        if (experience.id == id) {
+          this.userStore.work_experience.splice(index, 1);
+        }
+      });
+      axios.delete('/alumnis/experience/' + id);
     },
 
     addCompany(company) {
@@ -107,6 +119,16 @@ export const userInformations = defineStore('get-data', {
         } 
       });
     },
+
+    deleteEducationBackground(id) {
+      this.userStore.education_backgrounds.forEach((education, index) => {
+        if (education.id == id) {
+          this.userStore.education_backgrounds.splice(index, 1);
+        }
+      });
+      axios.delete('/alumni/schools/' + id);
+    },
+
     getImage(name) {
       return axios.defaults.baseURL + "users/image/" + name;
     },
@@ -124,6 +146,12 @@ export const userInformations = defineStore('get-data', {
         this.getUserData()
         }
       )
+    },
+    
+    getSkills() {
+      axios.get('/skills/').then((res) => {
+        this.skillStore = res.data;
+      })
     }
   }
 });

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <education-background v-if="educationData.userData"  @click-popup="(id) => { isShow = !isShow; educationId = id; }"></education-background>
+        <education-background v-if="educationData.userData" @delete-item="deleteEducation" @click-popup="(id) => { isShow = !isShow; educationId = id; }"></education-background>
         <education-background-popup v-if="isShow" ref="updatePopup" @create-school="isShowCreateSchool = !isShowCreateSchool" @click-popup="isShow = !isShow" :educationId="educationId" @update-education="updateEducationBackground"></education-background-popup>
         <component-create v-if="isShowCreateSchool" @create-object="createSchool" @close-create="isShowCreateSchool = !isShowCreateSchool"></component-create>
     </div>
@@ -37,6 +37,10 @@
                     this.$refs.updatePopup.schoolId = res.data.id;
                     this.isShowCreateSchool = false;
                 });
+            },
+
+            deleteEducation(id) {
+                this.educationData.deleteEducationBackground(id);
             }
         },
     }

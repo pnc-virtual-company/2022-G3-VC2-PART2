@@ -1,4 +1,5 @@
 <template>
+    <div>
     <card-components>
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Work Experience</h1>
@@ -13,9 +14,9 @@
             </div>
         </div>
         <div>
-            <card-informations v-for:="experience of orderedExperience" @click-popup="$emit('click-popup', experience.id)">
+            <card-informations v-for:="experience of orderedExperience" @delete-item="$emit('delete-item', experience.id)" @click-popup="$emit('click-popup', experience.id)">
                 <template #logo>
-                    <img class="w-14 mr-3 align-items-sm-center rounded-full" :src="userData.getImage(experience.company.logo)">
+                    <img class="w-14 h-14 mr-3 align-items-sm-center rounded-full" :src="userData.getImage(experience.company.logo)">
                 </template>
                 <template #header>{{ experience.position }} <span class="text-green-500 text-[16px]">({{ duration(experience.start_date, experience.end_date) }})</span></template>
                 <template #content-1>
@@ -30,9 +31,18 @@
                 <template v-if="!experience.is_working" #content-4>End date: {{experience.end_date }}</template>
             </card-informations>
         </div>
+        <pagination-component>
+            <button-number class="hover:bg-blue-100" @click="previous">
+                <svg  class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </button-number>
+            <button-number v-for="index in numberGination" :key="index" @click="changePagination(index)" :class="{'bg-sky' : paginationStand==index}" >{{index}}</button-number>
+            <button-number class="hover:bg-blue-100" @click="next">
+                <svg class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </button-number>
+        </pagination-component>
     </card-components>
+</div>
 </template>
-
 <script>
     import {userInformations} from "@/store/userStore"
     export default {
@@ -42,8 +52,29 @@
                 userData
             }
         },
-
+        data(){
+            return{
+                lastIndexSelect: 3,
+                paginationIndex: 1,
+            }
+        },
         methods: {
+            next() {
+                if(this.lastIndexSelect < this.userData.userData.work_experience.length){
+                    this.lastIndexSelect += 3;
+                    this.paginationIndex ++;
+                }
+            },
+            previous() {
+                if(this.lastIndexSelect > 3){
+                    this.lastIndexSelect -= 3;
+                    this.paginationIndex --;
+                }
+            },
+            changePagination(page){
+                this.paginationIndex = page
+                this.lastIndexSelect = page * 3
+            },
             showFormAddExp(){
                 this.$emit('click-popup');
                 this.userData.isShowAddExperienceForm = true;
@@ -92,6 +123,12 @@
         },
 
         computed: {
+            paginationStand(){
+                return this.paginationIndex;
+            },
+            numberGination(){
+                return Math.ceil(this.userData.userData.work_experience.length/3)
+            },
             orderedExperience() {
                 let expList = [];
                 this.userData.userData.work_experience.forEach(eachExp => {
@@ -109,8 +146,13 @@
                 notPresentExp.reverse().forEach(eachExp => {
                     expList.push(eachExp);  
                 });
-                // console.log(this.userData.userData);
-                return expList;
+                let ThreeWorkExp = []
+                for(let i = 0; i < expList.length; i++) {   
+                    if(i >= this.lastIndexSelect-3 && i < this.lastIndexSelect){
+                        ThreeWorkExp.push(expList[i])
+                    }
+                }   
+                return ThreeWorkExp;    
             }
         }
     }
