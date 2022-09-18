@@ -1,5 +1,5 @@
 <template>
-        <div>
+        <div class="mb-[20px]">
                 <div class="mt-[20px]">
                         <general-information-container></general-information-container>
                 </div>
