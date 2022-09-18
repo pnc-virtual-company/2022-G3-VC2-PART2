@@ -25,9 +25,5 @@
                 this.educationData.updateEducationBackground(id,data);
             }
         },
-
-        computed:{
-
-        }
     }
 </script>
