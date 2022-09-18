@@ -14,6 +14,8 @@ import GeneralInformationComponent from '@/components/general_information/Genera
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
 import PreviewProfile from "@/components/popup_components/preview_image/PreviewProfile"
 import PreviewCover from "@/components/popup_components/preview_image/PreviewCover"
+import PaginationComponent from "@/components/pagination/PaginationComponent"
+import ButtonNumber from "@/components/pagination/ButtonNumber"
 
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
@@ -51,6 +53,8 @@ app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
 app.component('preview-profile', PreviewProfile)
 app.component('preview-cover', PreviewCover)
+app.component('pagination-component', PaginationComponent);
+app.component('button-number', ButtonNumber);
 
 // alumni Profile
 app.component('general-information',GeneralInformation)
