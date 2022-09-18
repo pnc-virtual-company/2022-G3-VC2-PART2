@@ -8,29 +8,37 @@
 </template>
 
 <script>
-  import {userInformations} from "@/store/userStore"
-  export default {
-    setup(){
-        const userData = userInformations();
-        return {
-            userData
-        }
-    },
-
-    beforeCreate(){
-      this.userData.getUserData();
-      this.userData.getCompanyList();
+import { userInformations } from "@/store/userStore"
+export default {
+  setup() {
+    const userData = userInformations();
+    return {
+      userData
     }
+  },
+
+  beforeCreate() {
+    this.userData.getUserData();
+    this.userData.getCompanyList();
+    // this.userData.getEmails();
+    // this.userData.getSchoolList();
   }
+}
 </script>
 
 <style >
-body{
-  background: #E5F2FB;
+* {
+  font-family: monospace;
 }
-a.router-link-exact-active {
-  background: #2EA3F2;
-  color: white;
-  cursor: pointer;
+
+body {
+  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(135, 211, 237, 0.5), rgba(135,211,237, 0.5));
+  background-size: cover;
+  position: relative;
+  background-blend-mode: overlay;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  object-fit: cover;
 }
 </style>
