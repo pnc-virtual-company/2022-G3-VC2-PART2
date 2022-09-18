@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('eros', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('address');
-            $table->string('telegram');
-            $table->string('phone');
-            $table->string('gender');
+            $table->string('address')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
             $table->timestamps();
         });
     }
