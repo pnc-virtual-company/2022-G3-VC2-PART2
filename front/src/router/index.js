@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileAlumniView from '../views/alumni/ProfileView'
+import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
-    path: '/profile',
+    path: '/',
     name: 'profile',
     component: ProfileAlumniView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
  
 ]

@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <nav-bar></nav-bar>
-    <div class="mb-[20px]">
+  <div class="bg-light-blue">
+    <!-- <div class="mb-[20px]"> -->
       <router-view/>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -20,17 +19,17 @@
     beforeCreate(){
       this.userData.getUserData();
       this.userData.getCompanyList();
+      // this.userData.getEmails();
+      // this.userData.getSchoolList();
     }
   }
 </script>
 
 <style >
+  *{
+    font-family:  monospace;
+  }
 body{
-  background: #E5F2FB;
-}
-a.router-link-exact-active {
-  background: #2EA3F2;
-  color: white;
-  cursor: pointer;
+  background: #e0e8ef;
 }
 </style>
