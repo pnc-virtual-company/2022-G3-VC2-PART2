@@ -1,12 +1,12 @@
 <template>
     <popup-component>
         <card-components class="p-[0rem] ">
-            <img v-if="!showNewImage" class="w-full m-auto h-[300px] rounded-t-lg" :src="urlProfile" alt="">
-            <img v-if="showNewImage" class=" w-full m-auto h-[300px] rounded-t-lg" :src="profileImage" alt="">
+            <img v-if="!showNewImage" class="w-full m-auto h-[300px] rounded-t-lg" :src="urlCover" alt="">
+            <img v-if="showNewImage" class=" w-full m-auto h-[300px] rounded-t-lg" :src="coverImage" alt="">
             <div class="flex justify-end item-center w-full relative -top-[0.30rem] bg-red-700">
                 <div class="h-8 mr-2 w-8 rounded-full bg-white mt-[-35px] ml-[4.8rem] flex justify-end items-center">
-                    <input id="upload_profile"  name="upload_img" @change="onFileChange" type="file" class="hidden">
-                    <label for="upload_profile" class=" shadow-black h-full flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-300">
+                    <input id="upload_cover"  name="upload_img" @change="onFileChange" type="file" class="hidden">
+                    <label for="upload_cover" class=" shadow-black h-full flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-[80%] rounded-lg text-black cursor-pointer">
                             <path class="cursor-pointer" fill-rule="evenodd" d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
                             <path class="cursor-pointer" fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
@@ -25,15 +25,15 @@
                 </button>
             </div>
             <div class="bg-white flex justify-end m-6">
-                <button-components @click="$emit('edit-cover')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
+                <button-components @click="hidePopup" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                     Cancel
                 </button-components>
-                <button-components :disabled="disabled" @click="saveUpload()" :class="{'bg-blue-200 border-gray-300 text-gray-400': disabled}" class="ml-3 bg-sky font-medium text-white  hover:bg-sky-hover">
+                <button-components v-if="!disabled" @click="saveUpload()" class="ml-3 bg-sky font-medium text-white  hover:bg-sky-hover">
                     Save
                 </button-components>
-                <!-- <button-components v-else disabled class="ml-3 bg-blue-200 border-gray-300 font-medium text-gray-400">
+                <button-components v-else disabled class="ml-3 bg-blue-200 border-gray-300 font-medium text-gray-400">
                     Save
-                </button-components> -->
+                </button-components>
             </div>
         </card-components>
     </popup-component>  
@@ -59,50 +59,50 @@
         }
       },
         computed:{
-            urlProfile(){
-                if(this.userInfor.userData.profile.substring(0,12) == "IMG_PROFILE_"){
-                    return this.userInfor.getImage(this.userInfor.userData.profile)
+            urlCover(){
+                if(this.userInfor.userData.cover.substring(0,10) == "IMG_COVER_"){
+                    return this.userInfor.getImage(this.userInfor.userData.cover);
                 }else{
-                    return this.userInfor.userData.profile;
-                }
-            },
+                    return this.userInfor.userData.cover;
+            }
+        }
         },
 
-        methods: {
-            // hidePopup() {
-            //     console.log('hide profile');
-            // },
-            onFileChange(e) {
-                let fileExtension = e.target.files[0].name.split('.').pop();
-                if (this.allowImageExtension.includes(fileExtension.toLowerCase())) {
-                    this.image = e.target.files[0];
-                    let reader = new FileReader();
-                    reader.readAsDataURL(this.image);
-                    reader.onload = e => {
-                        this.profileImage = e.target.result;
-                        this.showNewImage= true;
-                        this.hideWarning()
-                    }
-                }else{
-                    this.validation = 'Not allow file extension "' + fileExtension +'"'; 
-                    this.disabled = "disabled"
+      methods: {
+        hidePopup() {
+            this.hideWarning()
+            this.$emit('click-popup')
+
+        },
+        onFileChange(e) {
+            let fileExtension = e.target.files[0].name.split('.').pop();
+            if (this.allowImageExtension.includes(fileExtension.toLowerCase())) {
+                this.image = e.target.files[0];
+                let reader = new FileReader();
+                reader.readAsDataURL(this.image);
+                reader.onload = e => {
+                    this.coverImage = e.target.result;
+                    this.showNewImage= true;
+                    this.hideWarning()
                 }
-            },
-            saveUpload(){
-                if(this.profileImage!= null){
-                    this.userInfor.userStore.profile = this.profileImage;
-                    this.hidePopup()
-                    let formData = new FormData();
-                    formData.append('profile', this.image)  ;
-                    formData.append('_method', 'PUT');
-                    this.userInfor.uploadImage('users/update_profile/1', formData);
-                }
+            }
+        },
+        saveUpload(){
+            if(this.coverImage!= null){
+                this.userInfor.userStore.cover = this.coverImage;
+                this.$emit('click-popup')
                 this.hidePopup()
-            },
-        // hideWarning(){
-        //     this.validation = null;
-        //     this.disabled = null;
-        // }
+                let formData = new FormData();
+                formData.append('cover', this.image) ;
+                formData.append('_method', 'PUT');
+                this.userInfor.uploadImage('users/update_cover/1', formData);
+            }
+            this.hidePopup()
+        },
+        hideWarning(){
+            this.validation = null;
+            this.disabled = null;
+        }
         }
     }
 </script>

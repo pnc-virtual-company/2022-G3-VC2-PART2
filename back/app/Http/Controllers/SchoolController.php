@@ -27,19 +27,22 @@ class SchoolController extends Controller
     {
         $school = new School();
         $school->name = $request->name;
-        $school->location = $request->location;
-        if ($request->logo) {
-            $school->logo = $request->logo;
+        $school->address = $request->address;
+        if ($request->logo && $request->logo != 'null') {
+            $logo = $request->logo;
+            $newName = "IMG_LOGO". time() . "_" . $logo->getClientOriginalName();
+            $school->logo = $newName;
+            $logo->move(storage_path('images'), $newName);
         } else {
-            $school->logo = "company_logo.png";
+            $school->logo = "school_logo.jpg";
         }
-        if($request->link){
+        if($request->link && $request->link != 'null'){
             $school->link = $request->link;
+        } else {
+            $school->link = NULL;
         }
-       
         $school->save();
-
-        return response()->Json(["sms"=>"school is added"]);
+        return $school;
     }
 
     /**

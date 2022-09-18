@@ -1,13 +1,14 @@
 <template>
     <div>
         <work-experience v-if="userData.userData" @click-popup="(id) => { isShow = !isShow; experienceId = id; }"></work-experience>
-        <work-experience-popup v-if="isShow" @create-company="isShowCreateCompany = !isShowCreateCompany" @update-experience="updateWorkExperience" :experienceId="experienceId" @click-popup="isShow = !isShow"></work-experience-popup>
-        <component-create v-if="isShowCreateCompany" @create-company="createCompany" @close-create="isShowCreateCompany = !isShowCreateCompany"></component-create>
+        <work-experience-popup v-if="isShow" ref="updatePopup" @create-company="isShowCreateCompany = !isShowCreateCompany" @update-experience="updateWorkExperience" :experienceId="experienceId" @show-add-form="addForm" @click-popup="isShow = !isShow"></work-experience-popup>
+        <component-create v-if="isShowCreateCompany" @create-object="createCompany" @close-create="isShowCreateCompany = !isShowCreateCompany"></component-create>
     </div>
 </template>
 
 <script>
     import {userInformations} from "@/store/userStore"
+    import axios from "../../../axios-http";
     export default {
         setup(){
             const userData = userInformations();
@@ -30,7 +31,12 @@
             },
 
             createCompany(company) {
-                this.userData.createCompany(company);
+                axios.post('/companies/', company).then((res) => {
+                    this.userData.addCompany(res.data);
+                    this.$refs.updatePopup.selectedCompany = res.data.name;
+                    this.$refs.updatePopup.companyId = res.data.id;
+                    this.isShowCreateCompany = false;
+                });
             }
         },
     }

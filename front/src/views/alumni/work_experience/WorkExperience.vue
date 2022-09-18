@@ -3,7 +3,7 @@
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Work Experience</h1>
             <div >
-                <icon-action>
+                <icon-action @click="showFormAddExp">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 rounded-full hover:text-blue-700 text-sky cursor-pointer font-bold">
                             <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
@@ -15,16 +15,19 @@
         <div>
             <card-informations v-for:="experience of orderedExperience" @click-popup="$emit('click-popup', experience.id)">
                 <template #logo>
-                    <img class="w-14 mr-3 align-items-sm-center" src="../../../assets/logo.png">
+                    <img class="w-14 mr-3 align-items-sm-center rounded-full" :src="userData.getImage(experience.company.logo)">
                 </template>
                 <template #header>{{ experience.position }} <span class="text-green-500 text-[16px]">({{ duration(experience.start_date, experience.end_date) }})</span></template>
                 <template #content-1>
                     <a v-if="experience.company.link" :href="experience.company.link" target="blank" class="text-blue-800 underline decoration-[blue] hover:animate-pulse hover:pl-[1px]">{{ experience.company.name }}</a>
                     <p v-else>{{ experience.company.name }}</p>
                 </template>
-                <template #content-2>Address: {{experience.company.location }}</template>
-                <template #content-3>Start date: {{ experience.start_date }}</template>
-                <template #content-4>End date: {{experience.end_date }}</template>
+                <template #content-2>Address: {{experience.company.address }}</template>
+                <template #content-3>
+                    <p v-if="experience.is_working">Start date: {{ experience.start_date }} - Present</p>
+                    <p v-else>Start date: {{ experience.start_date }}</p>
+                </template>
+                <template v-if="!experience.is_working" #content-4>End date: {{experience.end_date }}</template>
             </card-informations>
         </div>
     </card-components>
@@ -41,6 +44,10 @@
         },
 
         methods: {
+            showFormAddExp(){
+                this.$emit('click-popup');
+                this.userData.isShowAddExperienceForm = true;
+            },
             endDate(date, working) {
                 let result = "Present";
                 if (!working) {
@@ -100,9 +107,9 @@
                     }
                 });
                 notPresentExp.reverse().forEach(eachExp => {
-                    expList.push(eachExp);
+                    expList.push(eachExp);  
                 });
-                
+                // console.log(this.userData.userData);
                 return expList;
             }
         }

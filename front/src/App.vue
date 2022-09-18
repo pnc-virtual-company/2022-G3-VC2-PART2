@@ -20,6 +20,7 @@
       this.userData.getUserData();
       this.userData.getCompanyList();
       this.userData.getEmails();
+      this.userData.getSchoolList();
     }
   }
 </script>

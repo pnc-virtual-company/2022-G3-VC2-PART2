@@ -30,10 +30,14 @@ class AlumniSchoolController extends Controller
         $alumniSchool->user_id = $request->user_id;
         $alumniSchool->school_id = $request->school_id;
         $alumniSchool->start_date = $request->start_date;
-        $alumniSchool->end_date = $request->end_date;
+        $alumniSchool->is_studying = $request->is_studying;
         $alumniSchool->major = $request->major;
         $alumniSchool->degree = $request->degree;
-
+        if (!$request->is_studying) {
+            $alumniSchool->end_date = $request->end_date;
+        } else {
+            $alumniSchool->end_date = NULL;
+        }
         $alumniSchool->save();
         return response()->json(['sms'=> "school is added"]);
     }
@@ -61,12 +65,16 @@ class AlumniSchoolController extends Controller
         $alumniSchool = AlumniSchool::findOrFail($id);
         $alumniSchool->school_id = $request->school_id;
         $alumniSchool->start_date = $request->start_date;
-        $alumniSchool->end_date = $request->end_date;
         $alumniSchool->major = $request->major;
         $alumniSchool->degree = $request->degree;
+        $alumniSchool->is_studying =  $request->is_studying;
+        if (!$request->is_studying) {
+            $alumniSchool->end_date = $request->end_date;
+        } else {
+            $alumniSchool->end_date = NULL;
+        }
         $alumniSchool->save();
-        
-        return response()->json(['sms'=> "school is updated"]);
+        return $alumniSchool;
     }
 
     /**

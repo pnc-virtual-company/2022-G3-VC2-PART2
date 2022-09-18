@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="mt-5 justify-between flex border-t-2">
-            <div class="w-full mt-3 flex justify-between items-center">
+        <div class="flex justify-between border-t-[1px] border-gray-300">
+            <div class="w-full mt-[0.60rem] flex justify-between items-center">
                 <h1 class="font-bold text-2xl text-sky">Skills</h1>
                 <div class="flex">
                     <icon-action class="mr-3">
@@ -21,18 +21,20 @@
                 </div>
             </div>
         </div> 
-        <div class="flex flex-wrap justify-between">
-            <p v-for:="skill of skills" class="bg-gray-300 text-[18px] text-center rounded-[15px] py-[0.30rem] px-4 mt-4 mr-4">{{ skill }}</p>
+        <div class="flex flex-wrap justify-start">
+            <p v-for:="alumniSkill of userData.userData.skills" class="bg-gray-300 text-[18px] text-center rounded-[15px] py-[0.30rem] px-4 mt-4 mr-4">{{ alumniSkill.skill.name }}</p>
         </div>
     </div>
 </template>
 <script>
+    import {userInformations} from "@/store/userStore"
     export default {
-        data() {
+        setup(){
+            const userData = userInformations();
             return {
-                skills: ['HTML', 'CSS', 'Javascript Js', 'Python', 'Computer Sicence', 'PHP laravel', 'NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs','NodeJs']
+                userData
             }
-        }
+        },  
     }
 </script>
 
