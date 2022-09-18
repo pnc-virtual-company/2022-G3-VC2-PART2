@@ -24,6 +24,10 @@ import AlumniProfileContainer from './views/alumni/ProfileView.vue';
 import WorkExperience from './views/alumni/work_experience/WorkExperience'
 import WorkExperienceContainer from './views/alumni/work_experience/WorkExperienceContainer'
 import CardInformations from '@/components/card_components/CardInformations'
+
+// reset password
+import ResetPassword from './views/alumni/reset_password/ResetPassword.vue';
+
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
@@ -64,6 +68,7 @@ app.component('work-experience', WorkExperience);
 app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
+app.component("reset-password", ResetPassword);
 
 
 // alumni popup components register
