@@ -3,7 +3,7 @@
     <card-components v-if="alumniData.userData !=null">
         <div class="">
             <div class="border-b-[1px] border-b-gray-300 pb-4">
-                <profile-images-component></profile-images-component>
+                <profile-images-component @click-reset="$emit('click-reset')"></profile-images-component>
             </div>
             <general-information-component @click-popup="$emit('click-popup')">
                 <template #slot1>

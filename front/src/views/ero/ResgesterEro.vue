@@ -3,11 +3,11 @@
         <div class=" w-full m-auto ">
             <div class="mt-20">
                 <div class="flex">
-                    <div class="w-[50%] mt-14" >
-                        <img src="../../assets/regester.png" alt="">
+                    <div class="w-[50%] mt-28 ml-36 " >
+                        <img class="bg-[#c2deeb] h-36 rounded-lg" src="../../assets/regester.png" alt="">
                     </div>
                     <div class="w-[50%] mt-16">
-                        <h1 class="text-white text-4xl text-center">Regester Account</h1>
+                        <h1 class="text-black text-4xl text-center">Regester Account</h1>
                         <form class="w-[90%] bg-[#c2deeb] p-3 rounded-lg mt-2">
                             <div class="grid gap-6 mb-6 md:grid-cols-2 w-[90%] m-auto">
                                 <div>
