@@ -2,7 +2,7 @@
     <popup-component>
         <card-components>
             <form @input="checkValidation" class="bg-white">
-                <h1 class="text-center font-bold text-2xl bg-white" >Update work experience</h1>
+                <h1 class="text-center font-bold text-2xl bg-white" >Update work experience</h1> 
                 <div class="flex bg-white mt-4">
                     <div class="w-full bg-white font-medium">
                         <span class="bg-white">Companies:</span>
@@ -84,9 +84,7 @@
                 userData
             }
         },
-
         props: ['experienceId'],
-
         data(){
             return {
                 company: '',
@@ -106,7 +104,6 @@
                 this.userData.userStore.work_experience.push(experience);
             },
             addWorkExperience(){
-            
                 if(this.isValidated()){
                     let companyInfor = this.userData.companyList.find((company) => company.name == this.company)
                     let userExperience = {

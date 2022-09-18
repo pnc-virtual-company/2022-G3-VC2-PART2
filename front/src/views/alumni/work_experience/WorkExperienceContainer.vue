@@ -14,21 +14,16 @@
                 userData
             }
         },
-
         data(){
             return {
                 experienceId: null,
                 isShow: false,
             }
         },
-        
         methods: {
             updateWorkExperience(id, data) {
                 this.userData.updateWorkExperience(id, data);
             },
-            addForm(){
-
-            }
         },
     }
 </script>

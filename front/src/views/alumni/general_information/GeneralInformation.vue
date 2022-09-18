@@ -61,7 +61,7 @@ import AlumniSkill from '../aulmi_skill/AlumniSkill.vue';
             showEditCover: false
         }
     },
-    computed: {
+        computed: {
         currenWork(){
             let currenWork = this.alumniData.userData.work_experience.filter(company => company.is_working = true)[0];
             return currenWork;
