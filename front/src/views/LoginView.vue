@@ -2,10 +2,10 @@
     <div class=" ">
 
         <div class="flex  w-[95%] m-auto   ">
-            <div class=" w-[40%]  flex justify-center mt-[10%] align-items-md-center">
-                <img src="../assets/Logo-pn.png" class="w-[100%] h-[60%] mt-[20%]">
+            <div class=" w-[40%]  flex justify-center mt-[7%] align-items-md-center">
+                <img src="../assets/Logo-pn.png" class="w-[100%] h-[56%] mt-[20%]">
             </div>
-            <div class="mt-[10%] w-[60%] ">
+            <div class="mt-[7%] w-[60%] ">
                 <header class="text-center text-[3rem] ml-[90px]">
                     <p class="text-[#2EA3F2]">WELCOME BACK</p>
                 </header>
