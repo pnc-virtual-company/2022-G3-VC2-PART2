@@ -1,11 +1,6 @@
 <template>
     <div class="shadow-lg bg-white p-[10px] mt-5 rounded-md flex">
-        <div class="w-[10%] flex items-center justify-center">
-            <span class="capitalize text-lg text-[#ccc]">
-                <slot name="title-5"></slot>
-            </span><br>
-        </div>
-        <div class="w-[20%]">
+        <div class="w-[22%]">
             <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-1"></slot>
             </span><br>
@@ -13,7 +8,7 @@
                 <slot name="text-1"></slot>
             </span>
         </div>
-        <div class="w-[30%]">
+        <div class="w-[40%]">
             <span class="capitalize text-lg text-[#ada5a5]">
                 <slot name="title-2"></slot>
             </span><br>
@@ -35,6 +30,14 @@
             </span><br>
             <span class="text-lg font-meduim ">
                 <slot name="text-4"></slot>
+            </span>
+        </div>
+        <div class="w-[15%]">
+            <span class="capitalize text-lg text-[#ccc]">
+                <slot name="title-5"></slot>
+            </span><br>
+            <span class="text-lg font-meduim ">
+                <slot name="text-5"></slot>
             </span>
         </div>
         <div class="w-[10%]">
