@@ -5,7 +5,7 @@
                 <img src="../../assets/Logo-pn.png" class="w-[100%] h-[60%] mt-[20%]">
             </div>
             <div class="mt-[6%] w-[60%] ">
-                <header class="text-center text-[3rem] ml-[90px]">
+                <header class="text-center text-[3rem] ml-[80px]">
                     <p class="text-[#2EA3F2]">Register Account </p>
                 </header>
                 <div class="form  w-[80%] ml-[120px] bg-white opacity-[60%] p-[15px] rounded-[7px]">
