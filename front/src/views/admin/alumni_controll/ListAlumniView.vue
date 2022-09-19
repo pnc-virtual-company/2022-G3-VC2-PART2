@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-10/12 m-auto">
         <input-search></input-search>
         <div class="flex justify-between">
             <div class="mt-4 flex">
@@ -7,7 +7,7 @@
                 <button-components class="border-none py-2 bg-white text-sky hover:bg-sky-hover hover:text-white font-bold ml-2">Registered</button-components>
             </div>
             <div class="mt-4 ">
-                <button-components class="py-2 bg-sky text-white hover:bg-sky-hover hover:text-white font-bold">Invite</button-components>
+                <button-components @click="$emit('click-popup')" class="py-2 bg-sky text-white hover:bg-sky-hover hover:text-white font-bold">Invite</button-components>
             </div>
 
         </div>

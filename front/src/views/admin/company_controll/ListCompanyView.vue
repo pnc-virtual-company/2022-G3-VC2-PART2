@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="">
+        <div class="w-10/12 m-auto">
             <card-company v-for="i in 3" :key="i" >
                 <template #title-1 >
                     <div class="">

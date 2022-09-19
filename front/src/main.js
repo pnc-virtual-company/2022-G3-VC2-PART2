@@ -13,6 +13,9 @@ import IconAction from '@/components/icons_components/IconsAction';
 import CardComponent from '@/components/card_components/CardComponent.vue';
 import PopupComponent from '@/components/popup_components/PopupComponent';
 import ButtonComponent from '@/components/button_components/ButtonComponent'
+import ButtonLoading from '@/components/button_components/ButtonLoading'
+import ButtonEye from '@/components/button_components/ButtonEye'
+import ButtonEyeSlash from '@/components/button_components/ButtonEyeSlash'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
@@ -26,9 +29,14 @@ import AlumniProfileContainer from './views/alumni/ProfileView.vue';
 import WorkExperience from './views/alumni/work_experience/WorkExperience'
 import WorkExperienceContainer from './views/alumni/work_experience/WorkExperienceContainer'
 import CardInformations from '@/components/card_components/CardInformations'
+
+// reset password
+import ResetPassword from './views/alumni/reset_password/ResetPassword.vue';
+
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
+import AlumniInvitePopup from './views/admin/alumni_controll/AlumniInvitePopup'
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -42,8 +50,8 @@ import TheTelegram from '@/components/general_information/icon_informations/TheT
 import { createPinia } from 'pinia'
 // admin 
 import AdminManagementView from '@/views/admin/AdminManagementView'
-import AlumniController from '@/views/admin/alumni_controll/AlumniController'
 import ListAlumniView from '@/views/admin/alumni_controll/ListAlumniView'
+import AlumniController from '@/views/admin/alumni_controll/AlumniController'
 import MenuView from '@/views/admin/menu_component/MenuView'
 import ListEROView from '@/views/admin/ERO_controll/ListEROView'
 import EROController from '@/views/admin/ERO_controll/EROController'
@@ -61,6 +69,9 @@ app.component('popup-component', PopupComponent);
 app.component('icon-action', IconAction);
 app.component('card-components',CardComponent);
 app.component('button-components', ButtonComponent);
+app.component('button-loading', ButtonLoading);
+app.component('button-eye', ButtonEye);
+app.component('button-eye-slash', ButtonEyeSlash);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
@@ -71,11 +82,12 @@ app.component('work-experience', WorkExperience);
 app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
-
+app.component("reset-password", ResetPassword);
 
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);
 app.component('work-experience-popup', WorkExperiencePopup);
+app.component('alumni-invite-popup', AlumniInvitePopup);
 
 // icon informations
 app.component('the-email', TheEmail);
@@ -93,6 +105,7 @@ app.component('list-ERO', ListEROView);
 app.component('menu-view', MenuView);
 app.component('list-company-view', ListCompanyView);
 app.component('admin-management-view', AdminManagementView);
+app.component('list-alumni-view', ListAlumniView);
 app.component('alumni-controller', AlumniController);
 app.component('ERO-controller', EROController);
 app.component('company-controller', CompanyController);
