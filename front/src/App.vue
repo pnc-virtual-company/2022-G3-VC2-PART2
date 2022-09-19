@@ -27,13 +27,12 @@ export default {
 </script>
 
 <style >
-
 * {
   font-family: monospace;
 }
 
 body {
-  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(135, 211, 237, 0.5), rgba(135,211,237, 0.5));
+  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(116, 220, 255, 0.5), rgba(116,220,255, 0.5));
   background-size: cover;
   position: relative;
   background-blend-mode: overlay;
