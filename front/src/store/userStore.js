@@ -23,6 +23,11 @@ export const userInformations = defineStore('get-data', {
         this.userStore = res.data ;
       })
     },
+    addInviteAlumni(inviteAlumni){
+      axios.post('/users',inviteAlumni).then((res)=>{
+        console.log(res.data);
+      })
+    },
 
     updateAlumniGerneralInfor(data) {
       this.userStore.first_name = data.first_name;
