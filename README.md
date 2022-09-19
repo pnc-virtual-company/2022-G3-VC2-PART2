@@ -8,7 +8,7 @@
 - Copy the .env.example to .env
 
 - on .env file, update the database name :
-  DB_DATABASE=example_db
+  DB_DATABASE=alumni_db_1
 
 - Launch composer install
 - Launch npm install
