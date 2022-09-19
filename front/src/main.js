@@ -37,6 +37,7 @@ import ResetPassword from './views/alumni/reset_password/ResetPassword.vue';
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
 import AlumniInvitePopup from './views/admin/alumni_controll/AlumniInvitePopup'
+import EROInvitePopup from './views/admin/ERO_controll/EROInvitePopup'
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -88,6 +89,7 @@ app.component("reset-password", ResetPassword);
 app.component('general-information-popup', GeneralInformationPopup);
 app.component('work-experience-popup', WorkExperiencePopup);
 app.component('alumni-invite-popup', AlumniInvitePopup);
+app.component('ERO-invite-popup', EROInvitePopup);
 
 // icon informations
 app.component('the-email', TheEmail);

@@ -71,9 +71,9 @@ class UserController extends Controller
             if ($user->role == 'alumni') {
                 return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
             } 
-            // else if ($user->role == 'ero') {
-            //     return User::with('alumni')->first();
-            // }
+            else if ($user->role == 'ero') {
+                return User::with('alumni')->first();
+            }
             // else if ($user->role == 'admin') {
             //     return User::with('admin')->first();
             // }
