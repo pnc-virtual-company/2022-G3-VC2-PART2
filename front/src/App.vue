@@ -4,7 +4,6 @@
     <div class="mb-[20px] ">
       <router-view/>
     </div>
-    <regester-ero-account></regester-ero-account>
   </div>
 </template>
 
@@ -28,6 +27,7 @@ export default {
 </script>
 
 <style >
+
 * {
   font-family: monospace;
 }
@@ -41,5 +41,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   object-fit: cover;
+  
 }
 </style>
