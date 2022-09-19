@@ -25,11 +25,17 @@ export const userInformations = defineStore('get-data', {
     addInviteAlumni(inviteAlumni){
       axios.post('/users',inviteAlumni).then((res)=>{
         console.log(res.data);
-      })},
-      
+      })
+    },
+
 
     addInviteERO(inviteERO){
       axios.post('/users',inviteERO).then((res)=>{
+        console.log(res.data)
+      })
+    },
+    deleteInviteERO(inviteERO){
+      axios.delete('/users',inviteERO).then((res)=>{
         console.log(res.data)
       })
     },

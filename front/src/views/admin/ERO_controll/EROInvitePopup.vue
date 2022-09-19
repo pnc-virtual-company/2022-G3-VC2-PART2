@@ -51,7 +51,8 @@
                 let newInvite = {email:this.email, role: 'ero', password: this.generatePassword()}
                 console.log(newInvite)
                 this.$emit("addInviteERO", newInvite);
-            }
+            },
+          
         }
     }
 </script>
