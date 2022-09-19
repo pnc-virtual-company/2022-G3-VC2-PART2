@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-2 flex  bg-white">
+    <div class="mt-2 flex bg-white">
         <div class="w-11/12 bg-white">
             <div class="flex bg-white">
                 <slot name="slot1"></slot>
@@ -16,6 +16,10 @@
             <div class="bg-white flex">
                 <slot name="slot7"></slot>
                 <slot name="slot8"></slot>
+            </div>
+            <div class="flex bg-white ">
+                <slot name="slot9"></slot>
+                <slot name="slot10"></slot>
             </div>
         </div>
         <div class="w-1/12 flex justify-end bg-white">

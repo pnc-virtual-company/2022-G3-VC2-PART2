@@ -80,8 +80,8 @@ class AlumniCompanyController extends Controller
      * @param  \App\Models\AlumniCompany  $alumniCompany
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AlumniCompany $alumniCompany)
+    public function destroy($id)
     {
-        //
+        return AlumniCompany::destroy($id);
     }
 }

@@ -15,6 +15,13 @@ import ButtonComponent from '@/components/button_components/ButtonComponent'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
+import ErrorMessage from '@/components/alert_component/ErrorMessage.vue';
+import PreviewProfile from "@/components/popup_components/preview_image/PreviewProfile"
+import PreviewCover from "@/components/popup_components/preview_image/PreviewCover"
+import PreviewLogo from "@/components/popup_components/preview_image/PreviewLogo";
+import PaginationComponent from "@/components/pagination/PaginationComponent"
+import ButtonNumber from "@/components/pagination/ButtonNumber"
+
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
 import GeneralInformation from './views/alumni/general_information/GeneralInformation';
@@ -22,9 +29,16 @@ import AlumniProfileContainer from './views/alumni/ProfileView.vue';
 import WorkExperience from './views/alumni/work_experience/WorkExperience'
 import WorkExperienceContainer from './views/alumni/work_experience/WorkExperienceContainer'
 import CardInformations from '@/components/card_components/CardInformations'
+import EducationBackground from './views/alumni/education_background/EducationBackground'
+import EducationBackgroundContainer from './views/alumni/education_background/EducationBackgroundContainer'
+import AlumniSkill from './views/alumni/aulmi_skill/AlumniSkill';
+import AlumniSkillPopUp from './views/alumni/aulmi_skill/AlumniSkillPopUp';
+import AlumniSkillContainer from './views/alumni/aulmi_skill/AlumniSkillContainer';
 // alumni popup components
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
+import EducationBackgroundPopup from './views/alumni/education_background/EducationBackgroundPopup'
+import ComponentCreate from '@/components/component_create/ComponentCreate';
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -48,6 +62,14 @@ app.component('button-components', ButtonComponent);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
+app.component('error-message', ErrorMessage);
+app.component('preview-profile', PreviewProfile)
+app.component('preview-cover', PreviewCover)
+app.component('preview-logo', PreviewLogo);
+app.component('component-create', ComponentCreate);
+app.component('pagination-component', PaginationComponent);
+app.component('button-number', ButtonNumber);
+
 // alumni Profile
 app.component('general-information',GeneralInformation)
 app.component('alumniProfile-container',AlumniProfileContainer)
@@ -55,12 +77,16 @@ app.component('work-experience', WorkExperience);
 app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
-
+app.component("education-background", EducationBackground);
+app.component("education-background-container", EducationBackgroundContainer);
+app.component("alumni-skill", AlumniSkill);
+app.component("alumni-skill-popup", AlumniSkillPopUp);
+app.component("alumni-skill-container", AlumniSkillContainer);
 
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);
 app.component('work-experience-popup', WorkExperiencePopup);
-
+app.component("education-background-popup", EducationBackgroundPopup);
 
 // icon informations
 app.component('the-email', TheEmail);

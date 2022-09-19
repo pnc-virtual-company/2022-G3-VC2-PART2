@@ -10,7 +10,7 @@
                             <span class="bg-white inline-flex items-center p-2 text-sm rounded-l-md border-2 border-r-0 border-gray-300" :class="{'border-red-400':isFirstName}">
                                 <svg  class="w-[28px] h-[28px] text-white bg-sky rounded-full p-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>
                             </span>
-                                <input type="text" v-model="firstName" :class="{'border-red-400':isFirstName}"  class=" rounded-none outline-sky bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md" placeholder="First Name">
+                            <input type="text" v-model="firstName" :class="{'border-red-400':isFirstName}"  class=" rounded-none outline-sky bg-white font-normal text-base  block flex-1 min-w-0 w-full border-gray-300 border-2 p-2 rounded-r-md" placeholder="First Name">
                         </div>
                     </div>
                     <div class="w-2/4 bg-white font-medium ml-2">
@@ -123,6 +123,18 @@
                 <alert_missing v-if="isFirstName || isLastName  || isEmail || isPhone || isTelegram || isGender || isBatch || isBirthDate || isAddress || isMajor">
                     Please fill all input here !
                 </alert_missing>
+                <alert_missing v-else-if="isEmailError">
+                    Email invalid
+                </alert_missing>
+                <alert_missing v-else-if="isPhoneError">
+                    Not a valid Phone Number
+                </alert_missing>
+                <alert_missing v-else-if="isTelegramError">
+                    Not a valid Telegram
+                </alert_missing>
+                <alert_missing v-else-if="existEmail">
+                    This email already exist
+                </alert_missing>
                 <div class="bg-white flex justify-end mt-6">
                     <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
@@ -147,6 +159,7 @@
       data(){
         return {
             userGeneralInfor: this.userInfor.userData,
+            userEmails: this.userInfor.userEmails,
             firstName: "",
             lastName: "",
             email: "",
@@ -167,11 +180,16 @@
             isAddress:false,
             isPhone:false,
             isTelegram:false,
+            isEmailError:'',
+            isPhoneError:'',
+            isTelegramError:'',
+            existEmail:false,
+
         }
       },
       methods:{
         updateGeneralInfor(){
-            if (this.firstName.trim() != "" && this.lastName.trim() != "" && this.emailValidation(this.email) && this.gender.trim() !="" && this.major.trim() !="" && this.batch !="" && this.birthDate.trim() !="" && this.address.trim() !="" && this.phone.trim() !="" && this.telegram.trim() !=""){
+            if (this.firstName.trim() != "" && this.lastName.trim() != "" && this.emailValidation(this.email)&& this.emailExisting(this.email) && this.gender.trim() !="" && this.major.trim() !="" && this.batch !="" && this.birthDate.trim() !="" && this.address.trim() !="" && this.phone.trim() !="" && this.telegram.trim() !="" && this.phoneValidation(this.phone) && this.telegramValidation(this.telegram)){
                 let dataUpdate = {
                     first_name: this.firstName, 
                     last_name: this.lastName, 
@@ -200,6 +218,27 @@
             return false
 
         },
+        emailExisting(myEmail){
+            for (let eachEmail of this.userEmails){
+                if(eachEmail.email == myEmail){
+                    return false;
+                }
+            }
+            return true;
+        },
+        phoneValidation(phone){
+            if (phone.length>7){
+                return true
+            }
+            return false
+        },
+        telegramValidation(telegram){
+            if (telegram.length>7){
+                return true
+            }
+            return false
+
+        },
         setData(){
             this.firstName = this.userGeneralInfor.first_name;
             this.lastName = this.userGeneralInfor.last_name;
@@ -224,6 +263,16 @@
                 this.isLastName = false;
             }
             if(!this.emailValidation(this.email)){
+                this.isEmailError = true;
+            }else{
+                this.isEmailError = false;
+            }
+            if(!this.emailExisting(this.email)){
+                this.existEmail = true;
+            }else{
+                this.existEmail = false;
+            }
+            if(this.email ==""){
                 this.isEmail = true;
             }else{
                 this.isEmail = false;
@@ -238,6 +287,11 @@
             }else{
                 this.isPhone = false;
             }
+            if(!this.phoneValidation(this.phone)){
+                this.isPhoneError = true;
+            }else{
+                this.isPhoneError = false;
+            }
             if(this.address.trim() == ""){
                 this.isAddress = true;
             }else{
@@ -247,6 +301,11 @@
                 this.isTelegram = true;
             }else{
                 this.isTelegram = false;
+            }
+            if(!this.telegramValidation(this.telegram)){
+                this.isTelegramError = true;
+            }else{
+                this.isTelegramError = false;
             }
             if(this.major.trim() == ""){
                 this.isMajor = true;
@@ -274,6 +333,7 @@
             }
             if(this.email){
                 this.isEmail = false;
+                this.isEmailError = false
             }
             if(this.gender){
                 this.isGender = false;
@@ -299,7 +359,7 @@
         }
       },
       mounted(){
-        this.setData()
+        this.setData();
       }
     }
 </script>

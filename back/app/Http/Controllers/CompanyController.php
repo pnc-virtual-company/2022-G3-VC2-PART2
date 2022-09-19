@@ -25,7 +25,22 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = new Company();
+        $company->name = $request->name;
+        $company->address = $request->address;
+        if ($request->logo && $request->logo != 'null') {
+            $logo = $request->logo;
+            $newName = "IMG_LOGO". time() . "_" . $logo->getClientOriginalName();
+            $company->logo = $newName;
+            $logo->move(storage_path('images'), $newName);
+        } else {
+            $company->logo = "company_logo.jpg";
+        }
+        if ($request->link && $request->link != 'null') {
+            $company->link = $request->link;
+        }
+        $company->save();
+        return $company;
     }
 
     /**

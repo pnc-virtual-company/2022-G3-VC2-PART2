@@ -14,7 +14,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        return Skill::all();
     }
 
     /**
@@ -25,7 +25,10 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $skill = new Skill();
+        $skill->name = $request->name;
+        $skill->save();
+        return $skill;
     }
 
     /**
@@ -57,8 +60,8 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        //
+        return Skill::destroy($id);
     }
 }

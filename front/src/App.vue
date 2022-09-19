@@ -20,13 +20,16 @@
     beforeCreate(){
       this.userData.getUserData();
       this.userData.getCompanyList();
+      this.userData.getEmails();
+      this.userData.getSchoolList();
+      this.userData.getSkills();
     }
   }
 </script>
 
 <style >
 body{
-  background: #E5F2FB;
+  background: #abd8ff;
 }
 a.router-link-exact-active {
   background: #2EA3F2;
@@ -34,3 +37,4 @@ a.router-link-exact-active {
   cursor: pointer;
 }
 </style>
+  
