@@ -65,7 +65,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->save();
 
-        return response()->json(["sms"=> "Ero is updated successfully!"]);
+        return response()->json(["sms"=> "Ero is register successfully!"]);
     }
     
     /**
