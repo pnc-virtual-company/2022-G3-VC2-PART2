@@ -24,7 +24,7 @@
                     </error-message>
                     <div class="w-full bg-white mt-3">
                         <div class="w-full bg-white font-medium">
-                            <span class="bg-white">Companie name:</span>
+                            <span class="bg-white"> <slot name="label_1"></slot></span>
                             <div class="flex bg-white mt-1">
                                 <span  class="bg-white inline-flex items-center p-2 rounded-l-md border-2 border-r-0" :class="{ 'border-red-400': isNameNull, 'border-gray-300': !isNameNull }">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[26px] h-[26px] text-white bg-sky rounded-full p-1">
