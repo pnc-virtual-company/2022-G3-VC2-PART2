@@ -13,6 +13,9 @@ import IconAction from '@/components/icons_components/IconsAction';
 import CardComponent from '@/components/card_components/CardComponent.vue';
 import PopupComponent from '@/components/popup_components/PopupComponent';
 import ButtonComponent from '@/components/button_components/ButtonComponent'
+import ButtonLoading from '@/components/button_components/ButtonLoading'
+import ButtonEye from '@/components/button_components/ButtonEye'
+import ButtonEyeSlash from '@/components/button_components/ButtonEyeSlash'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
@@ -32,9 +35,6 @@ import ResetPassword from './views/alumni/reset_password/ResetPassword.vue';
 import GeneralInformationPopup from './views/alumni/general_information/GeneralInformationPopup'
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
 import AlumniInvitePopup from './views/admin/alumni_controll/AlumniInvitePopup'
-
-//Ero informations
-import RegesterEro from '@/views/ero/ResgesterEro'
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -61,6 +61,9 @@ app.component('popup-component', PopupComponent);
 app.component('icon-action', IconAction);
 app.component('card-components',CardComponent);
 app.component('button-components', ButtonComponent);
+app.component('button-loading', ButtonLoading);
+app.component('button-eye', ButtonEye);
+app.component('button-eye-slash', ButtonEyeSlash);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
@@ -72,11 +75,6 @@ app.component('work-experience-container', WorkExperienceContainer);
 app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
 app.component("reset-password", ResetPassword);
-
-//Ero informations
-app.component("regester-ero-account",RegesterEro );
-
-
 
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);
