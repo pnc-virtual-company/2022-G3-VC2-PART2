@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <nav-bar></nav-bar>
     <div class="mb-[20px] ">
       <router-view/>
@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style >
+
 * {
   font-family: monospace;
 }
@@ -40,5 +41,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   object-fit: cover;
+  
 }
 </style>

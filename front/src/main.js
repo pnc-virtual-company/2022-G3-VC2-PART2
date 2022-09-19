@@ -76,7 +76,6 @@ app.component('card-informations', CardInformations)
 app.component("general-information-container", GeneralInformationContainer);
 app.component("reset-password", ResetPassword);
 
-
 // alumni popup components register
 app.component('general-information-popup', GeneralInformationPopup);
 app.component('work-experience-popup', WorkExperiencePopup);
