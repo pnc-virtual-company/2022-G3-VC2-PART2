@@ -2,27 +2,19 @@
     <div class="shadow-lg bg-white p-[10px] mt-5 rounded-md flex">
         <div class="w-[10%] flex items-center justify-center">
             <span class="capitalize text-lg text-[#ccc]">
-                <slot name="title-5"></slot>
-            </span><br>
-        </div>
-        <div class="w-[20%]">
-            <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-1"></slot>
             </span><br>
-            <span class="text-lg font-meduim ">
-                <slot name="text-1"></slot>
-            </span>
         </div>
-        <div class="w-[30%]">
-            <span class="capitalize text-lg text-[#ada5a5]">
+        <div class="w-[25%]">
+            <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-2"></slot>
             </span><br>
             <span class="text-lg font-meduim ">
                 <slot name="text-2"></slot>
             </span>
         </div>
-        <div class="w-[15%]">
-            <span class="capitalize text-lg text-[#ccc]">
+        <div class="w-[30%]">
+            <span class="capitalize text-lg text-[#ada5a5]">
                 <slot name="title-3"></slot>
             </span><br>
             <span class="text-lg font-meduim ">
@@ -37,7 +29,7 @@
                 <slot name="text-4"></slot>
             </span>
         </div>
-        <div class="w-[10%]">
+        <div class="w-[5%] ">
             <span class="capitalize text-lg text-[#ccc]">action</span><br>
             <button class="ml-3">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 text-sky cursor-pointer">

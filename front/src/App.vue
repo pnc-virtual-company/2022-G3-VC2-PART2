@@ -32,7 +32,7 @@ export default {
 }
 
 body {
-  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(135, 211, 237, 0.5), rgba(135,211,237, 0.5));
+  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(120, 163, 177, 0.5), rgba(62, 204, 252, 0.5));
   background-size: cover;
   position: relative;
   background-blend-mode: overlay;
