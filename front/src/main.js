@@ -13,6 +13,9 @@ import IconAction from '@/components/icons_components/IconsAction';
 import CardComponent from '@/components/card_components/CardComponent.vue';
 import PopupComponent from '@/components/popup_components/PopupComponent';
 import ButtonComponent from '@/components/button_components/ButtonComponent'
+import ButtonLoading from '@/components/button_components/ButtonLoading'
+import ButtonEye from '@/components/button_components/ButtonEye'
+import ButtonEyeSlash from '@/components/button_components/ButtonEyeSlash'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
@@ -58,6 +61,9 @@ app.component('popup-component', PopupComponent);
 app.component('icon-action', IconAction);
 app.component('card-components',CardComponent);
 app.component('button-components', ButtonComponent);
+app.component('button-loading', ButtonLoading);
+app.component('button-eye', ButtonEye);
+app.component('button-eye-slash', ButtonEyeSlash);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
