@@ -21,6 +21,7 @@ export default {
     this.userData.getUserData();
     this.userData.getCompanyList();
     this.userData.addInviteAlumni();
+    // this.userData.AddUserData();
     // this.userData.getEmails();
     // this.userData.getSchoolList();
   }
@@ -28,13 +29,12 @@ export default {
 </script>
 
 <style >
-
 * {
   font-family: monospace;
 }
 
 body {
-  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(120, 163, 177, 0.5), rgba(62, 204, 252, 0.5));
+  background-image: url("./assets/background-1.png"), linear-gradient(to top left, rgba(133, 225, 255, 0.6), rgba(133, 225, 255, 0.6));
   background-size: cover;
   position: relative;
   background-blend-mode: overlay;

@@ -58,9 +58,9 @@
                 isConfirmPassword:false,
                 completed:false,
                 message:'',
-                showOldPassword: false,
-                showNewPassword: false,
-                showConfirmPassword: false,
+                showOldPassword: true,
+                showNewPassword: true,
+                showConfirmPassword: true,
             }
         },
         methods: {
@@ -106,11 +106,11 @@
                     this.completed = false;
                 }
             },
-            showType(isText){
-                if(isText){
-                    return 'text';
-                }else{
+            showType(isPassword){
+                if(isPassword){
                     return 'password';
+                }else{
+                    return 'text';
                 }
             },
         },
