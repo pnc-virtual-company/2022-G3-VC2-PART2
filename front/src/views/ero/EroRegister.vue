@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="flex  w-[95%] m-auto mt-0  ">
-            <div class=" w-[40%] mt-[15%] flex justify-center align-items-md-center">
-                <img src="../../assets/Logo-pn.png" class="w-[100%] h-[82%]">
+        <div class="flex  w-[95%] m-auto mt-[5%]">
+            <div class=" w-[40%] mt-[2%]   flex justify-center  align-items-md-center">
+                <img src="../../assets/Logo-pn.png" class="w-[100%] h-[60%] mt-[20%]">
             </div>
-            <div class="mt-[10%] w-[60%] ">
-                <header class="text-center text-[3rem] ml-[90px]">
-                    <p class="text-[#2EA3F2]">Regester Account </p>
+            <div class="mt-[6%] w-[60%] ">
+                <header class="text-center text-[3rem] ml-[80px]">
+                    <p class="text-[#2EA3F2]">Register Account </p>
                 </header>
                 <div class="form  w-[80%] ml-[120px] bg-white opacity-[60%] p-[20px] rounded-[7px]">
                     <form class="p-[5px]" @submit.prevent="registerEro">
@@ -53,7 +53,7 @@ export default {
                 }
                 axios.put('/eros/register/' + this.userData.userData.id, data).then((res) => {
                     console.log(res.data);
-                    this.$router.push('/profile');
+                    this.$router.push('/manage');
                 });
             }
         }

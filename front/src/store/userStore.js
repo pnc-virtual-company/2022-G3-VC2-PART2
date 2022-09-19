@@ -14,13 +14,23 @@ export const userInformations = defineStore('get-data', {
     },
     companyList () {
       return this.companiesStore;
-    }
+    },
   },
-
   actions: {
     getUserData(){
       axios.get('/users/'+1).then((res)=>{
         this.userStore = res.data ;
+      })
+    },
+    addInviteAlumni(inviteAlumni){
+      axios.post('/users',inviteAlumni).then((res)=>{
+        console.log(res.data);
+      })},
+      
+
+    addInviteERO(inviteERO){
+      axios.post('/users',inviteERO).then((res)=>{
+        console.log(res.data)
       })
     },
 

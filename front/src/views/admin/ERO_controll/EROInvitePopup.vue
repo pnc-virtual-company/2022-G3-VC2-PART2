@@ -2,9 +2,9 @@
     <popup-component class="bg-green-200 ">
         <card-components >
             <form class="bg-white">
-                <h1 class="text-center font-bold text-2xl bg-white" >Invite Alumni</h1>
+                <h1 class="text-center font-bold text-2xl bg-white" >Invite ERO</h1>
                 <div class="flex bg-white mt-4">
-                    <div class="w-full   bg-white font-medium">
+                    <div class="w-full bg-white font-medium">
                         <div class="flex bg-white mt-1">
                             <span class="bg-white inline-flex items-center p-2 rounded-l-md border-b-2 border-r-0 border-gray-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-sky">
@@ -20,7 +20,7 @@
                     <button-components @click="$emit('click-popup')" class="bg-[#a0a0a0] text-white font-medium border-none hover:bg-[#969696]">
                         Cancel
                     </button-components>
-                    <button-components  class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover" @click="InviteERO">
+                    <button-components @click="InviteERO" class="ml-3 bg-sky font-medium text-white hover:bg-sky-hover">
                         Invite
                     </button-components>
                 </div>
@@ -28,36 +28,30 @@
         </card-components>
     </popup-component>
 </template>
+
 <script>
-   export default {
-    data(){
-        return{
-
-            email:'',
-        }
-
-    },
-    methods:{
-
-        generatePassword(){
-                    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-                    var string_length = 8;
-                    var randomstring = '';
-                    for (var i=0; i<string_length; i++) {
-                        var rnum = Math.floor(Math.random() * chars.length);
-                        randomstring += chars.substring(rnum,rnum+1);
-                    }
-                    return randomstring;
-                },
-                InviteERO(){
-                    let newInvite = {email:this.email, role: 'alumni', password: this.generatePassword()}
-                    console.log(newInvite)
-                    this.$emit("addInviteAlumni", newInvite);
-                    this.email=""
-                    this.$emit('click-popup')
+    export default {
+        data(){
+            return {
+                email:'',
+            }
+        },
+        methods:{
+            generatePassword(){
+                var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                var string_length = 8;
+                var randomstring = '';
+                for (var i=0; i<string_length; i++) {
+                    var rnum = Math.floor(Math.random() * chars.length);
+                    randomstring += chars.substring(rnum,rnum+1);
                 }
-       }
+                return randomstring;
+            },
+            InviteERO(){
+                let newInvite = {email:this.email, role: 'ero', password: this.generatePassword()}
+                console.log(newInvite)
+                this.$emit("addInviteERO", newInvite);
+            }
+        }
     }
-
-            
 </script>
