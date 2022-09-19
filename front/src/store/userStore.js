@@ -60,6 +60,6 @@ export const userInformations = defineStore('get-data', {
           axios.put('/alumnis/experience/' + id, newExperience);
         } 
       });
-    }
+    },
   }
 });

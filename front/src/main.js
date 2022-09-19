@@ -13,10 +13,15 @@ import IconAction from '@/components/icons_components/IconsAction';
 import CardComponent from '@/components/card_components/CardComponent.vue';
 import PopupComponent from '@/components/popup_components/PopupComponent';
 import ButtonComponent from '@/components/button_components/ButtonComponent'
+import ButtonLoading from '@/components/button_components/ButtonLoading'
+import ButtonEye from '@/components/button_components/ButtonEye'
+import ButtonEyeSlash from '@/components/button_components/ButtonEyeSlash'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
 import CardList from '@/components/card_components/CardList';
+import CardListERO from '@/components/card_components/CardListERO';
+import CardCompany from '@/components/card_components/CardCompany';
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
 import GeneralInformation from './views/alumni/general_information/GeneralInformation';
@@ -47,17 +52,26 @@ import { createPinia } from 'pinia'
 import AdminManagementView from '@/views/admin/AdminManagementView'
 import ListAlumniView from '@/views/admin/alumni_controll/ListAlumniView'
 import AlumniController from '@/views/admin/alumni_controll/AlumniController'
-import ManuView from '@/views/admin/components/ManuView'
+import MenuView from '@/views/admin/menu_component/MenuView'
+import ListEROView from '@/views/admin/ERO_controll/ListEROView'
+import EROController from '@/views/admin/ERO_controll/EROController'
+import CompanyController from '@/views/admin/company_controll/CompanyController'
+import ListCompanyView from '@/views/admin/company_controll/ListCompanyView'
 // nav bar
 app.component('nav-bar', NavBar);
 
 //public component
 app.component('card-list', CardList)
+app.component('card-list-ERO', CardListERO)
+app.component('card-company', CardCompany)
 app.component('input-search', InputSearch);
 app.component('popup-component', PopupComponent);
 app.component('icon-action', IconAction);
 app.component('card-components',CardComponent);
 app.component('button-components', ButtonComponent);
+app.component('button-loading', ButtonLoading);
+app.component('button-eye', ButtonEye);
+app.component('button-eye-slash', ButtonEyeSlash);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
@@ -86,8 +100,13 @@ app.component('the-gender', TheGender);
 app.component('the-major', TheMajor);
 
 // admin
-app.component('manu-view', ManuView);
+app.component('list-alumni', ListAlumniView);
+app.component('list-ERO', ListEROView);
+app.component('menu-view', MenuView);
+app.component('list-company-view', ListCompanyView);
 app.component('admin-management-view', AdminManagementView);
 app.component('list-alumni-view', ListAlumniView);
 app.component('alumni-controller', AlumniController);
+app.component('ERO-controller', EROController);
+app.component('company-controller', CompanyController);
 app.use(router).mount('#app')
