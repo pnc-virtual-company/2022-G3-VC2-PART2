@@ -1,3 +1,4 @@
+
 <template>
     <div class="m-auto">
         <list-alumni-view  @click-popup="isShow = !isShow"></list-alumni-view>
