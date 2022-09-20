@@ -18,4 +18,9 @@ class AlumniSkill extends Model
         'updated_at',
         'created_at',
     ];
+
+    // Relationship
+    public function skill() {
+        return $this->belongsTo(Skill::class);
+    }
 }
