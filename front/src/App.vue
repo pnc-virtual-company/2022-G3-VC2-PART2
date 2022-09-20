@@ -20,6 +20,7 @@ export default {
   beforeCreate() {
     this.userData.getUserData();
     this.userData.getCompanyList();
+    this.userData.getAllEro();
     this.userData.getAllAlumni();
     // this.userData.AddUserData();
     // this.userData.getEmails();
