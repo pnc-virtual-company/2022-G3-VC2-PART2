@@ -1,8 +1,3 @@
-<!-- <template>
-    <list-ERO></list-ERO>
-    <list-ERO></list-ERO>
-</template> -->
-
 
 <template>
     <div class="m-auto">
@@ -27,7 +22,6 @@
         methods:{
             addInviteERO(InviteERO){
                 this.userData.addInviteERO(InviteERO)
-
             }
         }
     }

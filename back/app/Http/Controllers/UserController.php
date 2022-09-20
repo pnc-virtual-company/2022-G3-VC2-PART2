@@ -16,6 +16,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         return User::all();
@@ -41,7 +42,7 @@ class UserController extends Controller
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
-    public function createEro(Request $request)
+    public function inviteEro(Request $request)
     {
         $user = new User();
         $user->email = $request->email;
@@ -57,6 +58,16 @@ class UserController extends Controller
         return response()->Json(["message"=>"ero is created successfully!"]);
         
     }
+
+    public function registerEro(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->save();
+
+        return response()->json(["sms"=> "Ero is register successfully!"]);
+    }
     
     /**
      * Display the specified resource.
@@ -71,12 +82,9 @@ class UserController extends Controller
             if ($user->role == 'alumni') {
                 return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
             } 
-            else if ($user->role == 'ero') {
-                return User::with('alumni')->first();
+            else {
+                return $user;
             }
-            // else if ($user->role == 'admin') {
-            //     return User::with('admin')->first();
-            // }
         }
         abort(404);
     }
@@ -165,6 +173,8 @@ class UserController extends Controller
         return response()->Json(["sms"=>"log out succes"]);
     }
 
-
-
+    public function getAllAlumni(Request $request)
+    {
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+    }
 }

@@ -29,6 +29,7 @@ Route::post('users', [UserController::class,"store"]);
 Route::get('users/{id}', [UserController::class,"show"]);
 Route::delete('users/{id}', [UserController::class,"destroy"]);
 Route::put('alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
+Route::get('/alumnis', [UserController::class,"getAllAlumni"]); /* The route to get all alumni */
 
 Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
@@ -47,7 +48,8 @@ Route::put('/users/update/password/{id}', [UserController::class, "resetPassword
 
 Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
 
-Route::post('/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
+Route::post('/eros/', [UserController::class, "inviteEro"]); /**The route use to create ero account */
+Route::put('/eros/register/{id}', [UserController::class, "registerEro"]); /**The route use to create ero account */
 
 Route::group(['middleware'=>['auth:sanctum']], function(){
     Route::post('users/logout/', [UserController::class, "logOut"]); /* The route to logout user account */
