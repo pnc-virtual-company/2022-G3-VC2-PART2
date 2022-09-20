@@ -5,16 +5,15 @@ import ExploreManagementView from '../views/admin/ExploreManagementView'
 import LoginView from '../views/LoginView.vue'
 import AlumniRegister from '../views/alumni/AlumniRegister';
 import EroRegister from '../views/ero/EroRegister';
+import SignupView from '../views/SignupView.vue'
 
 const routes = [
   {
     path: '/profile',
-    name: 'profile',
     component: ProfileAlumniView
   },
   {
     path: '/manage',
-    name: 'manage',
     component: AdminManagementView
   },
   {
@@ -24,20 +23,21 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
     component: LoginView
   },
   {
-    path: '/alumni/registration',
-    name: '/alumni/registration',
+    path: '/alumni/register',
     component: AlumniRegister
   },
   {
-    path: '/ero/registration ',
-    name: '/ero/registration',
+    path: '/ero/register',
     component: EroRegister
   },
- 
+  {
+    path: '/signup',
+    component: SignupView
+  },
+
 ]
 
 const router = createRouter({

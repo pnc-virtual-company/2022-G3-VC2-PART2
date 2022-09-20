@@ -122,3 +122,4 @@ app.component('company-controller', CompanyController);
 app.component('explore-controller', ExploreController);
 app.component('explore-view', ExploreView);
 app.use(router).mount('#app')
+
