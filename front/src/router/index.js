@@ -27,7 +27,7 @@ const routes = [
     component: AlumniRegister
   },
   {
-    path: '/ero/registration',
+    path: '/ero/registration ',
     name: '/ero/registration',
     component: EroRegister
   },
