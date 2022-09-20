@@ -86,12 +86,9 @@ class UserController extends Controller
             if ($user->role == 'alumni') {
                 return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
             } 
-            else if ($user->role == 'ero') {
-                return User::with('alumni')->first();
+            else {
+                return $user;
             }
-            // else if ($user->role == 'admin') {
-            //     return User::with('admin')->first();
-            // }
         }
         abort(404);
     }
@@ -180,6 +177,8 @@ class UserController extends Controller
         return response()->Json(["sms"=>"log out succes"]);
     }
 
-
-
+    public function getAllAlumni(Request $request)
+    {
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+    }
 }

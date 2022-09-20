@@ -1,5 +1,5 @@
 <template>
-    <div v-if="alumni='grid'" class="w-10/12 m-auto">
+    <div class="w-10/12 m-auto">
         <input-search></input-search>
         <div class="mt-4 flex justify-end">
             <button-components @click="$emit('click-popup')" class="py-2 bg-sky text-white hover:bg-sky-hover hover:text-white font-bold">Invite</button-components>

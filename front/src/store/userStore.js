@@ -6,6 +6,7 @@ export const userInformations = defineStore('get-data', {
       userStore: null,
       companiesStore: null,
       eroStore: null,
+      alumniStore: null,
     }
   },
 
@@ -18,25 +19,33 @@ export const userInformations = defineStore('get-data', {
     },
     eroList () {
       return this.eroStore;
-    }
-    
+    },
+    alumniList () {
+      return this.alumniStore;
+    },
   },
   actions: {
     getUserData(){
-      axios.get('/users/'+1).then((res)=>{
-        this.userStore = res.data ;
+      axios.get('/users/'+2).then((res)=>{
+        this.userStore = res.data;
       })
     },
+
     addInviteAlumni(inviteAlumni){
-      axios.post('/users',inviteAlumni).then((res)=>{
-        console.log(res.data);
-      })},
-      
+      axios.post('/invite/alumnis',inviteAlumni);
+    },
 
     addInviteERO(inviteERO){
-      axios.post('/users',inviteERO).then((res)=>{
-        console.log(res.data)
+      axios.post('/invite/eros',inviteERO);
+    },
+
+    deleteAlumni(id){
+      this.alumniStore.forEach((alumni,index)=>{
+        if(alumni.id==id){
+          this.alumniStore.splice(index ,1)
+        }
       })
+      axios.delete('/users/'+id);
     },
 
     updateAlumniGerneralInfor(data) {
@@ -74,6 +83,12 @@ export const userInformations = defineStore('get-data', {
     getCompanyList() {
       axios.get('/companies/').then((res)=>{
         this.companiesStore = res.data;
+      })
+    },
+
+    getAllAlumni() {
+      axios.get('/alumnis').then((res) => {
+        this.alumniStore = res.data;
       })
     },
 

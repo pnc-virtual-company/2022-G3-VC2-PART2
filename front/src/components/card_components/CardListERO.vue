@@ -50,3 +50,16 @@
         </div>
     </div>
 </template>
+<script>
+    export default{
+        methods:{
+            deleteEro(){
+                let deleteEro = {eros:this.eros}
+                console.log(deleteEro)
+            }
+    
+
+
+    }
+}
+</script>
