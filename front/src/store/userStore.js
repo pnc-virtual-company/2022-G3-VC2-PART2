@@ -18,7 +18,7 @@ export const userInformations = defineStore('get-data', {
   },
   actions: {
     getUserData(){
-      axios.get('/users/'+2).then((res)=>{
+      axios.get('/users/'+21).then((res)=>{
         this.userStore = res.data;
       })
     },
