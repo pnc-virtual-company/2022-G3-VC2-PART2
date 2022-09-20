@@ -22,21 +22,17 @@ export const userInformations = defineStore('get-data', {
   },
   actions: {
     getUserData(){
-      axios.get('/users/'+1).then((res)=>{
-        this.userStore = res.data ;
-      })
-    },
-    addInviteAlumni(inviteAlumni){
-      axios.post('/users',inviteAlumni).then((res)=>{
-        console.log(res.data);
+      axios.get('/users/'+2).then((res)=>{
+        this.userStore = res.data;
       })
     },
 
+    addInviteAlumni(inviteAlumni){
+      axios.post('/invite/alumnis',inviteAlumni);
+    },
 
     addInviteERO(inviteERO){
-      axios.post('/users',inviteERO).then((res)=>{
-        console.log(res.data)
-      })
+      axios.post('/invite/eros',inviteERO);
     },
 
 
@@ -91,6 +87,15 @@ export const userInformations = defineStore('get-data', {
       axios.get('/alumnis').then((res) => {
         this.alumniStore = res.data;
       })
+    },
+
+    deleteCompany(id) {
+      this.companiesStore.forEach((company, index) => {
+        if (company.id == id) {
+          this.companiesStore.splice(index, 1);
+        }
+      });
+      axios.delete('/companies/' + id);
     }
   }
 });

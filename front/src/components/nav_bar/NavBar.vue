@@ -4,15 +4,22 @@
             <div>
                 <img class="w-14" src="../../assets/PNCaa.jpg">
             </div>
+            <div>
+                <div v-if="userRole == 'admin' || userRole == 'ero'">
+                        <router-link  class="mr-6 py-1 rounded-lg px-4 flex items-center" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'manage' }" to="/manage">
+                            <img class="w-11" src="../../assets/manage.png" alt="">
+                            <p class="ml-3 text-[22px] font-medium">Manage</p>
+                        </router-link>
+
+                    </div>
+                <div v-if="userRole=='alumni'">
+                    <router-link :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'profile' }" class="mr-6 py-1 rounded-lg px-4 flex items-center" to="/profile">
+                        <img class="w-11" src="../../assets/avata.png" alt="">
+                        <p class="ml-3 text-[22px] font-medium">Koev Song</p>
+                    </router-link>
+                </div>
+            </div>
             <div class="flex items-center">
-                <router-link class="mr-6 py-1 rounded-lg px-4 flex items-center" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'manage' }" to="/manage">
-                    <img class="w-11" src="../../assets/manage.png" alt="">
-                    <p class="ml-3 text-[22px] font-medium">Manage</p>
-                </router-link>
-                <router-link :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'profile' }" class="mr-6 py-1 rounded-lg px-4 flex items-center" to="/profile">
-                    <img class="w-11" src="../../assets/avata.png" alt="">
-                    <p class="ml-3 text-[22px] font-medium">Koev Song</p>
-                </router-link>
                 <router-link :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'logout' }" class="flex py-2 px-4 rounded-lg items-center" to="/logout">
                     <img class="w-[2rem]" src="../../assets/logout.png" >
                     <p class="ml-3 text-[18px] font-medium">Log out</p>
@@ -21,3 +28,34 @@
         </div>
     </nav>
 </template>
+
+<script>
+    import {userInformations} from "@/store/userStore"
+    export default {
+        setup(){
+            const userData = userInformations();
+            return {
+                userData,
+            }
+        },
+        data(){
+            return{
+                isShow:false,
+                // role:null,
+            }
+        },
+        computed:{
+            userRole(){
+                if(this.userData.userData != null){
+                    console.log(this.userData.userData.role)
+                    return this.userData.userData.role;
+                    
+                }else{
+                    return null;
+                }
+            }
+        },
+
+       
+    }
+</script>

@@ -43,12 +43,15 @@ Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 
 Route::get('/companies', [CompanyController::class, "index"]);
+Route::delete('/companies/{id}', [CompanyController::class, "destroy"]);
 
 Route::put('/users/update/password/{id}', [UserController::class, "resetPassword"]); /* The route to update user's password */
 
 Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
 
-Route::post('/eros/', [UserController::class, "inviteEro"]); /**The route use to create ero account */
+// Invite ERO and Alumni
+Route::post('/invite/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
+Route::post('/invite/alumnis/', [UserController::class, "createAlumni"]); /**The route use to create ero account */
 Route::put('/eros/register/{id}', [UserController::class, "registerEro"]); /**The route use to create ero account */
 
 Route::group(['middleware'=>['auth:sanctum']], function(){

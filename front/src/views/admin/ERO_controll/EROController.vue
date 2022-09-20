@@ -21,7 +21,9 @@
         },
         methods:{
             addInviteERO(InviteERO){
-                this.userData.addInviteERO(InviteERO)
+                // if (this.userData.userData.email !=null){
+                    this.userData.addInviteERO(InviteERO)
+                // }
             }
         }
     }
