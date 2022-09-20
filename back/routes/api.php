@@ -42,6 +42,7 @@ Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"
 Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
 
 Route::get('/companies', [CompanyController::class, "index"]);
+Route::delete('/companies/{id}', [CompanyController::class, "destroy"]);
 
 Route::put('/users/update/password/{id}', [UserController::class, "resetPassword"]); /* The route to update user's password */
 
