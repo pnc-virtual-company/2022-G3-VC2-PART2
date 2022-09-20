@@ -21,6 +21,7 @@ export default {
     this.userData.getUserData();
     this.userData.getCompanyList();
     this.userData.addInviteAlumni();
+    this.userData.getAllEro();
     // this.userData.AddUserData();
     // this.userData.getEmails();
     // this.userData.getSchoolList();

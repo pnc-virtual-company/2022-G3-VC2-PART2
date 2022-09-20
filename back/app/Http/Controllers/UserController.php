@@ -67,6 +67,11 @@ class UserController extends Controller
 
         return response()->json(["sms"=> "Ero is register successfully!"]);
     }
+
+    public function getEro()
+    {
+       return User::where('role', 'ero')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+    }
     
     /**
      * Display the specified resource.
