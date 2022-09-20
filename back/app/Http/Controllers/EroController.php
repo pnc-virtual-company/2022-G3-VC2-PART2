@@ -57,8 +57,8 @@ class EroController extends Controller
      * @param  \App\Models\Ero  $ero
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ero $ero)
+    public function destroy($id)
     {
-        //
+        return Ero::destroy($id);
     }
 }

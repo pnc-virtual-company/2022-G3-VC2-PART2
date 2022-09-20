@@ -41,31 +41,19 @@ class UserController extends Controller
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
-    public function createAlumni(Request $request)
-    {
-        $user = new User();
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->role = 'alumni';
-        $user->profile = 'IMG_PROFILE_avatar.png';
-        $user->cover = 'IMG_PROFILE_avatar.png';
-        $user->save();
-        
-        $alumni = new Alumni();
-        $alumni->user_id = $user->id;
-        return response()->Json(["message"=>"alumni is created successfully!"]);
-        
-    }
-
-    public function createEro(Request $request)
+    public function inviteEro(Request $request)
     {
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 'ero';
-        $user->profile = 'IMG_PROFILE_avatar.png';
-        $user->cover = 'IMG_PROFILE_avatar.png';
+        $user->profile = 'avatar.png';
+        $user->cover = 'avatar.png';
         $user->save();
+
+        $ero = new Ero();
+        $ero->user_id = $user->id;
+        $ero->save();
         return response()->Json(["message"=>"ero is created successfully!"]);
         
     }
@@ -78,6 +66,11 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(["sms"=> "Ero is register successfully!"]);
+    }
+
+    public function getEro()
+    {
+       return User::where('role', 'ero')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
     }
     
     /**
@@ -93,10 +86,7 @@ class UserController extends Controller
             if ($user->role == 'alumni') {
                 return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
             } 
-            else if ($user->role == 'ero') {
-                return $user;
-            }
-            else if ($user->role == 'admin') {
+            else {
                 return $user;
             }
         }
@@ -187,6 +177,8 @@ class UserController extends Controller
         return response()->Json(["sms"=>"log out succes"]);
     }
 
-
-
+    public function getAllAlumni(Request $request)
+    {
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+    }
 }

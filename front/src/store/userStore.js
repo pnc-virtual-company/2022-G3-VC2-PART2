@@ -5,6 +5,8 @@ export const userInformations = defineStore('get-data', {
     return{
       userStore: null,
       companiesStore: null,
+      eroStore: null,
+      alumniStore: null,
     }
   },
 
@@ -15,6 +17,12 @@ export const userInformations = defineStore('get-data', {
     companyList () {
       return this.companiesStore;
     },
+    eroList () {
+      return this.eroStore;
+    },
+    alumniList () {
+      return this.alumniStore;
+    },
   },
   actions: {
     getUserData(){
@@ -22,23 +30,22 @@ export const userInformations = defineStore('get-data', {
         this.userStore = res.data;
       })
     },
-    addInviteAlumni(inviteAlumni){
-      console.log('invite');
 
-      axios.post('/invite/alumnis',inviteAlumni).then((res)=>{
-        console.log(res.data);
-      })
+    addInviteAlumni(inviteAlumni){
+      axios.post('/invite/alumnis',inviteAlumni);
     },
-      
 
     addInviteERO(inviteERO){
-      console.log('invite');
-      axios.post('/invite/eros',inviteERO).then((res)=>{
-        console.log(res.data)
-      }).catch(()=>{ 
-        console.log('invite');
+      axios.post('/invite/eros',inviteERO);
+    },
 
-       })
+    deleteAlumni(id){
+      this.alumniStore.forEach((alumni,index)=>{
+        if(alumni.id==id){
+          this.alumniStore.splice(index ,1)
+        }
+      })
+      axios.delete('/users/'+id);
     },
 
     updateAlumniGerneralInfor(data) {
@@ -54,13 +61,7 @@ export const userInformations = defineStore('get-data', {
       this.userStore.alumni.address = data.address;
       axios.put('/alumniIntro/'+1, data);
     },
-
-    getCompanyList() {
-      axios.get('/companies/').then((res)=>{
-        this.companiesStore = res.data;
-      })
-    },
-
+    
     updateWorkExperience(id, data) {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {
@@ -79,6 +80,18 @@ export const userInformations = defineStore('get-data', {
       });
     },
 
+    getCompanyList() {
+      axios.get('/companies/').then((res)=>{
+        this.companiesStore = res.data;
+      })
+    },
+
+    getAllAlumni() {
+      axios.get('/alumnis').then((res) => {
+        this.alumniStore = res.data;
+      })
+    },
+
     deleteCompany(id) {
       this.companiesStore.forEach((company, index) => {
         if (company.id == id) {
@@ -86,6 +99,22 @@ export const userInformations = defineStore('get-data', {
         }
       });
       axios.delete('/companies/' + id);
+    },
+
+    getAllEro(){
+      axios.get('/eros/').then((res)=>{
+        this.eroStore = res.data;
+      });
+    },
+
+    deleteEro(id){
+      this.eroStore.forEach((ero, index)=>{
+        if(ero.id == id){
+          this.eroStore.splice(index, 1);
+        }
+      });
+      axios.delete('/users/' +id);
     }
+
   }
 });
