@@ -112,3 +112,4 @@ app.component('alumni-controller', AlumniController);
 app.component('ERO-controller', EROController);
 app.component('company-controller', CompanyController);
 app.use(router).mount('#app')
+
