@@ -41,6 +41,7 @@ class UserController extends Controller
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
+<<<<<<< HEAD
     public function createAlumni(Request $request)
     {
         $user = new User();
@@ -58,6 +59,9 @@ class UserController extends Controller
     }
 
     public function createEro(Request $request)
+=======
+    public function inviteEro(Request $request)
+>>>>>>> 1c4f73fa799a3024e6c6c683c11412f1f8544800
     {
         $user = new User();
         $user->email = $request->email;
@@ -68,6 +72,16 @@ class UserController extends Controller
         $user->save();
         return response()->Json(["message"=>"ero is created successfully!"]);
         
+    }
+
+    public function registerEro(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->save();
+
+        return response()->json(["sms"=> "Ero is register successfully!"]);
     }
     
     /**

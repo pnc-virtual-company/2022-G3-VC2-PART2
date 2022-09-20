@@ -78,5 +78,14 @@ export const userInformations = defineStore('get-data', {
         } 
       });
     },
+
+    deleteCompany(id) {
+      this.companiesStore.forEach((company, index) => {
+        if (company.id == id) {
+          this.companiesStore.splice(index, 1);
+        }
+      });
+      axios.delete('/companies/' + id);
+    }
   }
 });
