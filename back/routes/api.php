@@ -47,7 +47,9 @@ Route::put('/users/update/password/{id}', [UserController::class, "resetPassword
 
 Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
 
-Route::post('/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
+// Invite ERO and Alumni
+Route::post('/invite/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
+Route::post('/invite/alumnis/', [UserController::class, "createAlumni"]); /**The route use to create ero account */
 
 Route::group(['middleware'=>['auth:sanctum']], function(){
     Route::post('users/logout/', [UserController::class, "logOut"]); /* The route to logout user account */

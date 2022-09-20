@@ -19,19 +19,26 @@ export const userInformations = defineStore('get-data', {
   actions: {
     getUserData(){
       axios.get('/users/'+1).then((res)=>{
-        this.userStore = res.data ;
+        this.userStore = res.data;
       })
     },
     addInviteAlumni(inviteAlumni){
-      axios.post('/users',inviteAlumni).then((res)=>{
+      console.log('invite');
+
+      axios.post('/invite/alumnis',inviteAlumni).then((res)=>{
         console.log(res.data);
-      })},
+      })
+    },
       
 
     addInviteERO(inviteERO){
-      axios.post('/users',inviteERO).then((res)=>{
+      console.log('invite');
+      axios.post('/invite/eros',inviteERO).then((res)=>{
         console.log(res.data)
-      })
+      }).catch(()=>{ 
+        console.log('invite');
+
+       })
     },
 
     updateAlumniGerneralInfor(data) {

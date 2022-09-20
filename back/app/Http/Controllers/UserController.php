@@ -41,19 +41,31 @@ class UserController extends Controller
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
+    public function createAlumni(Request $request)
+    {
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = 'alumni';
+        $user->profile = 'IMG_PROFILE_avatar.png';
+        $user->cover = 'IMG_PROFILE_avatar.png';
+        $user->save();
+        
+        $alumni = new Alumni();
+        $alumni->user_id = $user->id;
+        return response()->Json(["message"=>"alumni is created successfully!"]);
+        
+    }
+
     public function createEro(Request $request)
     {
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 'ero';
-        $user->profile = 'avatar.png';
-        $user->cover = 'avatar.png';
+        $user->profile = 'IMG_PROFILE_avatar.png';
+        $user->cover = 'IMG_PROFILE_avatar.png';
         $user->save();
-
-        $ero = new Ero();
-        $ero->user_id = $user->id;
-        $ero->save();
         return response()->Json(["message"=>"ero is created successfully!"]);
         
     }
@@ -72,11 +84,11 @@ class UserController extends Controller
                 return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
             } 
             else if ($user->role == 'ero') {
-                return User::with('alumni')->first();
+                return $user;
             }
-            // else if ($user->role == 'admin') {
-            //     return User::with('admin')->first();
-            // }
+            else if ($user->role == 'admin') {
+                return $user;
+            }
         }
         abort(404);
     }
