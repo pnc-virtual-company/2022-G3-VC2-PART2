@@ -154,7 +154,7 @@ class UserController extends Controller
                 return response()->json(['sms'=>'Invalid password'],401);
             }
         } else {
-           return response()->json(['sms'=>'Log in fail'],401);
+           return response()->json(['sms'=>'Log in fail'], 401);
         }
       
     }
@@ -164,7 +164,9 @@ class UserController extends Controller
         Auth()->user()->tokens()->delete();
         return response()->Json(["sms"=>"log out succes"]);
     }
-
-
-
+    
+    public function getInfoByToken(){
+        $info = auth('sanctum')->user();
+        return Response()->json(['data'=>$info]);
+    }
 }

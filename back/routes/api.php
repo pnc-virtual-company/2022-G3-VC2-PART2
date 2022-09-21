@@ -22,32 +22,33 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-Route::get('users', [UserController::class,"index"]);
-Route::post('users', [UserController::class,"store"]);
-Route::get('users/{id}', [UserController::class,"show"]);
-Route::delete('users/{id}', [UserController::class,"destroy"]);
-Route::put('alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
-
-Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
-Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
-Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
-
-Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
-Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
-
-Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
-Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
-Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
-
-Route::get('/companies', [CompanyController::class, "index"]);
-
-Route::put('/users/update/password/{id}', [UserController::class, "resetPassword"]); /* The route to update user's password */
-
 Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
 
-Route::post('/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
+Route::group(['middleware'=> ['auth:sanctum']], function(){ 
+    Route::get('users', [UserController::class,"index"]);  
+    Route::post('users', [UserController::class,"store"]);
+    Route::get('users/{id}', [UserController::class,"show"]);
+    Route::delete('users/{id}', [UserController::class,"destroy"]);
+    Route::put('alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
+
+    Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
+    Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
+    Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
+
+    Route::get('alumniGeneralInfo', [AlumniController::class,"index"]);
+    Route::post('alumniGeneralInfo', [AlumniController::class,"store"]);
+
+    Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
+    Route::put('alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
+    Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
+
+    Route::get('/companies', [CompanyController::class, "index"]);
+
+    Route::put('/users/update/password/{id}', [UserController::class, "resetPassword"]); /* The route to update user's password */
+
+    Route::post('/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
+    
+});
 
 Route::group(['middleware'=>['auth:sanctum']], function(){
     Route::post('users/logout/', [UserController::class, "logOut"]); /* The route to logout user account */

@@ -13,11 +13,35 @@
                     <img class="w-11" src="../../assets/avata.png" alt="">
                     <p class="ml-3 text-[22px] font-medium">Koev Song</p>
                 </router-link>
-                <router-link :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'logout' }" class="flex py-2 px-4 rounded-lg items-center" to="/logout">
+                <button @click="logout" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'logout' }" class="flex py-2 px-4 rounded-lg items-center">
                     <img class="w-[2rem]" src="../../assets/logout.png" >
                     <p class="ml-3 text-[18px] font-medium">Log out</p>
-                </router-link>
+                </button>
             </div>
         </div>
     </nav>
 </template>
+
+<script>
+    import {manageCookies} from '@/store/cookie.js'
+    import axiosClient from  '@/axios-http';
+    export default{
+        setup(){
+            const userCookie = manageCookies();
+            return{
+                userCookie
+            }
+
+        },
+        methods: {
+            logout(){
+                this.userCookie.deleteCookie('user_token')
+                this.userCookie.deleteCookie('user_id')
+                this.userCookie.deleteCookie('user_role')
+                this.$router.go('login')
+                axiosClient.post('users/logout').then(()=>{
+                })
+            }
+        }
+    }
+</script>

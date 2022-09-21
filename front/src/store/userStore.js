@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import axios from "../axios-http";
-export const userInformations = defineStore('get-data', {
+import axiosClient from "../axios-http";
+export const userInformations = defineStore('user-data', {
   state () { 
     return{
       userStore: null,
@@ -14,14 +14,46 @@ export const userInformations = defineStore('get-data', {
     },
     companyList () {
       return this.companiesStore;
-    }
+    },
+    userCookie(){
+      return this.getCookie('user_token')
+    },
   },
 
   actions: {
     getUserData(){
-      axios.get('/users/'+1).then((res)=>{
+      axiosClient.get('/users/'+1).then((res)=>{
         this.userStore = res.data ;
       })
+    },
+    showType(isPassword){
+      if(isPassword){
+          return 'password';
+      }else{
+          return 'text';
+      }
+    },
+   
+    setCookie(name,value,exp_days) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exp_days*24*60*60*1000));
+      var expires = "expires=" + d.toGMTString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    },
+    getCookie(name) {
+      var cname = name + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var splitDataToJsonFormat = decodedCookie.split(';');
+      for(var i = 0; i < splitDataToJsonFormat.length; i++){
+          var cookie = splitDataToJsonFormat[i];
+          while(cookie.charAt(0) == ' '){
+            cookie = cookie.substring(1);
+          }
+          if(cookie.indexOf(cname) == 0){
+              return cookie.substring(cname.length, cookie.length);
+          }
+      }
+      return "";
     },
 
     updateAlumniGerneralInfor(data) {
@@ -35,11 +67,11 @@ export const userInformations = defineStore('get-data', {
       this.userStore.alumni.major = data.major;
       this.userStore.alumni.birth_date = data.birth_date
       this.userStore.alumni.address = data.address;
-      axios.put('/alumniIntro/'+1, data);
+      axiosClient.put('/alumniIntro/'+1, data);
     },
 
     getCompanyList() {
-      axios.get('/companies/').then((res)=>{
+      axiosClient.get('/companies/').then((res)=>{
         this.companiesStore = res.data;
       })
     },
@@ -57,7 +89,7 @@ export const userInformations = defineStore('get-data', {
             this.userStore.work_experience[index].end_date = null;
           }
           let newExperience = {position: data.position, company_id: data.company.id, is_working: data.is_working, start_date: data.start_date, end_date: data.end_date};
-          axios.put('/alumnis/experience/' + id, newExperience);
+          axiosClient.put('/alumnis/experience/' + id, newExperience);
         } 
       });
     },

@@ -40,6 +40,5 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   object-fit: cover;
-  
 }
 </style>

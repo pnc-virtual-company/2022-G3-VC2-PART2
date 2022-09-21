@@ -7,6 +7,10 @@ import EroRegister from '../views/ero/EroRegister';
 
 const routes = [
   {
+    path:"/",
+    redirect:"/login"
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: ProfileAlumniView
