@@ -26,11 +26,7 @@ export const userInformations = defineStore('get-data', {
   },
   actions: {
     getUserData(){
-<<<<<<< HEAD
-      axios.get('/users/'+21).then((res)=>{
-=======
-      axios.get('/users/'+1).then((res)=>{
->>>>>>> dd296365597e9fd107f74b8feb4485d92bbecf47
+      axios.get('/users/'+2).then((res)=>{
         this.userStore = res.data;
       })
     },
@@ -64,6 +60,12 @@ export const userInformations = defineStore('get-data', {
       this.userStore.alumni.birth_date = data.birth_date
       this.userStore.alumni.address = data.address;
       axios.put('/alumniIntro/'+1, data);
+    },
+
+    signUp(user){
+      axios.post('/alumnis/signup/', user).then(res=>{
+        console.log(res.data);
+      });
     },
     
     updateWorkExperience(id, data) {
@@ -118,7 +120,6 @@ export const userInformations = defineStore('get-data', {
         }
       });
       axios.delete('/users/' +id);
-    }
-
+    },
   }
 });
