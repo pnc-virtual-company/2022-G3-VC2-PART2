@@ -50,7 +50,6 @@
                         expList.push(eachExp);
                     }
                 });
-
                 let notPresentExp = [];
                 this.userData.userData.work_experience.forEach(eachExp => {
                     if (!eachExp.is_working) {

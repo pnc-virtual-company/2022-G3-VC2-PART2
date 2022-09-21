@@ -32,7 +32,7 @@
             </div>
             <button-components @click="$emit('click-reset')" class="bg-red-500 border-none w-fit pl-2 pr-3 text-white flex items-center">
                 <img class="w-[28px] h-[28px]" src="../../assets/reset_password.png">
-                <p>Reset Password</p>
+                <p class="text-[1rem]">Reset Password</p>
             </button-components>
         </div>
     </div>

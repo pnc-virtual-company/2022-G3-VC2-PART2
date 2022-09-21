@@ -30,9 +30,5 @@
                 this.userInfor.updateAlumniGerneralInfor(data);
             }
         },
-
-        computed:{
-
-        }
     }
 </script>

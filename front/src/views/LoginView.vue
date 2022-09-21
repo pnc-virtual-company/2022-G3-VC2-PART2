@@ -53,12 +53,15 @@
 </template>
 <script>
     import {userInformations} from "../store/userStore";
+    import { manageCookies } from "@/store/cookie";
     import axiosClient from "../axios-http";
     export default {
     setup(){
+        const  userCookie = manageCookies();
         const userInfor = userInformations();
         return {
-            userInfor
+            userInfor,
+            userCookie,
         }
     },
     data(){
@@ -80,15 +83,15 @@
                 let user = {email: this.email, password: this.password}
                 axiosClient.post('users/login', user).then( res => {
                     this.showLoading = false;
-                    this.userInfor.setCookie('user_token', res.data.token,30)
-                    this.userInfor.setCookie('user_id', res.data.user.id,30)
-                    this.userInfor.setCookie('user_role', res.data.user.role,30)
+                    this.userCookie.setCookie('user_token', res.data.token,30)
+                    this.userCookie.setCookie('user_id', res.data.user.id,30)
+                    this.userCookie.setCookie('user_role', res.data.user.role,30)
                     if(res.data.user.role == 'ero'){
-                        this.$router.push('manage')
-                        this.window.reload()
+                        console.log(res.data.user)
+                        this.$router.push('explore')
+                        window.location.reload()
                     }else if(res.data.user.role == 'alumni'){
-                        this.$router.push('profile')
-                        this.window.reload()
+                        this.$router.go('explore')
                     }
                 }).catch(()=>{ 
                     this.showLoading = false;

@@ -4,6 +4,25 @@
             <div>
                 <img class="w-14" src="../../assets/PNCaa.jpg">
             </div>
+            <div>
+                <div v-if="userRole == 'admin' || userRole == 'ero'" class="flex">
+                        <router-link  class="mr-6 py-1 rounded-lg px-4  items-center flex" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'explore' }" to="/explore">
+                            <img class="w-9 " src="../../assets/explore.png" alt="">
+                            <p class="ml-3 text-[22px] font-medium">Explore</p>
+                        </router-link>
+                        <!-- <router-link  class="mr-6 py-1 rounded-lg px-4 flex items-center" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'manage' }" to="/manage">
+                            <img class="w-11" src="../../assets/manage.png" alt="">
+                            <p class="ml-3 text-[22px] font-medium">Manage</p>
+                        </router-link> -->
+
+                    </div>
+                <!-- <div v-if="userRole=='alumni'">
+                    <router-link :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'profile' }" class="mr-6 py-1 rounded-lg px-4 flex items-center" to="/profile">
+                        <img class="w-11" src="../../assets/avata.png" alt="">
+                        <p class="ml-3 text-[22px] font-medium">Koev Song</p>
+                    </router-link>
+                </div> -->
+            </div>
             <div class="flex items-center">
                 <router-link class="mr-6 py-1 rounded-lg px-4 flex items-center" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'manage' }" to="/manage">
                     <img class="w-11" src="../../assets/manage.png" alt="">
@@ -23,15 +42,35 @@
 </template>
 
 <script>
-    import {manageCookies} from '@/store/cookie.js'
+
+    import {userInformations} from "@/store/userStore"
     import axiosClient from  '@/axios-http';
-    export default{
+    import {manageCookies} from '@/store/cookie.js'
+
+    export default {
         setup(){
             const userCookie = manageCookies();
-            return{
+            const userData = userInformations();
+            return {
+                userData,
                 userCookie
-            }
 
+            }
+        },
+        data(){
+            return{
+                isShow:false,
+                role:null,
+            }
+        },
+        computed:{
+            userRole(){
+                if(this.userData.userData != null){
+                    return this.userData.userData.role;
+                }else{
+                    return null;
+                }
+            }
         },
         methods: {
             logout(){
@@ -43,5 +82,6 @@
                 })
             }
         }
+       
     }
 </script>

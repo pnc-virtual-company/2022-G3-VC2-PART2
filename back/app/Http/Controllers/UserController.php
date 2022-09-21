@@ -41,7 +41,7 @@ class UserController extends Controller
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
-    public function createEro(Request $request)
+    public function inviteEro(Request $request)
     {
         $user = new User();
         $user->email = $request->email;
@@ -57,6 +57,21 @@ class UserController extends Controller
         return response()->Json(["message"=>"ero is created successfully!"]);
         
     }
+
+    public function registerEro(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->save();
+
+        return response()->json(["sms"=> "Ero is register successfully!"]);
+    }
+
+    public function getEro()
+    {
+       return User::where('role', 'ero')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+    }
     
     /**
      * Display the specified resource.
@@ -69,14 +84,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($user) {
             if ($user->role == 'alumni') {
-                return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
+                return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('id', $id)->first();
             } 
-            // else if ($user->role == 'ero') {
-            //     return User::with('alumni')->first();
-            // }
-            // else if ($user->role == 'admin') {
-            //     return User::with('admin')->first();
-            // }
+            else {
+                return $user;
+            }
         }
         abort(404);
     }
@@ -168,5 +180,9 @@ class UserController extends Controller
     public function getInfoByToken(){
         $info = auth('sanctum')->user();
         return Response()->json(['data'=>$info]);
+    }
+    public function getAllAlumni(Request $request)
+    {
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
     }
 }

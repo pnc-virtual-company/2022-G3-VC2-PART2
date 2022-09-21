@@ -20,6 +20,10 @@ class AlumniSchool extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'is_studying' => 'boolean',
+    ];
+
     // Relationship
     public function school(){
         return $this->belongsTo(School::class);

@@ -7,9 +7,10 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use((config) => {
   const authStore = manageCookies();
   const token = authStore.getToken;
-    config.headers.Authorization = "Bearer " + token;
-    config.headers.Accept = "application/json";
-    return config
+  console.log(token);
+  config.headers.Authorization = "Bearer " + token;
+  config.headers.Accept = "application/json";
+  return config
 })
 
 export default axiosClient;
