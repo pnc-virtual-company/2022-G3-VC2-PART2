@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('school_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_studying');
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable();
             $table->string('major');
             $table->string('degree');
             $table->timestamps();
