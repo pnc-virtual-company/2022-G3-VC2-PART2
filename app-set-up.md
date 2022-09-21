@@ -45,7 +45,7 @@ DB_USERNAME= root
 
 - [x] If you are in production environments
 > <code> http:://YOUR_IP_ADDRESS:YOUR_PORT </code>
-#### Example for <code>developement</code> file:
+#### Example for <code>local development environments</code>:
 ```
 http://127.0.0.1:8000
 ```
