@@ -22,6 +22,8 @@ import AlertMissing from '@/components/alert_component/AlertMissing.vue';
 import CardList from '@/components/card_components/CardList';
 import CardListERO from '@/components/card_components/CardListERO';
 import CardCompany from '@/components/card_components/CardCompany';
+import ExploreInformation from '@/components/explore_components/ExploreInformation';
+import ListExplore from '@/components/explore_components/ListExplore';
 // alumni 
 import GeneralInformationContainer from './views/alumni/general_information/GeneralInformationContainer'
 import GeneralInformation from './views/alumni/general_information/GeneralInformation';
@@ -51,6 +53,7 @@ import TheTelegram from '@/components/general_information/icon_informations/TheT
 import { createPinia } from 'pinia'
 // admin 
 import AdminManagementView from '@/views/admin/AdminManagementView'
+import ExploreManagementView from '@/views/admin/ExploreManagementView'
 import ListAlumniView from '@/views/admin/alumni_controll/ListAlumniView'
 import AlumniController from '@/views/admin/alumni_controll/AlumniController'
 import MenuView from '@/views/admin/menu_component/MenuView'
@@ -58,6 +61,8 @@ import ListEROView from '@/views/admin/ERO_controll/ListEROView'
 import EROController from '@/views/admin/ERO_controll/EROController'
 import CompanyController from '@/views/admin/company_controll/CompanyController'
 import ListCompanyView from '@/views/admin/company_controll/ListCompanyView'
+import ExploreController from '@/views/admin/explore_controll/ExploreController'
+import ExploreView from '@/views/admin/explore_controll/ExploreView'
 // nav bar
 app.component('nav-bar', NavBar);
 
@@ -76,6 +81,8 @@ app.component('button-eye-slash', ButtonEyeSlash);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
+app.component('explore-information',ExploreInformation)
+app.component('list-explore',ListExplore)
 // alumni Profile
 app.component('general-information',GeneralInformation)
 app.component('alumniProfile-container',AlumniProfileContainer)
@@ -107,9 +114,12 @@ app.component('list-ERO', ListEROView);
 app.component('menu-view', MenuView);
 app.component('list-company-view', ListCompanyView);
 app.component('admin-management-view', AdminManagementView);
+app.component('explore-management-view', ExploreManagementView);
 app.component('list-alumni-view', ListAlumniView);
 app.component('alumni-controller', AlumniController);
 app.component('ERO-controller', EROController);
 app.component('company-controller', CompanyController);
+app.component('explore-controller', ExploreController);
+app.component('explore-view', ExploreView);
 app.use(router).mount('#app')
 

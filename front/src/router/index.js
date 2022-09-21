@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileAlumniView from '../views/alumni/ProfileView'
 import AdminManagementView from '../views/admin/AdminManagementView'
+import ExploreManagementView from '../views/admin/ExploreManagementView'
 import LoginView from '../views/LoginView.vue'
 import AlumniRegister from '../views/alumni/AlumniRegister';
 import EroRegister from '../views/ero/EroRegister';
@@ -14,6 +15,11 @@ const routes = [
   {
     path: '/manage',
     component: AdminManagementView
+  },
+  {
+    path: '/explore',
+    name: 'explore',
+    component: ExploreManagementView
   },
   {
     path: '/login',

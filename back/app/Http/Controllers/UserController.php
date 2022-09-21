@@ -84,7 +84,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($user) {
             if ($user->role == 'alumni') {
-                return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('id', $id)->first();
+                return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('id', $id)->first();
             } 
             else {
                 return $user;
@@ -179,6 +179,6 @@ class UserController extends Controller
 
     public function getAllAlumni(Request $request)
     {
-        return User::with(['alumni', 'work_experience.company', 'education_backgrounds'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
     }
 }
