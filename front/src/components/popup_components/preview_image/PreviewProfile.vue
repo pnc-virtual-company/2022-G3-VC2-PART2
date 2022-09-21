@@ -4,8 +4,8 @@
             <div>
                 <div>
                     <h2 class="mb-5 m-auto text-center font-bold text-3xl">Update your profile image</h2>
-                    <img v-if="!showNewImage" class=" m-auto h-[200px] w-[200px] rounded-full" :src="urlProfile" alt="">
-                    <img v-else class=" m-auto h-[200px] w-[200px] rounded-full" :src="profileImage" alt="">
+                    <img v-if="!showNewImage" class="object-cover m-auto h-[200px] w-[200px] rounded-full" :src="urlProfile" alt="">
+                    <img v-else class="object-cover m-auto h-[200px] w-[200px] rounded-full" :src="profileImage" alt="">
                     <div class="flex justify-center item-center w-full relative  bg-white">
                         <div class="h-8 w-8 rounded-full bg-white mt-[-20px] flex justify-center items-center">
                             <input id="upload_img"  name="upload_img" @change="onFileChange" type="file" class="hidden">

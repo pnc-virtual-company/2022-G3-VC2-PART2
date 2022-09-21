@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <img alt="Vue logo" class=" w-full h-[182px] rounded-t-lg" :src="urlCover" >
+            <img alt="Vue logo" class=" object-cover h-48 w-full rounded-t-lg" :src="urlCover" >
             <div class="flex justify-end item-center w-full relative -top-[0.30rem] bg-red-700">
                 <div @click="$emit('click-cover')" class="h-8 mr-2 w-8 rounded-full bg-white mt-[-35px] ml-[4.8rem] flex justify-end items-center hover:bg-gray-300">
                     <label class=" shadow-black h-full flex justify-center items-center rounded-full cursor-pointer">
@@ -16,7 +16,7 @@
         <div class="flex justify-between mt-[-6rem] ml-[20px]">
             <div class="flex flex-col items-center">
                 <div>
-                    <img alt="Vue logo" class="w-[148px] h-[148px] rounded-full" :src="urlProfile" width="120">
+                    <img alt="Vue logo" class="object-cover w-[148px] h-[148px] rounded-full" :src="urlProfile" width="120">
                     <div @click="$emit('click-profile')" class="shadow-sm shadow-[black] h-8 w-8 rounded-full bg-white mt-[-35px] absolute ml-[6rem] hover:bg-gray-300 flex justify-center items-center">
                         <label class="w-full h-full flex justify-center items-center rounded-full cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-[80%] rounded-lg text-black cursor-pointer">
