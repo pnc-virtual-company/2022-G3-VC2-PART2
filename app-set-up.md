@@ -1,6 +1,6 @@
 # I. Front End
 ### Step 1: Install Dependency Packages
-- [x] cd /front
+- [x] cd .\front\
 > <code> npm install **or** npm i </code>
 
 ### Step 2: Update Environment Variables
@@ -23,7 +23,7 @@ VUE_APP_API_URL=http://localhost:8000/api
 
 # II. Backend
 ### Step 1: Install the Packages
-- [x] cd /back
+- [x] cd .\back\
 > <code> composer install **or** composer i </code>
 
 ### Step 2: Update the Environment Variables
