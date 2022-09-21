@@ -7,6 +7,7 @@ import AlumniRegister from '../views/alumni/AlumniRegister';
 import EroRegister from '../views/ero/EroRegister';
 import SignupView from '../views/SignupView.vue'
 import ForgotPassword from '../views/FogotPasswordView.vue'
+import VerifyCode from '../views/VerifyCodeView.vue'
 
 const routes = [
   {
@@ -42,11 +43,15 @@ const routes = [
     path: '/signup',
     component: SignupView
   },
+  
   {
     path: '/fogot_password',
     component: ForgotPassword
   },
-
+  {
+    path: '/verify_code',
+    component: VerifyCode
+  },
 ]
 
 const router = createRouter({
