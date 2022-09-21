@@ -40,6 +40,7 @@
                 data,
             }
         },
+        
 
         data() {
             return {

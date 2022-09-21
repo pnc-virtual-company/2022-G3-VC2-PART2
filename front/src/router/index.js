@@ -10,6 +10,10 @@ import ForgotPassword from '../views/FogotPasswordView.vue'
 
 const routes = [
   {
+    path:"/",
+    redirect:"/login"
+  },
+  {
     path: '/profile',
     component: ProfileAlumniView
   },

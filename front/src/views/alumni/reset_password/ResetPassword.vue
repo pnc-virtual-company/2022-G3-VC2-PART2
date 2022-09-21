@@ -39,7 +39,7 @@
 </template>
 <script>
     import {userInformations} from "../../../store/userStore";
-    import axios from "../../../axios-http";
+    import axiosClient from "../../../axios-http";
     export default {
         setup(){
             const userInfor = userInformations();
@@ -68,7 +68,7 @@
                 if(this.isCompleted){
                     this.showLoading = true;
                     let userPassword = {confirm_current_password:this.oldPassword, new_password:this.newPassword};
-                    axios.put('/users/update/password/9', userPassword).then(res => {
+                    axiosClient.put('/users/update/password/9', userPassword).then(res => {
                         this.showLoading = false;
                         if(res.data.message == 'password is changed'){
                             this.$emit('click-reset');

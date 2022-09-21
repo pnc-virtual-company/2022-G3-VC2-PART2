@@ -166,7 +166,7 @@ class UserController extends Controller
                 return response()->json(['sms'=>'Invalid password'],401);
             }
         } else {
-           return response()->json(['sms'=>'Log in fail'],401);
+           return response()->json(['sms'=>'Log in fail'], 401);
         }
       
     }
@@ -176,7 +176,11 @@ class UserController extends Controller
         Auth()->user()->tokens()->delete();
         return response()->Json(["sms"=>"log out succes"]);
     }
-
+    
+    public function getInfoByToken(){
+        $info = auth('sanctum')->user();
+        return Response()->json(['data'=>$info]);
+    }
     public function getAllAlumni(Request $request)
     {
         return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
