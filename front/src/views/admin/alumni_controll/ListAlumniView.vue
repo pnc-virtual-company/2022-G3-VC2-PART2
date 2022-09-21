@@ -1,6 +1,6 @@
 <template>
     <div class="w-10/12 m-auto">
-        <input-search></input-search>
+        <input-search @search-keyword="updateKeyword"></input-search>
         <div class="flex justify-between">
             <div class="mt-4 flex">
                 <button-components class="border-white py-2 text-[1rem] text-sky bg-white hover:bg-sky-hover hover:text-white font-bold">Invited</button-components>
@@ -12,7 +12,7 @@
 
         </div>
         <div >
-            <card-list v-for="alumni of data.alumniList" :key="alumni" @delete-item="data.deleteAlumni(alumni.id)">
+            <card-list v-for="alumni of filteredAlumni" :key="alumni" @delete-item="data.deleteAlumni(alumni.id)">
                 <template #title-5 >
                     <div class="">
                         <img alt="Vue logo" class="" src="../../../assets/logo.png" width="50">
@@ -40,5 +40,51 @@
                 data,
             }
         },
+
+        data() {
+            return {
+                keyword: null,
+            }
+        },
+
+        methods: {
+            updateKeyword(newKeyword) {
+                this.keyword = newKeyword;
+            }
+        },
+
+        computed: {
+            filteredAlumni() {
+                let alumniList = [];
+                if (this.keyword) {
+                    let splitedKeywords = this.keyword.split(' ');
+                    // console.log(splitedKeywords);
+                    this.data.alumniList.forEach(eachAlumni => {
+                        let isIncludesKeyword = false;
+                        splitedKeywords.forEach(eachKeyword => {
+                            if (eachKeyword) {
+                                if (
+                                    (eachAlumni.first_name.toLowerCase()).includes(eachKeyword.toLowerCase())
+                                    || (eachAlumni.last_name.toLowerCase()).includes(eachKeyword.toLowerCase())
+                                    || (eachAlumni.email.toLowerCase()).includes(eachKeyword.toLowerCase())
+                                    || (eachAlumni.alumni.gender.toLowerCase()).includes(eachKeyword.toLowerCase())
+                                    || ((eachAlumni.alumni.batch.toString()).toLowerCase()).includes(eachKeyword.toLowerCase())
+                                    || (eachAlumni.alumni.major.toLowerCase()).includes(eachKeyword.toLowerCase())
+                                ) {
+                                    isIncludesKeyword = true;
+                                }
+                            }
+                        })
+
+                        if (isIncludesKeyword) {
+                            alumniList.push(eachAlumni);
+                        }
+                    });
+                } else {
+                    alumniList = this.data.alumniList;
+                }
+                return alumniList;
+            }
+        }
     }
 </script>
