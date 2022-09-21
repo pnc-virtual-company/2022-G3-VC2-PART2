@@ -45,7 +45,7 @@ const routes = [
   },
   
   {
-    path: '/fogot_password',
+    path: '/forgot_password',
     component: ForgotPassword
   },
   {

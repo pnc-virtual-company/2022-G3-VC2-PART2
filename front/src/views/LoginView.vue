@@ -34,7 +34,7 @@
                             <span class="text-red-600">{{erroPassword}}</span>
                         </div>
                         <div class="text-center text-[1.1rem] text-bold  text-[#2EA3F2] pb-2 underline ">
-                            <a><router-link to="/fogot_password">Forgot your password?</router-link></a>
+                            <a><router-link to="/forgot_password">Forgot your password?</router-link></a>
                         </div>
                         <div >
                             <div v-if="showLoading" class="bg-sky flex justify-center p-[5.7px] rounded-md">
