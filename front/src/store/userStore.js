@@ -30,7 +30,6 @@ export const userInformations = defineStore('user-data', {
     getUserData(){
       let userId = this.getCookie('user_id')
       axiosClient.get('/users/'+userId).then((res)=>{
-        console.log(res.data)
         this.userStore = res.data ; 
       })
     },
@@ -80,6 +79,13 @@ export const userInformations = defineStore('user-data', {
         this.companiesStore = res.data;
       })
     },
+
+    signUp(user){
+      axios.post('/alumnis/signup/', user).then(res=>{
+        console.log(res.data);
+      });
+    },
+    
     updateWorkExperience(id, data) {
       this.userStore.work_experience.forEach((experience, index) => {
         if (experience.id == id) {

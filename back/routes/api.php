@@ -24,22 +24,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
-
-// Route::group(['middleware'=> ['auth:sanctum']], function(){ 
+Route::group(['middleware'=> ['auth:sanctum']], function(){ 
     Route::get('/users', [UserController::class,"index"]);
     Route::post('/users', [UserController::class,"store"]);
     Route::get('/users/{id}', [UserController::class,"show"]);
     Route::delete('/users/{id}', [UserController::class,"destroy"]);
     Route::put('/alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
     Route::get('/alumnis', [UserController::class,"getAllAlumni"]); /* The route to get all alumni */
+    Route::post('/alumnis/signup', [UserController::class,"signUpAlumni"]);/*the route to sign up alumni */
 
-    Route::get('/alumniGeneralInfo', [AlumniController::class,"index"]);
     Route::post('/alumniGeneralInfo', [AlumniController::class,"store"]);
     Route::delete('/alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
-
     Route::get('/alumniGeneralInfo', [AlumniController::class,"index"]);
-    Route::post('/alumniGeneralInfo', [AlumniController::class,"store"]);
-
     Route::put('/alumnis/experience/{id}', [AlumniCompanyController::class, 'update']);
     Route::put('/alumniGeneralInfo/{id}', [AlumniController::class,"updateAlumniInfo"]);
     Route::delete('alumniGeneralInfo/{id}', [AlumniController::class,"delete"]);
@@ -52,9 +48,8 @@ Route::post('/users/login', [UserController::class, "logIn"]); /* The route to l
     Route::post('/invite/eros/', [UserController::class, "createEro"]); /**The route use to create ero account */
     Route::post('/invite/alumnis/', [UserController::class, "createAlumni"]); /**The route use to create ero account */
     Route::put('/eros/register/{id}', [UserController::class, "registerEro"]); /**The route use to create ero account */
-    Route::get('/eros', [UserController::class, "getEro"]);
-    
-// });
+    Route::get('/eros', [UserController::class, "getEro"]);  
+});
 
 Route::group(['middleware'=>['auth:sanctum']], function(){
     Route::post('/users/logout/', [UserController::class, "logOut"]); /* The route to logout user account */
