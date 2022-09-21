@@ -1,5 +1,5 @@
 <template>
-    <card-components v-if="educationData.userData !=null">
+    <card-components v-if="educationData.userData !=null" >
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Education Background</h1>
             <div >
@@ -12,8 +12,8 @@
                 </icon-action>
             </div>
         </div>
-        <div>
-            <card-informations  v-for:="education of orderedBackground" @delete-item="$emit('delete-item', education.id)" @click-popup="$emit('click-popup', education.id)">
+        <div class="h-[41.1vh]">
+            <card-informations  v-for:="education of orderedBackground" @delete-item="$emit('delete-item', education.id)" @click-popup="$emit('click-popup', education.id)" >
                 <template #logo>
                     <img class="w-14 h-14 mr-3 align-items-sm-center rounded-full" :src="educationData.getImage(education.school.logo)">
                 </template>
