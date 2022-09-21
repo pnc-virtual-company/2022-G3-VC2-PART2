@@ -1,6 +1,6 @@
 <template>
-    <div class="shadow-lg bg-white p-[10px] mt-5 rounded-md flex">
-        <div class="w-[22%]">
+    <div class="shadow-lg bg-white p-[10px] mt-5 rounded-[7px] flex h-[10.5vh]">
+        <div class="w-[10%] ">
             <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-1"></slot>
             </span><br>
@@ -8,7 +8,7 @@
                 <slot name="text-1"></slot>
             </span>
         </div>
-        <div class="w-[40%]">
+        <div class="w-[15%] ">
             <span class="capitalize text-lg text-[#ada5a5]">
                 <slot name="title-2"></slot>
             </span><br>
@@ -16,7 +16,7 @@
                 <slot name="text-2"></slot>
             </span>
         </div>
-        <div class="w-[15%]">
+        <div class="w-[35%] ">
             <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-3"></slot>
             </span><br>
@@ -24,7 +24,7 @@
                 <slot name="text-3"></slot>
             </span>
         </div>
-        <div class="w-[15%]">
+        <div class="w-[15%] ">
             <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-4"></slot>
             </span><br>
@@ -32,7 +32,7 @@
                 <slot name="text-4"></slot>
             </span>
         </div>
-        <div class="w-[15%]">
+        <div class="w-[15%] ">
             <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-5"></slot>
             </span><br>
@@ -40,7 +40,7 @@
                 <slot name="text-5"></slot>
             </span>
         </div>
-        <div class="w-[10%]">
+        <div class="w-[10%] ">
             <span class="capitalize text-lg text-[#ccc]">action</span><br>
             <button class="ml-3" @click="$emit('delete-item')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hover:text-blue-700 text-sky cursor-pointer">

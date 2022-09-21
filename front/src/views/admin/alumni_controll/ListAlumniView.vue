@@ -3,11 +3,11 @@
         <input-search @search-keyword="updateKeyword"></input-search>
         <div class="flex justify-between">
             <div class="mt-4 flex">
-                <button-components class="border-white py-2 text-sky bg-white hover:bg-sky-hover hover:text-white font-bold">Invited</button-components>
-                <button-components class="border-none py-2 bg-white text-sky hover:bg-sky-hover hover:text-white font-bold ml-2">Registered</button-components>
+                <button-components class="border-white py-2 text-[1rem] text-sky bg-white hover:bg-sky-hover hover:text-white font-bold">Invited</button-components>
+                <button-components class="border-none py-2 text-[1rem] bg-white text-sky hover:bg-sky-hover hover:text-white font-bold ml-2">Registered</button-components>
             </div>
             <div class="mt-4 ">
-                <button-components @click="$emit('click-popup')" class="py-2 bg-sky text-white hover:bg-sky-hover hover:text-white font-bold">Invite</button-components>
+                <button-components @click="$emit('click-popup')" class="py-2 text-[1rem] bg-sky text-white hover:bg-white hover:text-sky-hover font-bold">Invite</button-components>
             </div>
 
         </div>

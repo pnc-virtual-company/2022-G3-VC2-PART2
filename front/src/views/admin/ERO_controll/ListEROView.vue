@@ -2,13 +2,13 @@
     <div class="w-10/12 m-auto">
         <input-search @search-keyword="updateKeyword" ></input-search>
         <div class="mt-4 flex justify-end">
-            <button-components @click="$emit('click-popup')" class="py-2 bg-sky text-white hover:bg-sky-hover hover:text-white font-bold">Invite</button-components>
+            <button-components @click="$emit('click-popup')" class="py-2 bg-sky text-[1rem] text-white hover:bg-white hover:text-sky-hover">Invite</button-components>
         </div>
         <div class="" >
             <card-list-ERO v-for="ero of filteredEro" :key="ero" @delete-item="data.deleteEro(ero.id)">
                 <template #title-1 >
-                    <div class="">
-                        <img alt="Vue logo" src="../../../assets/logo.png" width="50">
+                    <div class="flex justify-center aling-items-sm-center">
+                        <img alt="" src="../../../assets/logo.png" class=" w-[55px] "/>
                     </div>
                 </template>
                 <template #title-2>name</template>

@@ -47,6 +47,9 @@ class User extends Authenticatable
     public function education_backgrounds(){
         return $this->hasMany(AlumniSchool::class);
     }
+    public function skills(){
+        return $this->hasMany(AlumniSkill::class);
+    }
     // public function admin(){
     //     return $this->hasOne(Alumni::class);
     // }
