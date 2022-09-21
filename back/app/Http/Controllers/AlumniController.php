@@ -18,8 +18,6 @@ class AlumniController extends  Controller
         return Alumni::with(['user'])->get();
     }
     
-
-
     /**
      * Remove the specified resource from storage.
      *

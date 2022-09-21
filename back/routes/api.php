@@ -30,6 +30,7 @@ Route::get('/users/{id}', [UserController::class,"show"]);
 Route::delete('/users/{id}', [UserController::class,"destroy"]);
 Route::put('/alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */
 Route::get('/alumnis', [UserController::class,"getAllAlumni"]); /* The route to get all alumni */
+Route::post('/alumnis/signup', [UserController::class,"signUpAlumni"]);/*the route to sign up alumni */
 
 Route::get('/alumniGeneralInfo', [AlumniController::class,"index"]);
 Route::post('/alumniGeneralInfo', [AlumniController::class,"store"]);
