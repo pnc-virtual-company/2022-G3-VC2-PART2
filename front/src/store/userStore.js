@@ -26,11 +26,7 @@ export const userInformations = defineStore('get-data', {
   },
   actions: {
     getUserData(){
-<<<<<<< HEAD
-      axios.get('/users/'+21).then((res)=>{
-=======
       axios.get('/users/'+1).then((res)=>{
->>>>>>> dd296365597e9fd107f74b8feb4485d92bbecf47
         this.userStore = res.data;
       })
     },
