@@ -26,11 +26,7 @@ export const userInformations = defineStore('get-data', {
   },
   actions: {
     getUserData(){
-<<<<<<< HEAD
       axios.get('/users/'+21).then((res)=>{
-=======
-      axios.get('/users/'+1).then((res)=>{
->>>>>>> dd296365597e9fd107f74b8feb4485d92bbecf47
         this.userStore = res.data;
       })
     },
@@ -118,7 +114,36 @@ export const userInformations = defineStore('get-data', {
         }
       });
       axios.delete('/users/' +id);
-    }
+    },
 
+    getBatches() {
+      let yearList = [];
+      let startYear = 2007;
+      let currentYear = new Date().getFullYear();
+      while (startYear <= currentYear) {
+        yearList.push(startYear);
+        startYear += 1;
+      }
+      return yearList;
+    },
+    
+    getCompanies() {
+      let companyList = [];
+      this.companiesStore.forEach(eachCompany => {
+          if (!companyList.includes(eachCompany.name)) {
+            companyList.push(eachCompany.name);
+          }
+      });
+      return companyList;
+    },
+    getMajor() {
+      let majorList = [];
+      this.alumniStore.forEach(eachMajor => {
+          if (!majorList.includes(eachMajor)) {
+            majorList.push(eachMajor);
+          }
+      });
+      return majorList;
+    }
   }
 });

@@ -9,15 +9,17 @@
                         <img alt="Vue logo" class="" src="../../../assets/logo.png" width="50">
                     </div>
                 </template>
-                <template #title-2> {{ alumni.first_name }} {{ alumni.last_name}}</template>
-                <template #text-3>{{ alumni.alumni.batch }}  </template>
-                <template #title-4>{{ alumni.alumni.major }} </template>
-                <template #text-5>
-                    <img alt="Vue logo" class="w-5 h-5 mt-1" src="../../../assets/logo.png" width="">
-                </template>
-                <template #text-6>
-                    <p class="ml-2">{{ currentSchool(alumni.education_backgrounds) }}</p>
-                </template>
+                <template #title-2>Name</template>
+                <template #text-2>{{ alumni.first_name }} {{ alumni.last_name}}</template>
+                <template #title-3>Gender</template>
+                <template #text-3>{{ alumni.alumni.gender }} </template>
+                <template #title-4>Batch</template>
+                <template #text-4>{{ alumni.alumni.batch }} </template>
+                <template #title-5>Major</template>
+                <template #text-5>{{ alumni.alumni.major }} </template>
+                <template #title-6>Current work</template>
+                <template #text-6> {{ currentPositon(alumni.work_experience) +' '}}( </template>
+                <template #text-7>{{ currentWork(alumni.work_experience) }}) </template>
             </list-explore>
         </div>
     </div>
@@ -34,14 +36,22 @@
         },
 
         methods: {
-            currentSchool(education_backgrounds) {
-                let myCurrentSchool = education_backgrounds.find((education_background) => education_background.is_studying == true);
-                if (myCurrentSchool) {
-                    return myCurrentSchool.school.name;
+            currentWork(work_experience) {
+                let myCurrentWork = work_experience.find((current_work) => current_work.is_working == true);
+                if (myCurrentWork) {
+                    return myCurrentWork.company.name;
                 } else {
                     return "Drop out of school";
                 }
-            }
+            },
+            currentPositon(work_experience) {
+                let myCurrentPosition = work_experience.find((postion) => postion.is_working == true );
+                if (myCurrentPosition) {
+                    return myCurrentPosition.position;
+                } 
+            },
+           
+           
         }
     }
 </script>
