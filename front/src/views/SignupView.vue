@@ -6,7 +6,7 @@
             </div>
             <div class=" w-[60%]">
                 <header class="text-center text-[3rem] ml-[90px]">
-                    <p class="text-[#2EA3F2]">Register Account </p>
+                    <p class="text-[#2EA3F2]">Sign up </p>
                 </header>
                 <div class="form  w-[80%] ml-[120px] bg-white opacity-[65%] p-[15px] rounded-[7px]">
                     <form class="p-[2px]">
@@ -42,7 +42,6 @@
                                             Major
                                         </span>
                                 </option>
-                                   
                                     <option value="web">WEB</option>
                                     <option value="sna">SNA</option>
                                 </select>
