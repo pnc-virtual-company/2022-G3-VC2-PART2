@@ -81,7 +81,7 @@ export const userInformations = defineStore('user-data', {
     },
 
     signUp(user){
-      axios.post('/alumnis/signup/', user).then(res=>{
+      axiosClient.post("/alumnis/signup/", user).then((res) => {
         console.log(res.data);
       });
     },
