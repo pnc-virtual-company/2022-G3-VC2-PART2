@@ -14,7 +14,7 @@
                                     </svg>
                                 </span>
                                 <div :class="{ 'border-red-400': isCompanyNull, 'border-gray-300': !isCompanyNull && !isFocusCompany, 'border-sky rounded-l-md':isFocusCompany }" class="w-full flex items-center border-2 rounded-r-md">
-                                    <div v-if="companyId" class="flex justify-end items-center ml-3 bg-gray-300 h-[75%] rounded-2xl px-3">
+                                    <div v-if="companyId" class="flex justify-end items-center ml-3 bg-[#e2e2e2] h-[75%] rounded-2xl px-3">
                                         <span class="font-normal">{{ selectedCompany }}</span>
                                         <svg @click="companyId = null; company = null;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-red-600 ml-1 cursor-pointer">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
