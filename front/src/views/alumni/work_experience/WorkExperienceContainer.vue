@@ -38,7 +38,9 @@
             },
 
             deleteWorkExper(id) {
-                this.userData.deleteWorkExperience(id);
+                if (window.confirm('Are you sure to remove this Work Experience?')) {
+                    this.userData.deleteWorkExperience(id);
+                }
             }
         },
     }

@@ -9,15 +9,18 @@ use App\Models\User;
 class Alumni extends Model
 {
     use HasFactory;
-        protected $hidden = [
-        
+
+    protected $hidden = [
         'user_id',
         'created_at',
         'updated_at',
-        ];
-        protected $fillable = ['major'];
+    ];
+
+    protected $fillable = [
+        'major'
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
-
 }

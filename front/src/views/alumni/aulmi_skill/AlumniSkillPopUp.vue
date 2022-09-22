@@ -1,7 +1,7 @@
 <template>
     <popup-component @click="onClickPopup">
         <card-components>
-            <h1 class="text-center font-bold text-2xl">Edit your skills</h1>
+            <h1 class="text-center font-bold text-2xl">Skills</h1>
             <div class="bg-white">
                 <div class="w-full bg-white font-medium">
                     <div class="w-full flex flex-wrap mb-3 mt-2">
