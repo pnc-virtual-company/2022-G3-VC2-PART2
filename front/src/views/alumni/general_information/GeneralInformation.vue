@@ -8,10 +8,10 @@
                 </div>
                 <hr class="w-[95%] m-auto border-gray-300">
                 <general-information-component class="w-full m-auto p-[20px]" @click-popup="$emit('click-popup')">   
-                    <template #slot1>
+                    <template v-if="currentWork" #slot1>
                         <p class="text-[20px] text-sky font-bold italic m-0 w-[50%]">Current work: {{currenWork.position}}</p>
                     </template>
-                    <template #slot2>
+                    <template v-if="currentWork" #slot2>
                         <p class="text-[20px] text-sky font-bold italic m-0 w-[50%]" >Company: {{currenWork.company.name}} </p>
                     </template>
                     <template #slot-full>
