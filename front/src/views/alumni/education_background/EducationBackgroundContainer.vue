@@ -2,7 +2,16 @@
     <div>
         <education-background v-if="educationData.userData" @delete-item="deleteEducation" @click-popup="(id) => { isShow = !isShow; educationId = id; }"></education-background>
         <education-background-popup v-if="isShow" ref="updatePopup" @create-school="isShowCreateSchool = !isShowCreateSchool" @click-popup="isShow = !isShow" :educationId="educationId" @update-education="updateEducationBackground"></education-background-popup>
-        <component-create v-if="isShowCreateSchool" @create-object="createSchool" @close-create="isShowCreateSchool = !isShowCreateSchool"></component-create>
+        <component-create v-if="isShowCreateSchool" @create-object="createSchool" @close-create="isShowCreateSchool = !isShowCreateSchool">
+            <template #title>
+                ADD UNIVERSIY
+            </template>
+            
+            <template #label_1>
+               University name
+            </template>
+
+        </component-create>
     </div>
 </template>
 

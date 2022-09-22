@@ -1,5 +1,5 @@
 <template>
-    <card-components v-if="educationData.userData !=null">
+    <card-components v-if="educationData.userData !=null" >
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl text-sky">Education Background</h1>
             <div >

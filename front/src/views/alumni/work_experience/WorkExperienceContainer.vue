@@ -2,7 +2,15 @@
     <div>
         <work-experience v-if="userData.userData" @delete-item="deleteWorkExper" @click-popup="(id) => { isShow = !isShow; experienceId = id; }"></work-experience>
         <work-experience-popup v-if="isShow" ref="updatePopup" @create-company="isShowCreateCompany = !isShowCreateCompany" @update-experience="updateWorkExperience" :experienceId="experienceId" @show-add-form="addForm" @click-popup="isShow = !isShow"></work-experience-popup>
-        <component-create v-if="isShowCreateCompany" @create-object="createCompany" @close-create="isShowCreateCompany = !isShowCreateCompany"></component-create>
+        <component-create v-if="isShowCreateCompany" @create-object="createCompany" @close-create="isShowCreateCompany = !isShowCreateCompany">
+                        <template #title>
+                            ADD WORK EXPERIENCE
+                        </template>
+                        
+                        <template #label_1>
+                           Company name
+                        </template>
+        </component-create>
     </div>
 </template>
 
