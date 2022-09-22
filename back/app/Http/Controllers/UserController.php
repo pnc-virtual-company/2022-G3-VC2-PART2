@@ -126,7 +126,7 @@ class UserController extends Controller
 
     public function updateCoverImage(Request $request,$id){
         $user = User::find($id);
-        if($user->cover != "IMG_COVER_avatar.png") {
+        if($user->cover != "IMG_COVER_cover.png") {
             $previousImgPath = storage_path('images/') . $user->cover;
             if (File::exists($previousImgPath)) {
                 File::delete($previousImgPath);
