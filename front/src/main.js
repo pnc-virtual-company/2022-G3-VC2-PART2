@@ -17,6 +17,7 @@ import ButtonLoading from '@/components/button_components/ButtonLoading'
 import ButtonEye from '@/components/button_components/ButtonEye'
 import ButtonEyeSlash from '@/components/button_components/ButtonEyeSlash'
 import ProfileImagesComponent from '@/components/profile_images/ProfileImagesComponent'
+import ProfileEroImagesComponent from '@/components/profile_images/ProfileEroImagesComponent'
 import GeneralInformationComponent from '@/components/general_information/GeneralInformationComponent';
 import AlertMissing from '@/components/alert_component/AlertMissing.vue';
 import CardList from '@/components/card_components/CardList';
@@ -40,6 +41,8 @@ import GeneralInformationPopup from './views/alumni/general_information/GeneralI
 import WorkExperiencePopup from './views/alumni/work_experience/WorkExperiencePopup'
 import AlumniInvitePopup from './views/admin/alumni_controll/AlumniInvitePopup'
 import EROInvitePopup from './views/admin/ERO_controll/EROInvitePopup'
+// ero popup components
+import EroInformationPopup from './views/ero/ero_profile/EroInformationPopup'
 
 // icon informations
 import TheEmail from '@/components/general_information/icon_informations/TheEmail';
@@ -50,6 +53,7 @@ import TheGender from '@/components/general_information/icon_informations/TheGen
 import TheMajor from '@/components/general_information/icon_informations/TheMajor';
 import ThePhone from '@/components/general_information/icon_informations/ThePhone';
 import TheTelegram from '@/components/general_information/icon_informations/TheTelegram';
+import EroProfileComponent from '@/components/general_information/EroProfileComponent';
 import { createPinia } from 'pinia'
 // admin 
 import AdminManagementView from '@/views/admin/AdminManagementView'
@@ -63,6 +67,7 @@ import CompanyController from '@/views/admin/company_controll/CompanyController'
 import ListCompanyView from '@/views/admin/company_controll/ListCompanyView'
 import ExploreController from '@/views/admin/explore_controll/ExploreController'
 import ExploreView from '@/views/admin/explore_controll/ExploreView'
+import EroProfile from '@/views/ero/ero_profile/EroProfile'
 // nav bar
 app.component('nav-bar', NavBar);
 
@@ -79,6 +84,7 @@ app.component('button-loading', ButtonLoading);
 app.component('button-eye', ButtonEye);
 app.component('button-eye-slash', ButtonEyeSlash);
 app.component('profile-images-component',ProfileImagesComponent)
+app.component('profile-Ero-component',ProfileEroImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
 app.component('alert_missing',AlertMissing)
 app.component('explore-information',ExploreInformation)
@@ -107,6 +113,7 @@ app.component('the-address', TheAddress);
 app.component('the-birthdate', TheBirthDate);
 app.component('the-gender', TheGender);
 app.component('the-major', TheMajor);
+app.component('Ero-profile-information', EroProfileComponent);
 
 // admin
 app.component('list-alumni', ListAlumniView);
@@ -121,5 +128,8 @@ app.component('ERO-controller', EROController);
 app.component('company-controller', CompanyController);
 app.component('explore-controller', ExploreController);
 app.component('explore-view', ExploreView);
+app.component('ero-profile', EroProfile);
+app.component('ero-information-popup', EroInformationPopup);
+
 app.use(router).mount('#app')
 

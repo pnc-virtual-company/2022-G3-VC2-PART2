@@ -10,6 +10,9 @@
                             <img class="w-9 " src="../../assets/explore.png" alt="">
                             <p class="ml-3 text-[22px] font-medium">Explore</p>
                         </router-link>
+                        <router-link  class="mr-6 py-1 rounded-lg px-4  items-center flex" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'ero_profile' }" to="/ero_profile">
+                            <p class="ml-3 text-[22px] font-medium">ERO Profile</p>
+                        </router-link>
                         <!-- <router-link  class="mr-6 py-1 rounded-lg px-4 flex items-center" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'manage' }" to="/manage">
                             <img class="w-11" src="../../assets/manage.png" alt="">
                             <p class="ml-3 text-[22px] font-medium">Manage</p>

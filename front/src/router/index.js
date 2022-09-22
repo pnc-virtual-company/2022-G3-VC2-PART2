@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ProfileAlumniView from '../views/alumni/ProfileView'
 import AdminManagementView from '../views/admin/AdminManagementView'
 import ExploreManagementView from '../views/admin/ExploreManagementView'
+import EroProfileManagementView from '../views/ero/EroProfileManagementView.vue'
 import LoginView from '../views/LoginView.vue'
 import AlumniRegister from '../views/alumni/AlumniRegister';
 import EroRegister from '../views/ero/EroRegister';
@@ -27,6 +28,11 @@ const routes = [
     path: '/explore',
     name: 'explore',
     component: ExploreManagementView
+  },
+  {
+    path: '/ero_profile',
+    name: 'ero_profile',
+    component: EroProfileManagementView
   },
   {
     path: '/login',
