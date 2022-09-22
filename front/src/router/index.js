@@ -60,7 +60,7 @@ const routes = [
     component: VerifyCode
   },
   {
-    path: '/comfirm_password',
+    path: '/confirm_password',
     component: ComfirmPassword
   },
 ]

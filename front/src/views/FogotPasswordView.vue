@@ -1,6 +1,5 @@
 <template>
     <div class=" ">
-
         <div class="flex  w-[95%] m-auto   ">
             <div class=" w-[40%]  flex justify-center mt-[7%] align-items-md-center">
                 <img src="../assets/Logo-pn.png" class="w-[100%] h-[56%] mt-[20%]">
