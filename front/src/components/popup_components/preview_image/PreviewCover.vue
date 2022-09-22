@@ -1,8 +1,8 @@
 <template>
     <popup-component>
         <card-components class="p-[0rem] ">
-            <img v-if="!showNewImage" class="w-full m-auto h-[300px] rounded-t-lg" :src="urlCover" alt="">
-            <img v-if="showNewImage" class=" w-full m-auto h-[300px] rounded-t-lg" :src="coverImage" alt="">
+            <img v-if="!showNewImage" class="object-cover object-center w-full m-auto h-[300px] rounded-t-lg" :src="urlCover" alt="">
+            <img v-if="showNewImage" class="object-cover object-center w-full m-auto h-[300px] rounded-t-lg" :src="coverImage" alt="">
             <div class="flex justify-end item-center w-full relative -top-[0.30rem] bg-red-700">
                 <div class="shadow-sm shadow-[black] h-8 mr-2 w-8 rounded-full bg-white mt-[-35px] ml-[4.8rem] flex justify-end items-center">
                     <input id="upload_cover"  name="upload_img" @change="onFileChange" type="file" class="hidden">
