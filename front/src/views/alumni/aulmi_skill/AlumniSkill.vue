@@ -17,8 +17,9 @@
         <div class="flex flex-wrap justify-start">
             <p v-for:="alumniSkill of userData.userData.skills" class="bg-gray-300 text-[18px] text-center rounded-[15px] py-[0.30rem] px-4 mt-4 mr-4">{{ alumniSkill.skill.name }}</p>
         </div>
-        <div v-if="userData.userData.skills.length <= 0" class="w-full flex flex-col justify-center itmes-center">
-            <p class="text-gray-400 text-center">You have no any skills for now!</p>
+        <div v-if="userData.userData.skills.length <= 0" class="w-full flex flex-col justify-center itmes-center text-gray-400 text-center text-[16.5px]">
+            <p>No any skills for now!</p>
+            <p>Click on button at the right side to add some</p>
         </div>
     </div>
 </template>

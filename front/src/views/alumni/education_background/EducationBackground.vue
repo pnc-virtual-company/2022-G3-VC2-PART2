@@ -12,30 +12,36 @@
                 </icon-action>
             </div>
         </div>
-        <div>
-            <card-informations  v-for:="education of orderedBackground" @delete-item="$emit('delete-item', education.id)" @click-popup="$emit('click-popup', education.id)">
-                <template #logo>
-                    <img class="w-14 h-14 mr-3 align-items-sm-center rounded-full" :src="educationData.getImage(education.school.logo)">
-                </template>
-                <template #header>{{education.major}} <span class="text-green-500 text-[16px]">({{education.degree}})</span></template>
-                <template #content-1>
-                    <a v-if="education.school.link" :href="education.school.link" target="blank" class="text-blue-800 underline decoration-[blue] hover:animate-pulse hover:pl-[1px]">{{ education.school.name }}</a>
-                    <p v-else>{{education.school.name}}</p>
-                </template>
-                <template #content-2>Address: {{education.school.address}}</template>
-                <template #content-3>
-                    <p v-if="education.is_studying">Start year: {{education.start_date}} - <span class="font-medium">Present</span></p>
-                    <p v-else>Start year: {{education.start_date}}</p>
-                </template>
-                <template v-if="!education.is_studying" #content-4>End year: {{education.end_date}}</template>
-            </card-informations>
+        <div :class="{'h-[41.1vh]': orderedBackground.length > 0}">
+            <div v-if="!orderedBackground || orderedBackground.length <= 0" class="flex flex-col text-center text-gray-400 justify-center items-center h-full w-full text-[16.5px]">
+                <p>No any education background for now!</p>
+                <p>Click on button at the right side to add some</p>
+            </div>
+            <div v-else>
+                <card-informations  v-for:="education of orderedBackground" @delete-item="$emit('delete-item', education.id)" @click-popup="$emit('click-popup', education.id)">
+                    <template #logo>
+                        <img class="w-14 h-14 mr-3 align-items-sm-center rounded-full" :src="educationData.getImage(education.school.logo)">
+                    </template>
+                    <template #header>{{education.major}} <span class="text-green-500 text-[16px]">({{education.degree}})</span></template>
+                    <template #content-1>
+                        <a v-if="education.school.link" :href="education.school.link" target="blank" class="text-sky underline decoration-sky hover:animate-pulse hover:pl-[1px]">{{ education.school.name }}</a>
+                        <p v-else>{{education.school.name}}</p>
+                    </template>
+                    <template #content-2>Address: {{education.school.address}}</template>
+                    <template #content-3>
+                        <p v-if="education.is_studying">Start date: {{educationData.getMonthYearDate(education.start_date)}} - <span class="font-medium">Present</span></p>
+                        <p v-else>Start date: {{educationData.getMonthYearDate(education.start_date)}}</p>
+                    </template>
+                    <template v-if="!education.is_studying" #content-4>End date: {{educationData.getMonthYearDate(education.end_date)}}</template>
+                </card-informations>
+            </div>
         </div>
-        <pagination-component>
+        <pagination-component v-if="orderedBackground.length > 0">
             <button-number class="hover:bg-blue-100" @click="previous">
                 <svg  class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
             </button-number>
             <button-number v-for="index in numberGination" :key="index" @click="changePagination(index)" :class="{'bg-sky' : paginationStand==index}" >{{index}}</button-number>
-            <button-number class="hover:bg-blue-100" @click="next">
+            <button-number class="border-none hover:bg-blue-100" @click="next">
                 <svg class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
             </button-number>
         </pagination-component>

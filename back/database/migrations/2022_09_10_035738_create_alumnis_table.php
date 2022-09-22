@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('alumnis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('major');
-            $table->integer('batch');
-            $table->string('address');
-            $table->string('telegram');
-            $table->string('phone');
-            $table->string('gender');
-            $table->string('birth_date');
+            $table->string('major')->nullable();
+            $table->integer('batch')->nullable();
+            $table->string('address')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('birth_date')->nullable();
             $table->timestamps();
         });
     }

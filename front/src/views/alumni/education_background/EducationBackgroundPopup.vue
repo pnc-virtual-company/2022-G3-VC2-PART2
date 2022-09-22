@@ -2,7 +2,7 @@
     <popup-component @click="onClickPopup">
         <card-components>
             <form  class="bg-white"  @input="checkValidation" >
-                <h1 class="text-center font-bold text-2xl bg-white" >Update education background</h1>
+                <h1 class="text-center font-bold text-2xl bg-white" >Education Background</h1>
                 <div class="w-full bg-white font-medium">
                     <div class="w-full bg-white font-medium">
                         <span class="bg-white">University:</span>
@@ -13,7 +13,7 @@
                                 </svg>
                             </span>
                             <div :class="{ 'border-red-400': isSchoolNull, 'border-gray-300': !isSchoolNull && !isFocusSchool, 'border-sky rounded-l-md':isFocusSchool }" class="w-full flex items-center border-2 rounded-r-md">
-                                <div v-if="schoolId" class="flex justify-end items-center ml-3 bg-gray-300 h-[75%] rounded-2xl px-3">
+                                <div v-if="schoolId" class="flex justify-end items-center ml-3 bg-[#e2e2e2] h-[75%] rounded-2xl px-3">
                                     <span class="font-normal">{{ selectedSchool }}</span>
                                     <svg @click="schoolId = null; school = null;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-red-600 ml-1 cursor-pointer">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -235,13 +235,12 @@
                 if (this.schoolId) {
                     this.isSchoolNull = false;
                 }
-                if (!this.isStudying &&!this.isMajorNull && !this.isStartDateNull && !this.isEndDateNull || this.isStudying &&!this.isMajorNull && !this.isStartDateNull) {
+                if (!this.isStudying && !this.isSchoolNull && !this.isMajorNull && !this.isStartDateNull && !this.isEndDateNull || this.isStudying &&!this.isMajorNull && !this.isStartDateNull && !this.isSchoolNull) {
                     this.errorMessage = null;
                 }
             },
 
             filterSchools() {
-                console.log('filter');
                 let filteredSchools = [];
                 if (this.school) {
                     this.educationData.schoolList.forEach(eachSchool => {
@@ -295,7 +294,7 @@
                 }
             }else{
                 this.placeholder = 'Type to find schools';
-                this.degree = 'Associat Degree';
+                this.degree = 'Associate Degree';
             }
         },
     }
