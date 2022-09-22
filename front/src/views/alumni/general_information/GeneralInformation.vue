@@ -24,7 +24,7 @@
                         <the-phone>{{alumniData.userData.alumni.phone}}</the-phone>
                     </template>
                     <template #slot6>
-                        <the-major>{{alumniData.userData.alumni.major}} - {{alumniData.userData.alumni.batch}}</the-major>
+                        <the-major>{{alumniData.userData.alumni.major.toUpperCase()}} - {{alumniData.userData.alumni.batch}}</the-major>
                     </template>
                     <template #slot7>
                         <the-telegram>{{alumniData.userData.alumni.telegram}}</the-telegram>

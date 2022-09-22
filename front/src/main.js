@@ -55,7 +55,7 @@ app.component('card-components',CardComponent);
 app.component('button-components', ButtonComponent);
 app.component('profile-images-component',ProfileImagesComponent)
 app.component('general-information-component',GeneralInformationComponent)
-app.component('alert_missing',AlertMissing)
+app.component('alert-missing',AlertMissing)
 app.component('error-message', ErrorMessage);
 app.component('preview-profile', PreviewProfile)
 app.component('preview-cover', PreviewCover)
