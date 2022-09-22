@@ -49,7 +49,9 @@
             },
 
             deleteEducation(id) {
-                this.educationData.deleteEducationBackground(id);
+                if (window.confirm('Are you sure to remove this Education Background?')) {
+                    this.educationData.deleteEducationBackground(id);
+                }
             }
         },
     }

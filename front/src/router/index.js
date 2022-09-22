@@ -8,7 +8,7 @@ const routes = [
     component: ProfileAlumniView
   },
 
- 
+  
 ]
 
 const router = createRouter({

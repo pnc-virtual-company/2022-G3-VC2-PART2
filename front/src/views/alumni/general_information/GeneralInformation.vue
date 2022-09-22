@@ -14,7 +14,7 @@
                     <template #slot2>
                         <p class="text-[20px] text-sky font-bold italic m-0 w-[50%]" >Company: {{currenWork.company.name}} </p>
                     </template>
-                    <template #slot3>
+                    <template #slot-full>
                         <the-email>{{alumniData.userData.email}}</the-email>
                     </template>
                     <template #slot4>
@@ -24,7 +24,7 @@
                         <the-phone>{{alumniData.userData.alumni.phone}}</the-phone>
                     </template>
                     <template #slot6>
-                        <the-major>{{alumniData.userData.alumni.major}}</the-major>
+                        <the-major>{{alumniData.userData.alumni.major}} - {{alumniData.userData.alumni.batch}}</the-major>
                     </template>
                     <template #slot7>
                         <the-telegram>{{alumniData.userData.alumni.telegram}}</the-telegram>
@@ -36,7 +36,7 @@
                         <the-gender>{{alumniData.userData.alumni.gender}}</the-gender>
                     </template>
                     <template #slot10>
-                        <the-birthdate>{{alumniData.userData.alumni.birth_date}}</the-birthdate>
+                        <the-birthdate>{{alumniData.getFullDate(alumniData.userData.alumni.birth_date)}}</the-birthdate>
                     </template>
                 </general-information-component>
             </div>
@@ -66,7 +66,7 @@ import AlumniSkillContainer from '../aulmi_skill/AlumniSkillContainer.vue';
         },
         computed: {
             currenWork(){
-                let currenWork = this.alumniData.userData.work_experience.filter(company => company.is_working = true)[0];
+                let currenWork = this.alumniData.userData.work_experience.filter(company => company.is_working == true)[0];
                 return currenWork;
             }
         }

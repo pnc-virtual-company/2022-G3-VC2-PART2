@@ -6,8 +6,7 @@
                 <slot name="slot2"></slot>
             </div>
             <div class="bg-white flex">
-                <slot name="slot3"></slot>
-                <slot name="slot4"></slot>
+                <slot name="slot-full"></slot>
             </div>
             <div class="bg-white flex">
                 <slot name="slot5"></slot>

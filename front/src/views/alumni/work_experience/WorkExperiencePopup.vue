@@ -2,7 +2,7 @@
     <popup-component @click="onClickPopup">
         <card-components>
             <form @input="checkValidation" class="bg-white">
-                <h1 class="text-center font-bold text-2xl bg-white" >Update work experience</h1> 
+                <h1 class="text-center font-bold text-2xl bg-white" >Work Experience</h1> 
                 <div class="flex bg-white mt-4">
                     <div class="w-full bg-white font-medium">
                         <div class="w-full bg-white font-medium">

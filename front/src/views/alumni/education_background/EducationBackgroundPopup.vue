@@ -2,7 +2,7 @@
     <popup-component @click="onClickPopup">
         <card-components>
             <form  class="bg-white"  @input="checkValidation" >
-                <h1 class="text-center font-bold text-2xl bg-white" >Update education background</h1>
+                <h1 class="text-center font-bold text-2xl bg-white" >Education Background</h1>
                 <div class="w-full bg-white font-medium">
                     <div class="w-full bg-white font-medium">
                         <span class="bg-white">University:</span>
@@ -235,13 +235,12 @@
                 if (this.schoolId) {
                     this.isSchoolNull = false;
                 }
-                if (!this.isStudying &&!this.isMajorNull && !this.isStartDateNull && !this.isEndDateNull || this.isStudying &&!this.isMajorNull && !this.isStartDateNull) {
+                if (!this.isStudying && !this.isSchoolNull && !this.isMajorNull && !this.isStartDateNull && !this.isEndDateNull || this.isStudying &&!this.isMajorNull && !this.isStartDateNull && !this.isSchoolNull) {
                     this.errorMessage = null;
                 }
             },
 
             filterSchools() {
-                console.log('filter');
                 let filteredSchools = [];
                 if (this.school) {
                     this.educationData.schoolList.forEach(eachSchool => {

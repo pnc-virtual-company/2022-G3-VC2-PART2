@@ -18,17 +18,17 @@
                 <template #logo>
                     <img class="w-14 h-14 mr-3 align-items-sm-center rounded-full" :src="userData.getImage(experience.company.logo)">
                 </template>
-                <template #header>{{ experience.position }} <span class="text-green-500 text-[16px]">({{ duration(experience.start_date, experience.end_date) }})</span></template>
+                <template #header>{{ experience.position }} <span v-if="!experience.is_working" class="text-green-500 text-[16px]">({{ duration(experience.start_date, experience.end_date) }})</span></template>
                 <template #content-1>
-                    <a v-if="experience.company.link" :href="experience.company.link" target="blank" class="text-blue-800 underline decoration-[blue] hover:animate-pulse hover:pl-[1px]">{{ experience.company.name }}</a>
+                    <a v-if="experience.company.link" :href="experience.company.link" target="blank" class="text-sky underline decoration-sky hover:animate-pulse hover:pl-[1px]">{{ experience.company.name }}</a>
                     <p v-else>{{ experience.company.name }}</p>
                 </template>
                 <template #content-2>Address: {{experience.company.address }}</template>
                 <template #content-3>
-                    <p v-if="experience.is_working">Start date: {{ experience.start_date }} - Present</p>
-                    <p v-else>Start date: {{ experience.start_date }}</p>
+                    <p v-if="experience.is_working">Start date: {{ userData.getFullDate(experience.start_date) }} - <span class="font-medium">Present</span></p>
+                    <p v-else>Start date: {{ userData.getFullDate(experience.start_date) }}</p>
                 </template>
-                <template v-if="!experience.is_working" #content-4>End date: {{experience.end_date }}</template>
+                <template v-if="!experience.is_working" #content-4>End date: {{ userData.getFullDate(experience.end_date) }}</template>
             </card-informations>
         </div>
         <pagination-component>
@@ -88,37 +88,49 @@
             },
 
             duration(start, end) {
-                let startDate = new Date(start);
-                let endDate = new Date(end);
-                let totalMillieconds = endDate - startDate;
-                let result = totalMillieconds / 31536000000;
-                if (result < 1) {
-                    let numberOfMonths = result.toString().substring(2, 3);
-                    if (numberOfMonths > 1) {
-                        return numberOfMonths + " Months";
-                    } else {
-                        return numberOfMonths + " Month";
-                    }
-                } else {
-                    let numberOfYears = result.toString().substring(0, 4);
-                    if (numberOfYears % 1 == 0) {
-                        if(numberOfYears >= 10) {
-                            return numberOfYears.toString().substring(0, 2) + " Years";
-                        } else if (numberOfYears >= 2) {
-                            return numberOfYears.toString().substring(0, 1) + " Years";
-                        } else {
-                            return numberOfYears.toString().substring(0, 1) + " Year";
-                        }
-                    }else {
-                        if(numberOfYears >= 10) {
-                            return numberOfYears.toString().substring(0, 4) + " Years";
-                        } else if (numberOfYears >= 2) {
-                            return numberOfYears.toString().substring(0, 3) + " Years";
-                        } else {
-                            return numberOfYears.toString().substring(0, 3) + " Year";
-                        }
+                let startDateArray = start.split('-');
+                let endDateArray = end.split('-');
+                let remainYears = endDateArray[0] - startDateArray[0];
+                let remainMonths = parseInt(endDateArray[1]) - parseInt(startDateArray[1]);
+                let remainDays = parseInt(endDateArray[2]) - parseInt(startDateArray[2]);
+                
+                let result = "";
+                if (remainDays < 0) {
+                    remainMonths += -1;
+                }
+                if (remainMonths < 0) {
+                    if (remainYears == 1) {
+                        remainMonths = (12 + remainMonths);
+                        remainYears = 0;
+                    } else if (remainYears >= 2) {
+                        remainYears -= 1;
+                        remainMonths = (12 + remainMonths).toString();
                     }
                 }
+
+                if (remainYears >= 1 || remainMonths >= 1) {
+                    if (remainYears >= 1) {
+                        if (remainYears >= 2) {
+                            result += remainYears.toString() + ' Years ';
+                        } else if (remainYears == 1) {
+                            result += remainYears.toString() + ' Year ';
+                        }
+                    }
+                    if (remainMonths >= 1) {
+                        if (result) {
+                            result += "and ";
+                        }
+                        if (remainMonths >= 2) {
+                            result += remainMonths.toString() + ' Months';
+                        } else if (remainMonths == 1) {
+                            result += remainMonths.toString() + ' Month';
+                        }
+                    }
+                } else {
+                    result = "Less than a month";
+                }
+
+                return result;
             }
         },
 

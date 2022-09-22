@@ -153,6 +153,20 @@ export const userInformations = defineStore('get-data', {
       axios.get('/skills/').then((res) => {
         this.skillStore = res.data;
       })
+    },
+
+    getFullDate(date) {
+      let monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      let arrayDate = date.split("-");
+      let newDate = monthList[parseInt(arrayDate[1])-1] + " " + arrayDate[2] + ", " + arrayDate[0];
+      return newDate;
+    },
+
+    getMonthYearDate(date) {
+      let monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      let arrayDate = date.split("-");
+      let newDate = monthList[parseInt(arrayDate[1])-1] + " " + arrayDate[0];
+      return newDate;
     }
   }
 });
