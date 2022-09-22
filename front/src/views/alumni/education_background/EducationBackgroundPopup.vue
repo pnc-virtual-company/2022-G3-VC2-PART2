@@ -294,7 +294,7 @@
                 }
             }else{
                 this.placeholder = 'Type to find schools';
-                this.degree = 'Associat Degree';
+                this.degree = 'Associate Degree';
             }
         },
     }
