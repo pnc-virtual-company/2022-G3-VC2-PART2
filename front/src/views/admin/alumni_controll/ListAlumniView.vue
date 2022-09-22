@@ -59,7 +59,6 @@
                 let alumniList = [];
                 if (this.keyword) {
                     let splitedKeywords = this.keyword.split(' ');
-                    // console.log(splitedKeywords);
                     this.data.alumniList.forEach(eachAlumni => {
                         let isIncludesKeyword = false;
                         splitedKeywords.forEach(eachKeyword => {

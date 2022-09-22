@@ -23,10 +23,10 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/users', [UserController::class,"store"]);
 Route::post('/users/login', [UserController::class, "logIn"]); /* The route to login user account */
 Route::group(['middleware'=> ['auth:sanctum']], function(){ 
     Route::get('/users', [UserController::class,"index"]);
-    Route::post('/users', [UserController::class,"store"]);
     Route::get('/users/{id}', [UserController::class,"show"]);
     Route::delete('/users/{id}', [UserController::class,"destroy"]);
     Route::put('/alumniIntro/{id}', [Usercontroller::class,'updateAlumnIntro']); /* The route to update alumni introduction */

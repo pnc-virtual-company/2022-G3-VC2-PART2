@@ -81,7 +81,7 @@ export const userInformations = defineStore('user-data', {
     },
 
     signUp(user){
-      axiosClient.post("/alumnis/signup/", user).then((res) => {
+      axiosClient.post('/alumnis/signup/', user).then(res=>{
         console.log(res.data);
       });
     },
@@ -132,6 +132,36 @@ export const userInformations = defineStore('user-data', {
         }
       });
       axiosClient.delete('/users/' +id);
+    },
+
+    getBatches() {
+      let yearList = [];
+      let startYear = 2007;
+      let currentYear = new Date().getFullYear();
+      while (startYear <= currentYear) {
+        yearList.push(startYear);
+        startYear += 1;
+      }
+      return yearList;
+    },
+    
+    getCompanies() {
+      let companyList = [];
+      this.companiesStore.forEach(eachCompany => {
+          if (!companyList.includes(eachCompany.name)) {
+            companyList.push(eachCompany.name);
+          }
+      });
+      return companyList;
+    },
+    getMajor() {
+      let majorList = [];
+      this.alumniStore.forEach(eachMajor => {
+          if (!majorList.includes(eachMajor)) {
+            majorList.push(eachMajor);
+          }
+      });
+      return majorList;
     },
     getCookie(name) {
       var cname = name + "=";
