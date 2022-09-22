@@ -8,6 +8,7 @@ import EroRegister from '../views/ero/EroRegister';
 import SignupView from '../views/SignupView.vue'
 import ForgotPassword from '../views/FogotPasswordView.vue'
 import VerifyCode from '../views/VerifyCodeView.vue'
+import ComfirmPassword from '../views/ComfirmPasswordView.vue'
 
 const routes = [
   {
@@ -51,6 +52,10 @@ const routes = [
   {
     path: '/verify_code',
     component: VerifyCode
+  },
+  {
+    path: '/comfirm_password',
+    component: ComfirmPassword
   },
 ]
 
