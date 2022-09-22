@@ -23,7 +23,7 @@
                 </template>
             </card-company>
         </div>
-    </div>
+    </div>  
 </template>
 
 <script>
