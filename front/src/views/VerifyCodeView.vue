@@ -5,9 +5,8 @@
             <div class=" w-[40%]  flex justify-center mt-[7%] align-items-md-center">
                 <img src="../assets/Logo-pn.png" class="w-[100%] h-[56%] mt-[20%]">
             </div>
-            <div class="mt-[7%] w-[60%] ">
-            
-                <div class="form  w-[80%] ml-[120px] bg-white opacity-[60%] p-[10px] rounded-[7px]">
+            <div class="mt-[10%] w-[60%] ">
+                <div class="form  w-[80%] mt-[3%] ml-[120px] bg-white opacity-[60%] p-[10px] rounded-[7px]">
                     <form class="p-[5px]">
                     <h1 class="text-[#2EA3F2] text-[2.5rem] text-center">Verify Code</h1>
                     <p class="text-[#2EA3F2] text-center text-[1.2rem] w-[60%] m-auto">Please enter the 6-digit verification code we sent via Gmail:</p>
