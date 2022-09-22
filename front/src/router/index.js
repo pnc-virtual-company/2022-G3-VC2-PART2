@@ -9,6 +9,10 @@ import SignupView from '../views/SignupView.vue'
 
 const routes = [
   {
+    path:"/",
+    redirect:"/login"
+  },
+  {
     path: '/profile',
     component: ProfileAlumniView
   },

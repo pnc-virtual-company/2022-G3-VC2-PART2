@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import axios from "../axios-http";
-export const userInformations = defineStore('get-data', {
+import axiosClient from "../axios-http";
+export const userInformations = defineStore('user-data', {
   state () { 
     return{
       userStore: null,
@@ -12,6 +12,7 @@ export const userInformations = defineStore('get-data', {
 
   getters: {
     userData () {
+      console.log(this.userStore)
       return this.userStore
     },
     companyList () {
@@ -25,18 +26,27 @@ export const userInformations = defineStore('get-data', {
     },
   },
   actions: {
+
     getUserData(){
-      axios.get('/users/'+21).then((res)=>{
-        this.userStore = res.data;
+      let userId = this.getCookie('user_id')
+      axiosClient.get('/users/'+userId).then((res)=>{
+        this.userStore = res.data ; 
       })
     },
 
+    showType(isPassword){
+      if(isPassword){
+          return 'password';
+      }else{
+          return 'text';
+      }
+    },
     addInviteAlumni(inviteAlumni){
-      axios.post('/invite/alumnis',inviteAlumni);
+      axiosClient.post('/invite/alumnis',inviteAlumni);
     },
 
     addInviteERO(inviteERO){
-      axios.post('/invite/eros',inviteERO);
+      axiosClient.post('/invite/eros',inviteERO);
     },
 
     deleteAlumni(id){
@@ -45,10 +55,11 @@ export const userInformations = defineStore('get-data', {
           this.alumniStore.splice(index ,1)
         }
       })
-      axios.delete('/users/'+id);
+      axiosClient.delete('/users/'+id);
     },
 
     updateAlumniGerneralInfor(data) {
+      let alumniId = this.getCookie('user_id')
       this.userStore.first_name = data.first_name;
       this.userStore.last_name = data.last_name;
       this.userStore.email = data.email;
@@ -59,7 +70,20 @@ export const userInformations = defineStore('get-data', {
       this.userStore.alumni.major = data.major;
       this.userStore.alumni.birth_date = data.birth_date
       this.userStore.alumni.address = data.address;
-      axios.put('/alumniIntro/'+1, data);
+      axiosClient.put('/alumniIntro/'+alumniId, data);
+    },
+
+
+    getCompanyList() {
+      axiosClient.get('/companies/').then((res)=>{
+        this.companiesStore = res.data;
+      })
+    },
+
+    signUp(user){
+      axiosClient.post('/alumnis/signup/', user).then(res=>{
+        console.log(res.data);
+      });
     },
     
     updateWorkExperience(id, data) {
@@ -75,19 +99,13 @@ export const userInformations = defineStore('get-data', {
             this.userStore.work_experience[index].end_date = null;
           }
           let newExperience = {position: data.position, company_id: data.company.id, is_working: data.is_working, start_date: data.start_date, end_date: data.end_date};
-          axios.put('/alumnis/experience/' + id, newExperience);
+          axiosClient.put('/alumnis/experience/' + id, newExperience);
         } 
       });
     },
 
-    getCompanyList() {
-      axios.get('/companies/').then((res)=>{
-        this.companiesStore = res.data;
-      })
-    },
-
     getAllAlumni() {
-      axios.get('/alumnis').then((res) => {
+      axiosClient.get('/alumnis').then((res) => {
         this.alumniStore = res.data;
       })
     },
@@ -98,11 +116,11 @@ export const userInformations = defineStore('get-data', {
           this.companiesStore.splice(index, 1);
         }
       });
-      axios.delete('/companies/' + id);
+      axiosClient.delete('/companies/' + id);
     },
 
     getAllEro(){
-      axios.get('/eros/').then((res)=>{
+      axiosClient.get('/eros/').then((res)=>{
         this.eroStore = res.data;
       });
     },
@@ -113,7 +131,7 @@ export const userInformations = defineStore('get-data', {
           this.eroStore.splice(index, 1);
         }
       });
-      axios.delete('/users/' +id);
+      axiosClient.delete('/users/' +id);
     },
 
     getBatches() {
@@ -144,6 +162,21 @@ export const userInformations = defineStore('get-data', {
           }
       });
       return majorList;
-    }
+    },
+    getCookie(name) {
+      var cname = name + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var splitDataToJsonFormat = decodedCookie.split(';');
+      for(var i = 0; i < splitDataToJsonFormat.length; i++){
+          var cookie = splitDataToJsonFormat[i];
+          while(cookie.charAt(0) == ' '){
+            cookie = cookie.substring(1);
+          }
+          if(cookie.indexOf(cname) == 0){
+              return cookie.substring(cname.length, cookie.length);
+          }
+      }
+      return "";
+    },
   }
 });

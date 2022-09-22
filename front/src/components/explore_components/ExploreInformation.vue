@@ -2,7 +2,7 @@
     <div class="relative w-[100%] grid grid-cols-5 gap-4 ">
             <select class="bg-white shadow   p-[13px] rounded-lg text-sky font-bold" >
                     <option class="" hidden selected>Batch</option>
-                    <option class=" bg-green-300"  v-for="batch of batches" :key="batch" :value="batch">{{ batch }}</option>
+                    <option v-for="batch of batches" :key="batch" :value="batch">{{ batch }}</option>
             </select>
             <select class="bg-white shadow p-[13px] rounded-lg text-sky font-bold ">
                 <option hidden selected>Company</option>

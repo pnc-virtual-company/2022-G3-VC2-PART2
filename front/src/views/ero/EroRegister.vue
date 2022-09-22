@@ -30,7 +30,7 @@
 
 <script>
 import { userInformations } from "@/store/userStore"
-import axios from "../../axios-http";
+import axiosClient from "../../axios-http";
 export default {
     setup() {
         const userData = userInformations();
@@ -51,7 +51,7 @@ export default {
                     first_name : this.first_name,
                     last_name : this.last_name,
                 }
-                axios.put('/eros/register/' + this.userData.userData.id, data).then((res) => {
+                axiosClient.put('/eros/register/' + this.userData.userData.id, data).then((res) => {
                     console.log(res.data);
                     this.$router.push('/manage');
                 });

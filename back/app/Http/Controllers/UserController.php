@@ -166,7 +166,7 @@ class UserController extends Controller
                 return response()->json(['sms'=>'Invalid password'],401);
             }
         } else {
-           return response()->json(['sms'=>'Log in fail'],401);
+           return response()->json(['sms'=>'Log in fail'], 401);
         }
       
     }
@@ -176,9 +176,35 @@ class UserController extends Controller
         Auth()->user()->tokens()->delete();
         return response()->Json(["sms"=>"log out succes"]);
     }
-
+    
+    public function getInfoByToken(){
+        $info = auth('sanctum')->user();
+        return Response()->json(['data'=>$info]);
+    }
     public function getAllAlumni(Request $request)
     {
         return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('role', 'alumni')->where('first_name', '!=', NULL)->where('last_name', '!=', NULL)->get();
+    }
+
+
+    public function signUpAlumni(Request $request)
+    {
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->save();
+        
+        $alumni = new Alumni();
+        $alumni->user_id = $user->id;
+        $alumni->major = $request->major;
+        $alumni->batch = $request->batch;
+        $alumni->address = $request->address;
+        $alumni->telegram = $request->telegram;
+        $alumni->phone = $request->phone;
+        $alumni->gender = $request->gender;
+        $alumni->birth_date = $request->birth_date;
+        $alumni->save();
+        return response()->Json(["message"=>"alumni sign up successfully!"]);
     }
 }

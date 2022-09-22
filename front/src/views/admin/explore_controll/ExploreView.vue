@@ -50,8 +50,6 @@
                     return myCurrentPosition.position;
                 } 
             },
-           
-           
-        }
+        },
     }
 </script>

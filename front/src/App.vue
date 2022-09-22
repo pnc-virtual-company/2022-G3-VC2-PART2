@@ -22,7 +22,6 @@ export default {
     this.userData.getCompanyList();
     this.userData.getAllEro();
     this.userData.getAllAlumni();
-    // this.userData.AddUserData();
     // this.userData.getEmails();
     // this.userData.getSchoolList();
   }
@@ -43,6 +42,5 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   object-fit: cover;
-  
 }
 </style>
