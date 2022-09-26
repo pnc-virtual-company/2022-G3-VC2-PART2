@@ -317,8 +317,8 @@ export const userInformations = defineStore('user-data', {
       let majorList = [];
       this.alumniStore.forEach(eachAlumni => {
         if (eachAlumni.first_name && eachAlumni.last_name) {
-          if (!majorList.includes(eachAlumni)) {
-            majorList.push(eachAlumni);
+          if (!majorList.includes((eachAlumni.alumni.major).toLowerCase())) {
+            majorList.push(eachAlumni.alumni.major);
           }
         }
       });

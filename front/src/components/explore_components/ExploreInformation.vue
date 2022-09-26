@@ -6,7 +6,7 @@
         </select>
         <select v-model="majorKey" class="w-[22.5%] outline-sky bg-white shadow shadow-gray-400 p-[13px] rounded-lg text-sky font-bold">
             <option hidden selected value="Major">Major</option>
-            <option v-for="major of majors" :key="major" :value='major.alumni.major'>{{major.alumni.major}}</option>
+            <option v-for="major of majors" :key="major" :value='major'>{{major}}</option>
         </select>
         <select v-model="companyKey" class="w-[22.5%] outline-sky bg-white shadow shadow-gray-400 p-[13px] rounded-lg text-sky font-bold ">
             <option hidden selected value="Company">Company</option>
