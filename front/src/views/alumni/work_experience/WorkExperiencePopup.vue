@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="isShowCompanies" class="absolute min-w-[22rem] max-h-[12rem] ml-11 overflow-auto border-l-[1px] border-r-[1px] border-b-[1px] bg-white border-sky rounded-none cursor-pointer font-normal text-base block flex-1">
+                        <div v-if="isShowCompanies" class="absolute min-w-[22rem] max-h-[12rem] ml-11 overflow-y-auto scroll-box border-l-[1px] border-r-[1px] border-b-[1px] bg-white border-sky rounded-none cursor-pointer font-normal text-base block flex-1">
                             <div @click="$emit('create-company'); isShowCompanies = false" class="flex items-center py-2 pl-6 hover:bg-[#d9eafd]">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 rounded-full border-[2px] border-[blue] text-[blue] font-bold mr-[10px]">
                                     <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />

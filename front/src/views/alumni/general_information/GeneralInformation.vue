@@ -4,7 +4,7 @@
         <card-components class="p-[0rem]" v-if="alumniData.userData !=null">
             <div>
                 <div class="pb-4">
-                    <profile-images-component @click-profile="showEditProfile = !showEditProfile" @click-cover="showEditCover = !showEditCover" class=""></profile-images-component>
+                    <profile-images-component @click-reset="$emit('click-reset')" @click-profile="showEditProfile = !showEditProfile" @click-cover="showEditCover = !showEditCover" class=""></profile-images-component>
                 </div>
                 <hr class="w-[95%] m-auto border-gray-300">
                 <general-information-component class="w-full m-auto p-[20px]" @click-popup="$emit('click-popup')">   
@@ -21,7 +21,7 @@
                         <the-batch>{{alumniData.userData.alumni.batch}}</the-batch>
                     </template>
                     <template #slot5>
-                        <the-phone>{{alumniData.userData.alumni.phone}}</the-phone>
+                        
                     </template>
                     <template #slot6>
                         <the-major>{{alumniData.userData.alumni.major.toUpperCase()}} - {{alumniData.userData.alumni.batch}}</the-major>
@@ -49,9 +49,7 @@
 
 <script>
     import {userInformations} from "../../../store/userStore"
-import AlumniSkillContainer from '../aulmi_skill/AlumniSkillContainer.vue';
     export default {
-  components: { AlumniSkillContainer },
         setup(){
             const alumniData = userInformations();
             return {

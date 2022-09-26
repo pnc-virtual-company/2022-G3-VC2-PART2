@@ -1,7 +1,8 @@
 <template>
     <div class=" mt-[20px]">
-        <general-information @click-popup="isShow = !isShow"> </general-information>
+        <general-information @click-reset="isShowReset = !isShowReset" @click-popup="isShow = !isShow"></general-information>
         <general-information-popup v-if="isShow" @click-popup="isShow = !isShow" @update-data="updateGeneralInfor"></general-information-popup>
+        <reset-password v-if="isShowReset" @click-reset="isShowReset = !isShowReset"></reset-password>
     </div>
 </template>
 
@@ -19,6 +20,7 @@
                 isShow: false,
                 showEditProfile: false,
                 showEditCover: false,
+                isShowReset: false,
             }
         },
         methods: {

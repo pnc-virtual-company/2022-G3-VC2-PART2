@@ -6,36 +6,58 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Alumni;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return User::all();
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function inviteEro(Request $request)
     {
-         $user = new User();
-        $user-> first_name = $request->first_name;
-        $user-> last_name = $request->last_name;
-        $user-> email = $request->email;
-        $user-> password = $request->password;
-        $user-> role = $request->role;
-        $user-> profile = $request->profile;
-        $user-> cover = $request->cover;
-        $user-> save();
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = 'ero';
+        $user->profile = 'IMG_PROFILE_avatar.png';
+        $user->cover = 'IMG_COVER_cover.png';
+        $user->is_accepted = TRUE;
+        $user->is_seen = TRUE;
+        $user->save();
+        return response()->Json(["message"=>"ero is created successfully!"]);
+    }
+
+    public function inviteAlumni(Request $request)
+    {
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = 'alumni';
+        $user->profile = 'IMG_PROFILE_avatar.png';
+        $user->cover = 'IMG_COVER_cover.png';
+        $user->is_accepted = TRUE;
+        $user->is_seen = TRUE;
+        $user->save();
         return response()->Json(["message"=>"alumni is created successfully!"]);
+    }
+
+    public function registerEro(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->save();
+
+        return response()->json(["sms"=> "Ero is register successfully!"]);
+    }
+
+    public function getEro()
+    {
+       return User::where('role', 'ero')->get();
     }
     
     /**
@@ -51,12 +73,9 @@ class UserController extends Controller
             if ($user->role == 'alumni') {
                 return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('id', $id)->first();
             } 
-            // else if ($user->role == 'ero') {
-            //     return User::with('alumni')->first();
-            // }
-            // else if ($user->role == 'admin') {
-            //     return User::with('admin')->first();
-            // }
+            else {
+                return $user;
+            }
         }
         abort(404);
     }
@@ -69,7 +88,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-      public function updateAlumnIntro(Request $request, $id)
+      public function updateAlumnGeneralInfor(Request $request, $id)
     {
         $user =  User::findOrFail($id);
         $user-> first_name = $request->first_name;
@@ -105,7 +124,62 @@ class UserController extends Controller
     
     public function getEmails($id)
     {
-        return User::select('email')->where('id','!=', $id)->get();
+        return User::select('email')->where('id','!=', $id)->where('role', '!=', 'admin')->get();
+    }
+
+    public function resetPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if (Hash::check($request->confirm_current_password, $user->password)) {
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            return Response()->json(['message' => 'password is changed']);
+        } else {
+            return Response()->json(['message' => 'failed']);
+        }
+    }
+
+    public function logIn(Request $request)
+    {
+        //check email
+        $user = User::where('email', $request->email)->first();
+        //check password
+        if($user){
+            if(Hash::check($request->password, $user->password)){
+                $token = $user->createToken('mytoken')->plainTextToken;
+                $respone = [
+                    'user'=>$user,
+                    'token'=>$token
+                ];
+                return response()->json($respone);
+            } else {
+                return response()->json(['sms'=>'Invalid password'],401);
+            }
+        } else {
+           return response()->json(['sms'=>'Log in fail'], 401);
+        }
+      
+    }
+
+    public function logOut(Request $request)
+    {
+        Auth()->user()->tokens()->delete();
+        return response()->Json(["sms"=>"log out succes"]);
+    }
+    
+    public function getInfoByToken(){
+        $info = auth('sanctum')->user();
+        return Response()->json(['data'=>$info]);
+    }
+
+    public function getAllAlumni(Request $request)
+    {
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('role', 'alumni')->where('is_accepted', TRUE)->get();
+    }
+
+    public function getUnacceptedAlumni(Request $request)
+    {
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('role', 'alumni')->where('is_accepted', FALSE)->get();
     }
 
     public function updateProfileImage(Request $request,$id){
@@ -153,4 +227,52 @@ class UserController extends Controller
         $response->header("Content-Type", $type);
         return $response;
     }
+
+    public function signUpAlumni(Request $request)
+    {
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->role = 'alumni';
+        $user->profile = 'IMG_PROFILE_avatar.png';
+        $user->cover = 'IMG_COVER_cover.png';
+        $user->is_accepted = FALSE;
+        $user->is_seen = FALSE;
+        $user->save();
+        
+        $alumni = new Alumni();
+        $alumni->user_id = $user->id;
+        $alumni->major = $request->major;
+        $alumni->batch = $request->batch;
+        $alumni->address = $request->address;
+        $alumni->telegram = $request->telegram;
+        $alumni->phone = $request->phone;
+        $alumni->gender = $request->gender;
+        $alumni->birth_date = $request->birth_date;
+        $alumni->save();
+        return response()->Json(["message"=>"alumni sign up successfully!"]);
     }
+
+    public function updateEroInfor(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $user->email = $request->email;
+        $user->save();
+
+        return response()->Json(["message"=>"information is updated successfully!"]);
+    }
+
+    public function makeAsSeen($id) {
+        $user = User::findOrFail($id);
+        $user->is_seen = TRUE;
+        $user->save();
+        return response()->Json(["message"=>"request is seen by ero!"]);
+    }
+
+    public function acceptAlumniAccount(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $user->is_accepted = TRUE;
+        $user->save();
+        return response()->Json(["message"=>"request is accepted by ero!"]);
+    }
+}

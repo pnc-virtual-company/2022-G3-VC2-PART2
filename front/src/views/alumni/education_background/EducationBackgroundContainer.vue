@@ -6,11 +6,12 @@
             <template #title>
                 ADD UNIVERSIY
             </template>
-            
+            <template #logo>
+                <img src="../../../assets/school_logo.jpg" class="w-full h-full rounded-full"> 
+            </template> 
             <template #label_1>
                University name
             </template>
-
         </component-create>
     </div>
 </template>

@@ -23,7 +23,7 @@
                         <template #logo>
                             <img class="w-14 h-14 mr-3 align-items-sm-center rounded-full" :src="userData.getImage(experience.company.logo)">
                         </template>
-                        <template #header>{{ experience.position }} <span v-if="!experience.is_working" class="text-green-500 text-[16px]">({{ duration(experience.start_date, experience.end_date) }})</span></template>
+                        <template #header>{{ experience.position }} <span v-if="!experience.is_working" class="text-green-500 text-[16px]">({{ userData.duration(experience.start_date, experience.end_date) }})</span></template>
                         <template #content-1>
                             <a v-if="experience.company.link" :href="experience.company.link" target="blank" class="text-sky underline decoration-sky hover:animate-pulse hover:pl-[1px]">{{ experience.company.name }}</a>
                             <p v-else>{{ experience.company.name }}</p>
@@ -92,52 +92,6 @@
                 }
                 return result;
             },
-
-            duration(start, end) {
-                let startDateArray = start.split('-');
-                let endDateArray = end.split('-');
-                let remainYears = endDateArray[0] - startDateArray[0];
-                let remainMonths = parseInt(endDateArray[1]) - parseInt(startDateArray[1]);
-                let remainDays = parseInt(endDateArray[2]) - parseInt(startDateArray[2]);
-                
-                let result = "";
-                if (remainDays < 0) {
-                    remainMonths += -1;
-                }
-                if (remainMonths < 0) {
-                    if (remainYears == 1) {
-                        remainMonths = (12 + remainMonths);
-                        remainYears = 0;
-                    } else if (remainYears >= 2) {
-                        remainYears -= 1;
-                        remainMonths = (12 + remainMonths).toString();
-                    }
-                }
-
-                if (remainYears >= 1 || remainMonths >= 1) {
-                    if (remainYears >= 1) {
-                        if (remainYears >= 2) {
-                            result += remainYears.toString() + ' Years ';
-                        } else if (remainYears == 1) {
-                            result += remainYears.toString() + ' Year ';
-                        }
-                    }
-                    if (remainMonths >= 1) {
-                        if (result) {
-                            result += "and ";
-                        }
-                        if (remainMonths >= 2) {
-                            result += remainMonths.toString() + ' Months';
-                        } else if (remainMonths == 1) {
-                            result += remainMonths.toString() + ' Month';
-                        }
-                    }
-                } else {
-                    result = "Less than a month";
-                }
-
-                return result;
-            }
         },
 
         computed: {
@@ -154,7 +108,6 @@
                         expList.push(eachExp);
                     }
                 });
-
                 let notPresentExp = [];
                 this.userData.userData.work_experience.forEach(eachExp => {
                     if (!eachExp.is_working) {

@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-between mt-[-6rem] ml-[20px]">
+        <div class="flex justify-between items-end mt-[-6rem] ml-11">
             <div class="flex flex-col items-center">
                 <div>
                     <img alt="Vue logo" class="object-cover  object-center w-[148px] h-[148px] rounded-full" :src="urlProfile" width="120">
@@ -28,6 +28,10 @@
                 </div>
                 <h1 class="bg-white font-bold text-xl mt-2">{{userInfor.userData.first_name}} {{userInfor.userData.last_name}}</h1>
             </div>
+            <button-components @click="$emit('click-reset')" class="bg-red-500 border-none w-fit pl-2 pr-3 text-white flex items-center mr-[21px]">
+                <img class="w-[28px] h-[28px]" src="../../assets/reset_password.png">
+                <p class="text-[1rem]">Reset Password</p>
+            </button-components>
         </div>
     </div>
 </template>
@@ -58,7 +62,6 @@
                 return this.userInfor.userData.profile;
             }
         },
-
     },
 }
 </script>

@@ -104,7 +104,7 @@
                 let formData = new FormData();
                 formData.append('profile', this.image);
                 formData.append('_method', 'PUT');
-                this.userInfor.uploadImage('users/update_profile/1', formData);
+                this.userInfor.uploadImage('users/update_profile/'+this.userInfor.userData.id, formData);
             }
             this.hidePopup()
         },

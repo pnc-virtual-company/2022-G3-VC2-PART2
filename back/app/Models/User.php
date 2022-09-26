@@ -32,7 +32,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'updated_at',
-        'created_at',
+    ];
+
+    protected $casts = [
+        'created_at' => 'date:H:i - M d, Y',
+        'is_seen' => 'boolean',
+        'is_accepted' => 'boolean',
     ];
 
     /**
@@ -56,5 +61,10 @@ class User extends Authenticatable
     // public function ero(){
     //     return $this->hasOne(Alumni::class);
     // }
+
+    public function eros()
+    {
+        return $this->hasMany(Ero::class);
+    }
     
 }

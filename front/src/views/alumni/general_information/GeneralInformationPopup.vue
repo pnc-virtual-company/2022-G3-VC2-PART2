@@ -219,7 +219,6 @@
                 }
             }
             return false
-
         },
         isEmailExisted(myEmail){
             for (let eachEmail of this.userEmails){

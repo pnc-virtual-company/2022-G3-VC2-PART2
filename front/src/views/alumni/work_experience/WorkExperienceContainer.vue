@@ -6,7 +6,9 @@
                         <template #title>
                             ADD WORK EXPERIENCE
                         </template>
-                        
+                        <template #logo>
+                            <img src="../../../assets/company_logo.jpg" class="w-full h-full rounded-full"> 
+                        </template>                        
                         <template #label_1>
                            Company name
                         </template>

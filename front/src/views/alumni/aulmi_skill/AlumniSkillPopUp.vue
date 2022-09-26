@@ -31,7 +31,7 @@
                             </button-components>
                         </div>
                     </div>
-                    <div v-if="isShowSkills && skillsToDisplay.length > 0" class="absolute min-w-[22rem] max-h-[12rem] ml-11 overflow-auto border-l-[1px] border-r-[1px] border-b-[1px] bg-white border-sky rounded-none cursor-pointer font-normal text-base block flex-1">
+                    <div v-if="isShowSkills && skillsToDisplay.length > 0" class="absolute min-w-[22rem] max-h-[12rem] ml-11 overflow-y-auto scroll-box border-l-[1px] border-r-[1px] border-b-[1px] bg-white border-sky rounded-none cursor-pointer font-normal text-base block flex-1">
                         <div v-for:="eachSkill of skillsToDisplay" @click="addSkill(eachSkill)" class="flex items-center py-2 pl-4 hover:bg-[#d9eafd]">
                             <div class="w-[1.5rem] h-[1.25rem] flex justify-start items-center">
                                 <svg v-if="isSkillExisted(eachSkill.id)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 font-bold text-green-600">

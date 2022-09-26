@@ -23,7 +23,6 @@ class AlumniSchool extends Model
         'is_studying' => 'boolean',
     ];
 
-
     // Relationship
     public function school(){
         return $this->belongsTo(School::class);

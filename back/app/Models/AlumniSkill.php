@@ -21,7 +21,7 @@ class AlumniSkill extends Model
     ];
 
     // Relationship
-    public function skill(){
+    public function skill() {
         return $this->belongsTo(Skill::class);
     }
 }

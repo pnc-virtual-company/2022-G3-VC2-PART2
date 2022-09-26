@@ -8,7 +8,7 @@
                     </h1>
                     <div class="w-24 h-24 m-auto mt-3 flex justify-center items-end">
                         <img v-if="logoToDisplay" :src="logoToDisplay" class="w-full h-full rounded-full">
-                        <img v-else src="../../assets/logo.png" class="w-full h-full rounded-full">
+                        <slot v-else name="logo"></slot>
                         <input id="logo-upload" type="file" hidden @change="uploadImage">
                         <div class="shadow-sm shadow-[black] h-8 w-8 rounded-full bg-white mt-[-35px] absolute ml-[4rem] hover:bg-gray-300 flex justify-center items-center">
                             <label for="logo-upload" class="w-full h-full flex justify-center items-center rounded-full cursor-pointer">

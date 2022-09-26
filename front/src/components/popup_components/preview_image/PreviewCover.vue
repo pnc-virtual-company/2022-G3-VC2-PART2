@@ -93,9 +93,9 @@
                 this.$emit('click-popup')
                 this.hidePopup()
                 let formData = new FormData();
-                formData.append('cover', this.image) ;
+                formData.append('cover', this.image);
                 formData.append('_method', 'PUT');
-                this.userInfor.uploadImage('users/update_cover/1', formData);
+                this.userInfor.uploadImage('users/update_cover/'+ this.userInfor.userData.id, formData);
             }
             this.hidePopup()
         },
