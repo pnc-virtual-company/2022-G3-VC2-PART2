@@ -39,6 +39,15 @@ Route::get('/skills', [SkillController::class, "index"]);
 Route::get('/schools', [SchoolController::class, "index"]);
 Route::post('/alumnis/signup', [UserController::class,"signUpAlumni"]);/*the route to sign up alumni */
 
+// Email 
+Route::put('/verify_code', [UserController::class, 'verifyCode']);
+Route::post('/users/verify', [UserController::class, 'checkVerifyCode']);
+Route::post('/users/create_password/{id}', [UserController::class, 'saveCreatedPassword']);
+
+// Register
+Route::put('/eros/register/{id}', [UserController::class, "registerEro"]); /**The route use to create ero account */
+Route::put('/alumnis/register/{id}', [UserController::class, "registerAlumni"]); /**The route use to create ero account */
+
 // Private routes
 Route::group(['middleware'=> ['auth:sanctum']], function(){ 
     // User routes
@@ -56,7 +65,6 @@ Route::group(['middleware'=> ['auth:sanctum']], function(){
     // ERO and Alumni management
     Route::post('/invite/eros/', [UserController::class, "inviteEro"]); /**The route use to create ero account */
     Route::post('/invite/alumnis/', [UserController::class, "inviteAlumni"]); /**The route use to create ero account */
-    Route::put('/eros/register/{id}', [UserController::class, "registerEro"]); /**The route use to create ero account */
     Route::get('/eros', [UserController::class, "getEro"]);  
     
     // Alumni company routes

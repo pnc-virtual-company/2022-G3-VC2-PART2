@@ -13,7 +13,7 @@
     setup(){
         const userData = userInformations();
         return {
-            userData
+          userData
         }
     },
 

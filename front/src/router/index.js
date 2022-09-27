@@ -9,7 +9,6 @@ import EroRegister from '../views/ero/EroRegister';
 import SignupView from '../views/SignupView.vue'
 import ForgotPassword from '../views/FogotPasswordView.vue'
 import VerifyCode from '../views/VerifyCodeView.vue'
-import ComfirmPassword from '../views/ComfirmPasswordView.vue'
 import RequestsView from '../views/ero/RequestsView'
 import PageNotFound from '../views/PageNotFound';
 
@@ -79,8 +78,8 @@ const routes = [
     }
   },
   {
-    path: '/alumni/register',
-    name: 'alumni/register',
+    path: '/alumni_register',
+    name: 'alumni_register',
     component: AlumniRegister,
     meta:{
       requireAuth: true,
@@ -88,8 +87,8 @@ const routes = [
     }
   },
   {
-    path: '/ero/register',
-    name: 'ero/register',
+    path: '/ero_register',
+    name: 'ero_register',
     component: EroRegister,
     meta:{
       requireAuth: true,
@@ -116,14 +115,6 @@ const routes = [
     path: '/verify_code',
     name: 'verify_code',
     component: VerifyCode,
-    meta:{
-      requireAuth: false,
-    }
-  },
-  {
-    path: '/confirm_password',
-    name: 'confirm_password',
-    component: ComfirmPassword,
     meta:{
       requireAuth: false,
     }
@@ -177,7 +168,7 @@ router.beforeEach((to, from, next) => {
   } else {
     if(token) {
       if (to.path == "/404") {
-        next();
+        next(from.path);
       } else {
         if (role == 'admin') {
           next('/manage');
@@ -188,7 +179,7 @@ router.beforeEach((to, from, next) => {
         }
       }
     } else {
-      if(to.path == "/signup" || to.path == "/login" || to.path == "/forgot_password") {
+      if(to.path == "/signup" || to.path == "/login" || to.path == "/forgot_password" || to.path == "/verify_code" && from.path == "/forgot_password") {
         next();
       } else {
         next('/login');

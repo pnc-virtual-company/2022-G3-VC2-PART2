@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex items-center w-[95%] m-auto mt-20">
+        <div v-if="!isSignSuccess" class="flex items-center w-[95%] m-auto mt-20">
             <div class="w-[40%]">
                 <img src="../assets/Logo-pn.png" class="w-[100%] h-[60%]">
             </div>
@@ -101,6 +101,18 @@
                 </div>
             </div>
         </div>
+
+        <div v-else class="w-full mt-[11rem] flex justify-center items-center">
+            <div class="w-[40rem] bg-white pt-[10px] pb-[25px] text-lg text-center shadow shadow-gray-400 rounded-md">
+                <div class="w-[80%] m-auto">
+                    <img src="../assets/success_registration.png" class="h-[7rem] m-auto">
+                    <p class="text-2xl text-sky font-bold mb-2">Congratulation!</p>
+                    <p class="font-medium mb-4">Your registration request is sent to ERO of PNC</p>
+                    <p class="text-slate-600">You are requested to wait until the ERO team accept your request, then we will send you with attached password via email address after ERO team accept your registration.</p>
+                    <p class="mt-4 font-medium text-xl text-sky-hover">Thank you for using our application</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -125,6 +137,7 @@
                 birth_date:"",
                 gender:"male",
                 major: "Major",
+                isSignSuccess: false,
             }
         },
         methods:{
@@ -143,6 +156,7 @@
                         major : this.major
                     }
                     this.userData.signUp(user)
+                    this.isSignSuccess = true;
                 }
             }
         }

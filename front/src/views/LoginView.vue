@@ -1,6 +1,6 @@
 <template>
-    <div class="flex justify-center items-center mt-[7rem]">
-        <div class="flex w-[95%] justify-center items-center m-auto"> 
+    <div class="flex justify-center items-center">
+        <div v-if="!isAlumniRegister && !isEroRegister" class="flex w-[95%] mt-[7rem] justify-center items-center m-auto"> 
             <div class="w-[40%]">
                 <img src="../assets/Logo-pn.png" class="w-[100%] h-[60%]">
             </div>
@@ -11,7 +11,7 @@
                 <div class="form shadow shadow-gray-500 w-[80%] ml-[120px] bg-white opacity-[80%] p-[10px] rounded-[7px]">
                     <form class="py-[5px] px-[20px]" @submit.prevent="login">
                         <div class="relative w-full group p-[5px] mt-5">
-                            <input type="email"
+                            <input type="email" ref="emailField"
                                 v-model="email"
                                 class="block py-1 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder="Email" required="true">
@@ -53,6 +53,9 @@
                 </div>
             </div>
         </div>
+
+        <alumni-register v-if="isAlumniRegister" @saveAlumniRegister="saveAlumniRegister"></alumni-register>
+        <ero-register v-if="isEroRegister" @saveEroRegister="saveEroRegister"></ero-register>
     </div>
 </template>
 <script>
@@ -80,6 +83,9 @@
                 isCorrectPassword: false,
                 isCorrectEmail: false,
                 errorMessage: null,
+                isAlumniRegister: false,
+                isEroRegister: false,
+                saveUserId: null,
             }
         },
 
@@ -90,16 +96,24 @@
                     let user = {email: this.email, password: this.password}
                     axiosClient.post('users/login', user).then( res => {
                         this.showLoading = false;
-                        this.userCookie.setCookie('user_token', res.data.token,30)
-                        this.userCookie.setCookie('user_id', res.data.user.id,30)
-                        this.userCookie.setCookie('user_role', res.data.user.role,30)
-                        if(res.data.user.role == 'alumni'){
-                            // window.location.reload()
-                            this.$router.go('profile')
-                        }else if(res.data.user.role == 'ero'){
-                            this.$router.go('ero_profile')
-                        }else if (res.data.user.role == 'admin') {
-                            this.$router.go('manage');
+                        if (res.data.user.first_name && res.data.user.last_name) {
+                            this.userCookie.setCookie('user_token', res.data.token,30)
+                            this.userCookie.setCookie('user_id', res.data.user.id,30)
+                            this.userCookie.setCookie('user_role', res.data.user.role,30)
+                            if(res.data.user.role == 'alumni'){
+                                this.$router.go('profile')
+                            }else if(res.data.user.role == 'ero'){
+                                this.$router.go('ero_profile')
+                            }else if (res.data.user.role == 'admin') {
+                                this.$router.go('manage');
+                            }
+                        } else {
+                            this.saveUserId = res.data.user.id;
+                            if(res.data.user.role == 'alumni'){
+                                this.isAlumniRegister = true;
+                            }else if(res.data.user.role == 'ero'){
+                                this.isEroRegister = true;
+                            }
                         }
                     }).catch(()=>{ 
                         this.showLoading = false;
@@ -131,6 +145,30 @@
                     return false;
                 }
             },
+
+            saveEroRegister(data) {
+                axiosClient.put('/eros/register/' + this.saveUserId, data).then((res) => {
+                    this.userCookie.setCookie('user_token', res.data.token,30)
+                    this.userCookie.setCookie('user_id', res.data.user.id,30)
+                    this.userCookie.setCookie('user_role', res.data.user.role,30)
+                    this.$router.go('/ero_profile');
+                });
+            },
+            
+            saveAlumniRegister(data) {
+                axiosClient.put('/alumnis/register/' + this.saveUserId, data).then((res) => {
+                    this.userCookie.setCookie('user_token', res.data.token,30)
+                    this.userCookie.setCookie('user_id', res.data.user.id,30)
+                    this.userCookie.setCookie('user_role', res.data.user.role,30)
+                    this.$router.go('/profile');
+                });
+            }
         },
+
+        mounted() {
+            if (!this.isAlumniRegister && !this.isEroRegister) {
+                this.$refs.emailField.focus();
+            }
+        }
     }
 </script>

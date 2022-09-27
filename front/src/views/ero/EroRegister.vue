@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex  w-[95%] m-auto mt-[6%]">
+        <div class="flex  w-[95%] m-auto mt-[9%]">
             <div class=" w-[40%] mt-[1%]   flex justify-center  align-items-md-center">
                 <img src="../../assets/Logo-pn.png" class="w-[100%] h-[60%] mt-[20%]">
             </div>
@@ -9,7 +9,7 @@
                     <header class="text-center text-[3rem] ml-[80px]">
                         <p class="text-[#2EA3F2]">Register Account </p>
                     </header>
-                    <div class="form  w-[80%] ml-[120px] bg-white opacity-[60%] p-[20px] rounded-[7px]">
+                    <div class="form  w-[80%] ml-[120px] bg-white opacity-[90%] shadow shadow-gray-400 p-[20px] rounded-[7px]">
                         <form class="p-[3px]" @submit.prevent="registerEro">
                             <div class="grid gap-6 mb-6 md:grid-cols-2 w-[100%] m-auto">
                                 <div>
@@ -20,7 +20,8 @@
                                 </div>
                             </div>
                             <div class="w-[100%] m-auto">
-                                <button type="submit" class="text-white bg-sky hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[1.1rem] w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign in</button>
+                                <button type="submit" class="text-white bg-sky hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[1.1rem] w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Save</button>
                             </div>
                         </form>
                     </div>
@@ -31,15 +32,7 @@
 </template>
 
 <script>
-import { userInformations } from "@/store/userStore"
-import axiosClient from "../../axios-http";
 export default {
-    setup() {
-        const userData = userInformations();
-        return {
-        userData
-        }
-    },
     data(){
         return {
             first_name:"",
@@ -53,10 +46,7 @@ export default {
                     first_name : this.first_name,
                     last_name : this.last_name,
                 }
-                axiosClient.put('/eros/register/' + this.userData.userData.id, data).then((res) => {
-                    console.log(res.data);
-                    this.$router.push('/manage');
-                });
+                this.$emit('saveEroRegister', data);
             }
         }
     }

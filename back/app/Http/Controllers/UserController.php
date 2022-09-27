@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Alumni;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\MailController;
 
 class UserController extends Controller
 {
@@ -28,6 +29,8 @@ class UserController extends Controller
         $user->is_accepted = TRUE;
         $user->is_seen = TRUE;
         $user->save();
+        $data = ['email' => $user->email, 'password' => $request->password];
+        (new MailController)->sendEroInvitation($data);
         return response()->Json(["message"=>"ero is created successfully!"]);
     }
 
@@ -42,6 +45,11 @@ class UserController extends Controller
         $user->is_accepted = TRUE;
         $user->is_seen = TRUE;
         $user->save();
+        $alumni = new Alumni();
+        $alumni->user_id = $user->id;
+        $alumni->save();
+        $data = ['email' => $user->email, 'password' => $request->password];
+        (new MailController)->sendAlumniInvitation($data);
         return response()->Json(["message"=>"alumni is created successfully!"]);
     }
 
@@ -51,8 +59,36 @@ class UserController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->save();
+        $token = $user->createToken('mytoken')->plainTextToken;
+        $respone = [
+            'user'=>$user,
+            'token'=>$token
+        ];
+        return response()->json($respone);
+    }
 
-        return response()->json(["sms"=> "Ero is register successfully!"]);
+    public function registerAlumni(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->save();
+        $alumni = Alumni::where('user_id', $user->id)->update([
+            'phone' => $request->phone,
+            'telegram' => $request->telegram,
+            'batch' => $request->batch,
+            'major' => $request->major,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
+        ]);
+
+        $token = $user->createToken('mytoken')->plainTextToken;
+        $respone = [
+            'user'=>$user,
+            'token'=>$token
+        ];
+        return response()->json($respone);
     }
 
     public function getEro()
@@ -146,11 +182,17 @@ class UserController extends Controller
         //check password
         if($user){
             if(Hash::check($request->password, $user->password)){
-                $token = $user->createToken('mytoken')->plainTextToken;
-                $respone = [
-                    'user'=>$user,
-                    'token'=>$token
-                ];
+                if (!$user->first_name && !$user->last_name || $user->first_name == NULL && $user->last_name == NULL) {
+                    $respone = [
+                        'user'=>$user,
+                    ];
+                } else {
+                    $token = $user->createToken('mytoken')->plainTextToken;
+                    $respone = [
+                        'user'=>$user,
+                        'token'=>$token
+                    ];
+                }
                 return response()->json($respone);
             } else {
                 return response()->json(['sms'=>'Invalid password'],401);
@@ -251,6 +293,7 @@ class UserController extends Controller
         $alumni->gender = $request->gender;
         $alumni->birth_date = $request->birth_date;
         $alumni->save();
+        (new MailController)->sendRegistrationEmail($user);
         return response()->Json(["message"=>"alumni sign up successfully!"]);
     }
 
@@ -272,7 +315,37 @@ class UserController extends Controller
     public function acceptAlumniAccount(Request $request, $id) {
         $user = User::findOrFail($id);
         $user->is_accepted = TRUE;
+        $user->password = Hash::make($request->password);
         $user->save();
+        $data = ['email' => $user->email, 'password' => $request->password];
+        (new MailController)->sendAcceptanceMail($data);
         return response()->Json(["message"=>"request is accepted by ero!"]);
+    }
+
+    public function verifyCode(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        $user->verify_code = $request->verify_code;
+        $user->save();
+        (new MailController)->sendVerifyCode($request);
+        return response()->Json(["message"=>"verify code sent"]);
+    }
+
+    public function checkVerifyCode(Request $request)
+    {
+        $user = User::where('email', $request->email)->where('verify_code', $request->verify_code)->first();
+        if ($user) {
+            return $user->id;
+        }
+        abort(404);
+    }
+
+    public function saveCreatedPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($request->password);
+        $user->verify_code = NULL;
+        $user->save();
+        return response()->Json(["message"=>"password save"]);
     }
 }

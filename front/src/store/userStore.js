@@ -12,9 +12,13 @@ export const userInformations = defineStore('user-data', {
       eroStore: null,
       alumniStore: null,
       unacceptedAlumniStore: null,
+      verifyEmailStore: null,
     }
   },
   getters: {
+    getVerifyCodeEmail() {
+      return this.verifyEmailStore;
+    },
     showFormAddExperience(){
       return this.isShowAddExperienceForm;
     },
@@ -45,6 +49,9 @@ export const userInformations = defineStore('user-data', {
   },
 
   actions: {
+    storeEmail(value) {
+      this.verifyEmailStore = value;
+    },
     getUserData(){
       let userId = this.getCookie('user_id')
       axiosClient.get('/users/'+userId).then((res)=>{
@@ -128,9 +135,7 @@ export const userInformations = defineStore('user-data', {
     },
 
     signUp(user){
-      axiosClient.post('/alumnis/signup/', user).then(res=>{
-        console.log(res.data);
-      });
+      axiosClient.post('/alumnis/signup/', user);
     },
     
     updateWorkExperience(id, data) {
@@ -399,7 +404,30 @@ export const userInformations = defineStore('user-data', {
           this.unacceptedAlumni.splice(index, 1)
         }
       })
-      axiosClient.put('/users/request/accept/' + id);
-    }
+      let generatedPassword = this.generatePassword();
+      axiosClient.put('/users/request/accept/' + id, {password: generatedPassword});
+    },
+
+    generateVerifyCode(){
+      var chars = "569ABCD619EFG234HIJ0168KLMN2347PQRSTU4589VWXYZ234";
+      var string_length = 6;
+      var verifyCode = '';
+      for (var i=0; i<string_length; i++) {
+          var rnum = Math.floor(Math.random() * chars.length);
+          verifyCode += chars.substring(rnum,rnum+1);
+      }
+      return verifyCode;
+    },
+
+    generatePassword(){
+      var chars = "abcgkf569ABCDqwerty619EFGyuiop234HIJ0ghjkl168KLMlkjhN2347xcvbPQRSTU458mnasdf9VWXYmnbZ234";
+      var string_length = 8;
+      var password = '';
+      for (var i=0; i<string_length; i++) {
+          var rnum = Math.floor(Math.random() * chars.length);
+          password += chars.substring(rnum,rnum+1);
+      }
+      return password;
+    },
   }
 });

@@ -1,7 +1,7 @@
 <template>
     <popup-component>
         <card-components >
-            <form class="bg-white">
+            <div class="bg-white">
                 <h1 class="text-center font-bold text-2xl bg-white" >Invite ERO</h1>
                 <div class="flex bg-white mt-4">
                     <div class="w-full bg-white font-medium">
@@ -25,7 +25,7 @@
                         Invite
                     </button-components>
                 </div>
-            </form>
+            </div>
         </card-components>
     </popup-component>
 </template>

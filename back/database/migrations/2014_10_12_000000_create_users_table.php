@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('cover');
             $table->boolean('is_accepted');
             $table->boolean('is_seen');
-            $table->rememberToken();
+            $table->string('verify_code')->nullable();
             $table->timestamps();
         });
     }

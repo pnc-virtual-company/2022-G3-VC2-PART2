@@ -52,6 +52,9 @@ import ComponentCreate from '@/components/component_create/ComponentCreate';
 import AlumniDetails from '@/components/view_details/AlumniDetails';
 import EroDetails from '@/components/view_details/EroDetails';
 import RequestDetails from '@/components/view_details/RequestDetails';
+import CreateNewPassword from './views/create_new_password/CreateNewPassword';
+import AlumniRegister from '@/views/alumni/AlumniRegister';
+import EroRegister from './views/ero/EroRegister';
 
 // reset password
 import ResetPassword from './views/alumni/reset_password/ResetPassword.vue';
@@ -137,6 +140,9 @@ app.component('ERO-invite-popup', EROInvitePopup);
 app.component('alumni-details', AlumniDetails);
 app.component('ero-details', EroDetails);
 app.component('request-details', RequestDetails);
+app.component('create-new-password', CreateNewPassword);
+app.component('ero-register', EroRegister);
+app.component('alumni-register', AlumniRegister);
 
 // icon informations
 app.component('the-email', TheEmail);
