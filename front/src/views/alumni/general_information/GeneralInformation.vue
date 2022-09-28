@@ -21,7 +21,7 @@
                         <the-batch>{{alumniData.userData.alumni.batch}}</the-batch>
                     </template>
                     <template #slot5>
-                        
+                        <the-phone>{{alumniData.userData.alumni.phone}}</the-phone>
                     </template>
                     <template #slot6>
                         <the-major>{{alumniData.userData.alumni.major.toUpperCase()}} - {{alumniData.userData.alumni.batch}}</the-major>
@@ -48,8 +48,10 @@
 </template>
 
 <script>
+import ThePhone from '../../../components/general_information/icon_informations/ThePhone.vue';
     import {userInformations} from "../../../store/userStore"
     export default {
+  components: { ThePhone },
         setup(){
             const alumniData = userInformations();
             return {
