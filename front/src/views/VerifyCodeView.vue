@@ -17,7 +17,7 @@
                             </div>
                         </div>
 
-                        <error-message v-if="isIncorrectCode">Incorect verification code!</error-message>
+                        <error-message v-if="isIncorrectCode">Incorrect verification code!</error-message>
                         
                         <div class="z-0 mb-6 w-full group p-[5px] flex" >
                             <div v-if="showLoading" class="w-[90%] m-auto box-border bg-sky flex justify-center p-[5.7px] rounded-md">

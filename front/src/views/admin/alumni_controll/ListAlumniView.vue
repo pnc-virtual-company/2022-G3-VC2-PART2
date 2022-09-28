@@ -21,7 +21,7 @@
         <div v-if="filteredAlumni">
             <card-list v-for="alumni of filteredAlumni" :key="alumni" @delete-item="data.deleteAlumni(alumni.id)">
                 <template #title-5 >
-                    <img :src="data.getImage(alumni.profile)" class="w-[55px] rounded-full">
+                    <img :src="data.getImage(alumni.profile)" class="w-[55px] h-[55px] rounded-full">
                 </template>
                 <template #title-1>name</template>
                 <template #text-1>

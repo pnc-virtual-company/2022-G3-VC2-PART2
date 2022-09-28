@@ -7,7 +7,7 @@
             <div class="w-[60%] ">
                 <div class="form  w-[80%] shadow shadow-gray-400 ml-[120px] bg-white opacity-[80%] p-[10px] rounded-[7px]">
                     <form @submit.prevent="getVerifyCode" class="p-[5px]">
-                    <h1 class="text-[#2EA3F2] text-[2.5rem] text-center">Fogot Password</h1>
+                    <h1 class="text-[#2EA3F2] text-[2.5rem] text-center">Forgot Password</h1>
                     <p class="text-[#2EA3F2] text-center text-[1.2rem] w-[60%] m-auto">Enter your email to get verification codes</p>
                         <div class="relative z-0 mb-6 w-full group p-[5px] flex">
                             <div class=" mb-[-1.22px]  w-[90%] m-auto flex ">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
 
-                        <error-message v-if="isIncorrectEmail">Incorect email address!</error-message>
+                        <error-message v-if="isIncorrectEmail">Incorrect email address!</error-message>
                         
                         <div class="z-0 mb-6 w-full group p-[5px] flex" >
                             <div v-if="showLoading" class="w-[90%] m-auto box-border bg-sky flex justify-center p-[5.7px] rounded-md">

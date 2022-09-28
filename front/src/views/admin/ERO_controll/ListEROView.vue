@@ -8,7 +8,7 @@
             <card-list-ERO v-for="ero of filteredEro" :key="ero" @delete-item="data.deleteEro(ero.id)">
                 <template #title-1 >
                     <div class="flex justify-center aling-items-sm-center">
-                        <img :src="data.getImage(ero.profile)" class="w-[55px] rounded-full">
+                        <img :src="data.getImage(ero.profile)" class="w-[55px] h-[55px] rounded-full">
                     </div>
                 </template>
                 <template #title-2>name</template>

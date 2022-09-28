@@ -8,7 +8,7 @@
                     <list-explore v-for="alumni of filteredAlumni" :key="alumni">
                         <template #title-1 >
                             <div class="">
-                                <img :src="data.getImage(alumni.profile)" class="w-[55px] rounded-full">
+                                <img :src="data.getImage(alumni.profile)" class="w-[55px] h-[55px] rounded-full">
                             </div>
                         </template>
                         <template #title-2>Name</template>
