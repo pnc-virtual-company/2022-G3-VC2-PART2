@@ -19,10 +19,11 @@
             <p>{{ currentView }} Alumni</p>
         </div>
         <div v-if="filteredAlumni">
-            <card-list v-for="alumni of filteredAlumni" 
+            <card-list v-for="alumni of filteredAlumni" class="border-l-[5px]"
             :class="{ 
-                'border-l-[5px] border-sky': data.isWebStudent(alumni),
-                'border-l-[5px] border-orange-400': data.isSnaStudent(alumni)
+                'border-sky': data.isWebStudent(alumni),
+                'border-orange-400': data.isSnaStudent(alumni),
+                'border-gray-400': data.isAccountUnregistered(alumni)
             }" :key="alumni" @delete-item="data.deleteAlumni(alumni.id)">
                 <template #title-5 >
                     <img :src="data.getImage(alumni.profile)" class="w-[55px] h-[55px] rounded-full">
@@ -41,7 +42,7 @@
                 </template>
                 <template #title-4>Batch</template>
                 <template #text-4>
-                    <p v-if="alumni.first_name && alumni.last_name">{{ alumni.alumni.major}} {{ alumni.alumni.batch }}</p>
+                    <p class="uppercase" v-if="alumni.first_name && alumni.last_name">{{ alumni.alumni.major}} {{ alumni.alumni.batch }}</p>
                     <p v-else class="text-gray-500">Unregistered</p>
                 </template>
                 <template #button-details>

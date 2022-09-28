@@ -31,7 +31,7 @@ class UserController extends Controller
         $user->save();
         $data = ['email' => $user->email, 'password' => $request->password];
         (new MailController)->sendEroInvitation($data);
-        return response()->Json(["message"=>"ero is created successfully!"]);
+        return $user;
     }
 
     public function inviteAlumni(Request $request)
@@ -50,7 +50,7 @@ class UserController extends Controller
         $alumni->save();
         $data = ['email' => $user->email, 'password' => $request->password];
         (new MailController)->sendAlumniInvitation($data);
-        return response()->Json(["message"=>"alumni is created successfully!"]);
+        return User::with(['alumni', 'work_experience.company', 'education_backgrounds.school', 'skills.skill'])->where('id', $user->id)->first();
     }
 
     public function registerEro(Request $request, $id)

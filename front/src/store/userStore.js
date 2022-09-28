@@ -85,11 +85,17 @@ export const userInformations = defineStore('user-data', {
     },
 
     addInviteAlumni(inviteAlumni){
-      axiosClient.post('/invite/alumnis',inviteAlumni);
+      axiosClient.post('/invite/alumnis',inviteAlumni).then((res) => {
+        this.alumniStore.push(res.data);
+        this.getEmails();
+      });
     },
 
     addInviteERO(inviteERO){
-      axiosClient.post('/invite/eros',inviteERO);
+      axiosClient.post('/invite/eros',inviteERO).then((res) => {
+        this.eroStore.push(res.data);
+        this.getEmails();
+      });
     },
 
     deleteAlumni(id){
@@ -99,7 +105,9 @@ export const userInformations = defineStore('user-data', {
             this.alumniStore.splice(index ,1)
           }
         })
-        axiosClient.delete('/users/'+id);
+        axiosClient.delete('/users/'+id).then(() => {
+          this.getEmails();
+        });
       }
     },
 
@@ -282,7 +290,9 @@ export const userInformations = defineStore('user-data', {
             this.eroStore.splice(index, 1);
           }
         });
-        axiosClient.delete('/users/' +id);
+        axiosClient.delete('/users/' +id).then(() => {
+          this.getEmails();
+        });
       }
     },
 
@@ -435,11 +445,15 @@ export const userInformations = defineStore('user-data', {
 
                     
     isWebStudent(alumni) {
-      if (alumni.alumni) {
-        if (alumni.alumni.major == 'web') {
-            return true;
+      if (alumni.first_name && alumni.last_name) {
+        if (alumni.alumni) {
+          if (alumni.alumni.major == 'web') {
+              return true;
+          } else {
+              return false;
+          }
         } else {
-            return false;
+          return false;
         }
       } else {
         return false;
@@ -447,15 +461,27 @@ export const userInformations = defineStore('user-data', {
     },
 
     isSnaStudent(alumni) {
-      if (alumni.alumni) {
-        if (alumni.alumni.major == 'sna') {
-            return true;
+      if (alumni.first_name && alumni.last_name) {
+        if (alumni.alumni) {
+          if (alumni.alumni.major == 'sna') {
+              return true;
+          } else {
+              return false;
+          }
         } else {
-            return false;
-        }
+          return false;
+        }  
       } else {
         return false;
-      }  
+      }
+    },
+
+    isAccountUnregistered(alumni) {
+      if (!alumni.first_name && !alumni.last_name) {
+        return true;
+      } else {
+        return false;
+      } 
     }
   }
 });
