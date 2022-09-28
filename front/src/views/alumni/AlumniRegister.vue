@@ -70,7 +70,7 @@
                                     <input type="radio" value="famale" name="default-radio" v-model="gender"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                                     <label for="default-radio-2"
-                                        class="ml-1 text-lg font-medium text-black-500  dark:text-gray-300">Femail</label>
+                                        class="ml-1 text-lg font-medium text-black-500  dark:text-gray-300">Female</label>
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,11 @@
             <p>{{ currentView }} Alumni</p>
         </div>
         <div v-if="filteredAlumni">
-            <card-list v-for="alumni of filteredAlumni" :key="alumni" @delete-item="data.deleteAlumni(alumni.id)">
+            <card-list v-for="alumni of filteredAlumni" 
+            :class="{ 
+                'border-l-[5px] border-sky': data.isWebStudent(alumni),
+                'border-l-[5px] border-orange-400': data.isSnaStudent(alumni)
+            }" :key="alumni" @delete-item="data.deleteAlumni(alumni.id)">
                 <template #title-5 >
                     <img :src="data.getImage(alumni.profile)" class="w-[55px] h-[55px] rounded-full">
                 </template>

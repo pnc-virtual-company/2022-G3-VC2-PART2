@@ -5,7 +5,10 @@
             <explore-information @update-filters="updateFilters" @clear-filters="clearFilters"></explore-information>
             <div>
                 <div v-if="filteredAlumni.length > 0">
-                    <list-explore v-for="alumni of filteredAlumni" :key="alumni">
+                    <list-explore v-for="alumni of filteredAlumni" :class="{ 
+                        'border-l-[5px] border-sky': data.isWebStudent(alumni),
+                        'border-l-[5px] border-orange-400': data.isSnaStudent(alumni)
+                    }" :key="alumni">
                         <template #title-1 >
                             <div class="">
                                 <img :src="data.getImage(alumni.profile)" class="w-[55px] h-[55px] rounded-full">

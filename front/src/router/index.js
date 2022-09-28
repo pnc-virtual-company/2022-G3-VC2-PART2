@@ -168,7 +168,7 @@ router.beforeEach((to, from, next) => {
   } else {
     if(token) {
       if (to.path == "/404") {
-        next(from.path);
+        next();
       } else {
         if (role == 'admin') {
           next('/manage');
