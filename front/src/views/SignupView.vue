@@ -38,7 +38,7 @@
                             <div>
                                 <input v-model="batch" type="text"
                                     class="block w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 "
-                                    placeholder="Batch" required="true">
+                                    placeholder="Batch: e.g: 2022" required="true">
                             </div>
 
                             <div class="border-b-2 border-gray-300">        
@@ -53,20 +53,20 @@
                             <div>
                                 <input  v-model="telegram" type="text"
                                     class="block  px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 "
-                                    placeholder="Telegram" required="true">
+                                    placeholder="Telegram: e.g: 098578423" required="true">
                             </div>
                             
                             <div>
                                 <input v-model="phone" type="phone"
                                     class="block  px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 "
-                                    placeholder="Phone" required="true">
+                                    placeholder="Phone: e.g: 098578423" required="true">
                             </div>
                         </div>
                         <div class="grid gap-6 md:grid-cols-1 w-[90%] m-auto mt-4">
                             <div>
                                 <input v-model="address" type="text"
                                     class="block  px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 "
-                                    placeholder="Address" required="true">
+                                    placeholder="Address: e.g: Sen Sok, Phnom Penh" required="true">
                             </div>
                         </div>
                         <div class="grid gap-6 md:grid-cols-1 w-[90%] m-auto mt-4">

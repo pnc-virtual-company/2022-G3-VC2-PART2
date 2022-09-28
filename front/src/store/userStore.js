@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import CryptoJS from 'crypto-js'
 import axiosClient from "../axios-http";
 export const userInformations = defineStore('user-data', {
   state () { 
@@ -53,7 +54,7 @@ export const userInformations = defineStore('user-data', {
       this.verifyEmailStore = value;
     },
     getUserData(){
-      let userId = this.getCookie('user_id')
+      let userId = CryptoJS.AES.decrypt(this.getCookie('user_id').toString(), "Screat id").toString(CryptoJS.enc.Utf8)
       axiosClient.get('/users/'+userId).then((res)=>{
         this.userStore = res.data; 
         this.getDataNeed();

@@ -90,16 +90,19 @@
         },
 
         methods: {
+
             login(){
                 if(this.checkValidation()){
                     this.showLoading = true;
                     let user = {email: this.email, password: this.password}
                     axiosClient.post('users/login', user).then( res => {
+                        let userId = this.$CryptoJS.AES.encrypt(res.data.user.id.toString(), "Screat id").toString();
+                        let userRole = this.$CryptoJS.AES.encrypt(res.data.user.role, "Screat role").toString();
                         this.showLoading = false;
                         if (res.data.user.first_name && res.data.user.last_name) {
                             this.userCookie.setCookie('user_token', res.data.token,30)
-                            this.userCookie.setCookie('user_id', res.data.user.id,30)
-                            this.userCookie.setCookie('user_role', res.data.user.role,30)
+                            this.userCookie.setCookie('user_id', userId,30)
+                            this.userCookie.setCookie('user_role', userRole,30)
                             if(res.data.user.role == 'alumni'){
                                 this.$router.go('profile')
                             }else if(res.data.user.role == 'ero'){
@@ -148,18 +151,22 @@
 
             saveEroRegister(data) {
                 axiosClient.put('/eros/register/' + this.saveUserId, data).then((res) => {
+                    let userId = this.$CryptoJS.AES.encrypt(res.data.user.id.toString(), "Screat id").toString();
+                    let userRole = this.$CryptoJS.AES.encrypt(res.data.user.role, "Screat role").toString();
                     this.userCookie.setCookie('user_token', res.data.token,30)
-                    this.userCookie.setCookie('user_id', res.data.user.id,30)
-                    this.userCookie.setCookie('user_role', res.data.user.role,30)
+                    this.userCookie.setCookie('user_id', userId,30)
+                    this.userCookie.setCookie('user_role', userRole,30)
                     this.$router.go('/ero_profile');
                 });
             },
             
             saveAlumniRegister(data) {
                 axiosClient.put('/alumnis/register/' + this.saveUserId, data).then((res) => {
+                    let userId = this.$CryptoJS.AES.encrypt(res.data.user.id.toString(), "Screat id").toString();
+                    let userRole = this.$CryptoJS.AES.encrypt(res.data.user.role, "Screat role").toString();
                     this.userCookie.setCookie('user_token', res.data.token,30)
-                    this.userCookie.setCookie('user_id', res.data.user.id,30)
-                    this.userCookie.setCookie('user_role', res.data.user.role,30)
+                    this.userCookie.setCookie('user_id', userId,30)
+                    this.userCookie.setCookie('user_role', userRole,30)
                     this.$router.go('/profile');
                 });
             }
