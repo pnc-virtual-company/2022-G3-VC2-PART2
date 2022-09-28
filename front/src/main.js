@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import'./style.css'
-const app = createApp(App).use(createPinia());
+import VueCryptojs from 'vue-cryptojs'
+const app = createApp(App).use(createPinia()).use(VueCryptojs);
 
 // nav bar
 import NavBar from '@/components/nav_bar/NavBar';

@@ -5,7 +5,7 @@
                 <card-company v-for="company of data.companyList" :key="company" @delete-item="data.deleteCompany(company.id)">
                     <template #title-1 >
                         <div class="">
-                            <img :src="data.getImage(company.logo)" class="w-[55px] rounded-full">
+                            <img :src="data.getImage(company.logo)" class="w-[55px] h-[55px] rounded-full">
                         </div>
                     </template>
                     <template #title-2>Company name</template>

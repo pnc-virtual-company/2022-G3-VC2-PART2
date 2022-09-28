@@ -1,6 +1,6 @@
 <template>
     
-    <nav class="mt-5">
+    <nav class="mt-12">
         <ul class="flex justify-center items-center -space-x-px">
            <slot></slot>
         </ul>
