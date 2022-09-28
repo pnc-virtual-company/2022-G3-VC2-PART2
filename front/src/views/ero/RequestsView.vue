@@ -1,7 +1,7 @@
 <template>
-    <div v-if="data.alumniList" class="w-10/12 m-auto mt-[20px]">
+    <div v-if="data.alumniList" class="w-10/12 m-auto mt-[10px]">
         <p class="text-center font-bold text-2xl">All requests</p>
-        <div class="w-full m-auto rounded h-[33.5rem] overflow-y-auto scroll-box mt-[20px]">
+        <div class="w-full m-auto rounded max-h-[30.35rem] overflow-y-auto scroll-box mt-[15px]">
             <div v-if="unseenAccounts.length > 0">
                 <div v-for="account of unseenAccounts" :key="account" :class="{ 'border-sky bg-[rgba(0,0,0,0.09)]': account.is_seen, 'border-orange-400 opacity-100 bg-white': !account.is_seen}" class="shadow shadow-gray-400 border-l-[4px] py-[10px] px-[17px] mb-2 rounded-md flex flex-col justify-between">
                     <div class="flex justify-between">
