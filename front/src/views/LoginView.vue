@@ -118,9 +118,9 @@
                                 this.isEroRegister = true;
                             }
                         }
-                    }).catch(()=>{ 
+                    }).catch((res)=>{ 
                         this.showLoading = false;
-                        this.errorMessage = "Incorrect email or password!";
+                        this.errorMessage = res.response.data.sms;
                     })
                 }
             },

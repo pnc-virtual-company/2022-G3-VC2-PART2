@@ -1,7 +1,8 @@
 <template>
     <popup-component>
         <card-components >
-            <div class="bg-white">
+            <h1 v-if="invitedSuccess" class="text-center text-2xl text-green-500 bg-white" >Your inviting is success</h1>
+            <div v-else class="bg-white">
                 <h1 class="text-center font-bold text-2xl bg-white" >Invite Alumni</h1>
                 <div class="flex bg-white mt-4">
                     <div class="w-full bg-white font-medium">
@@ -41,6 +42,7 @@
         
         data(){
             return{
+                invitedSuccess: false,
                 email:'',
                 isEmailNull: false,
                 errorMessage: null
@@ -65,7 +67,12 @@
                         if (!this.isEmailExisted(this.email)) {
                             let newInvite = {email:this.email, role: 'alumni', password: this.generatePassword()}
                             this.$emit("addInviteAlumni", newInvite);
-                            this.$emit('click-popup')
+                            this.invitedSuccess = !this.invitedSuccess;
+                            setTimeout(() =>{
+                                this.invitedSuccess = !this.invitedSuccess
+                                this.$emit('click-popup')
+                        }, 1500)
+                            
                         }  else {
                             this.isEmailNull = true;
                             this.errorMessage = "This email is already used!";
