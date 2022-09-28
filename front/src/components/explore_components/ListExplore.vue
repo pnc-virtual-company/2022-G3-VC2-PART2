@@ -33,7 +33,7 @@
             <span class="capitalize text-lg text-[#ccc]">
                 <slot name="title-5"></slot>
             </span><br>
-            <span class="capitalize text-lg font-meduim ">
+            <span class="uppercase text-lg font-meduim ">
                 <slot name="text-5"></slot>
             </span>
         </div>

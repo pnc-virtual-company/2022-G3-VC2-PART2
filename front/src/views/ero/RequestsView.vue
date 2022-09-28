@@ -3,7 +3,7 @@
         <p class="text-center font-bold text-2xl">All requests</p>
         <div class="w-full m-auto rounded h-[33.5rem] overflow-y-auto scroll-box mt-[20px]">
             <div v-if="unseenAccounts.length > 0">
-                <div v-for="account of unseenAccounts" :key="account" :class="{ 'border-sky bg-[rgba(0,0,0,0.09)]': account.is_seen, 'border-orange-500 opacity-100 bg-white': !account.is_seen}" class="shadow shadow-gray-400 border-l-[4px] py-[10px] px-[17px] mb-2 rounded-md flex flex-col justify-between">
+                <div v-for="account of unseenAccounts" :key="account" :class="{ 'border-sky bg-[rgba(0,0,0,0.09)]': account.is_seen, 'border-orange-400 opacity-100 bg-white': !account.is_seen}" class="shadow shadow-gray-400 border-l-[4px] py-[10px] px-[17px] mb-2 rounded-md flex flex-col justify-between">
                     <div class="flex justify-between">
                         <p :class="{'text-gray-500': account.is_seen, 'text-black': !account.is_seen}" class="text-lg">
                             <span class="capitalize text-sky font-medium">{{ account.first_name }}</span> <span class="capitalize text-sky font-medium">{{ account.last_name }}</span> requests to create an account
@@ -42,7 +42,7 @@
                             <span v-if="account.is_seen" class="capitalize text-lg font-semibold text-sky-hover">
                                 Pending
                             </span>
-                            <span v-else class="capitalize text-lg font-semibold text-orange-500">
+                            <span v-else class="capitalize text-lg font-semibold text-orange-400">
                                 New
                             </span>
                         </div>

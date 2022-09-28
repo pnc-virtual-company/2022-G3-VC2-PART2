@@ -26,7 +26,7 @@
                             <div>
                                 <input type="text" v-model="batch"
                                     class="block py-1 px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer "
-                                    placeholder="Batch">
+                                    placeholder="Batch: e.g: 2022">
                             </div>
                             <div class="border-b-2 border-gray-300">        
                                 <select v-model="major" class="outline-none w-full">
@@ -40,18 +40,18 @@
                             <div>
                                 <input type="text" v-model="phone"
                                     class="block py-1 px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer "
-                                    placeholder="Phone">
+                                    placeholder="Phone: e.g: 098578423">
                             </div>
                             <div>
                                 <input type="text" v-model="telegram"
                                     class="block py-1 px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer "
-                                    placeholder="Telegram">
+                                    placeholder="Telegram: e.g: 098578423">
                             </div>
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-1 w-[90%] m-auto">
                             <input type="text" name="text" v-model="address"
                                 class="block py-1 px-0 w-full text-lg text-black-500  bg-transparent border-0 border-b-2 border-gray-300 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" Address" required="">
+                                placeholder="Address: e.g: Sen Sok, Phnom Penh" required="">
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-1 w-[90%] m-auto">
                             <input type="text" name="date_birth" v-model="birthDate"
@@ -70,7 +70,7 @@
                                     <input type="radio" value="famale" name="default-radio" v-model="gender"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                                     <label for="default-radio-2"
-                                        class="ml-1 text-lg font-medium text-black-500  dark:text-gray-300">Femail</label>
+                                        class="ml-1 text-lg font-medium text-black-500  dark:text-gray-300">Female</label>
                                 </div>
                             </div>
                         </div>

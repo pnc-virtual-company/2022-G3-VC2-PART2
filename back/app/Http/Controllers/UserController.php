@@ -195,10 +195,10 @@ class UserController extends Controller
                 }
                 return response()->json($respone);
             } else {
-                return response()->json(['sms'=>'Invalid password'],401);
+                return response()->json(['sms'=>'Invalid password. Please try again!'],401);
             }
         } else {
-           return response()->json(['sms'=>'Log in fail'], 401);
+           return response()->json(['sms'=>'Your email not found. Please try again with another email !'], 401);
         }
       
     }

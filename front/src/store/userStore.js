@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import CryptoJS from 'crypto-js'
 import axiosClient from "../axios-http";
 export const userInformations = defineStore('user-data', {
   state () { 
@@ -53,7 +54,7 @@ export const userInformations = defineStore('user-data', {
       this.verifyEmailStore = value;
     },
     getUserData(){
-      let userId = this.getCookie('user_id')
+      let userId = CryptoJS.AES.decrypt(this.getCookie('user_id').toString(), "Screat id").toString(CryptoJS.enc.Utf8)
       axiosClient.get('/users/'+userId).then((res)=>{
         this.userStore = res.data; 
         this.getDataNeed();
@@ -119,6 +120,8 @@ export const userInformations = defineStore('user-data', {
 
     updateEroInfor(infor) {
       this.userStore.email = infor.email;
+      this.userStore.first_name = infor.first_name;
+      this.userStore.last_name = infor.last_name;
       axiosClient.put('/users/ero/' + this.userStore.id, infor);
     },
     
@@ -429,5 +432,30 @@ export const userInformations = defineStore('user-data', {
       }
       return password;
     },
+
+                    
+    isWebStudent(alumni) {
+      if (alumni.alumni) {
+        if (alumni.alumni.major == 'web') {
+            return true;
+        } else {
+            return false;
+        }
+      } else {
+        return false;
+      }
+    },
+
+    isSnaStudent(alumni) {
+      if (alumni.alumni) {
+        if (alumni.alumni.major == 'sna') {
+            return true;
+        } else {
+            return false;
+        }
+      } else {
+        return false;
+      }  
+    }
   }
 });

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import CryptoJS from 'crypto-js'
 import ProfileAlumniView from '../views/alumni/ProfileView'
 import AdminManagementView from '../views/admin/AdminManagementView'
 import ExploreManagementView from '../views/ExploreManagementView'
@@ -28,7 +29,7 @@ function getCookie(name) {
   return "";
 }
 const token = getCookie('user_token')
-const role = getCookie('user_role')
+const role = CryptoJS.AES.decrypt(getCookie('user_role'), "Screat role").toString(CryptoJS.enc.Utf8)
 const routes = [
   {
     path:"/",
@@ -168,7 +169,7 @@ router.beforeEach((to, from, next) => {
   } else {
     if(token) {
       if (to.path == "/404") {
-        next(from.path);
+        next();
       } else {
         if (role == 'admin') {
           next('/manage');
