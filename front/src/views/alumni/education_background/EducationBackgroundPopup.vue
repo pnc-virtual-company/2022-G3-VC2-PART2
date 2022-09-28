@@ -162,7 +162,7 @@
                         end_date: this.end_date,
                         major: this.major,
                         is_studying:this.isStudying,
-                        user_id: 1,
+                        user_id: this.educationData.userData.id,
                         school: school
                     }
                     let educationBackgroundFront = educationBackground;

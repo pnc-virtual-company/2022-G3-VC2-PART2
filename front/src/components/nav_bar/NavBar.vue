@@ -26,11 +26,11 @@
                     <p class="ml-3 text-[22px] font-medium">Explore</p>
                 </router-link>
                 <router-link v-if="userRole == 'alumni'" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'profile' }" class="mr-6 py-1 rounded-lg px-4 flex items-center" to="/profile">
-                    <img class="w-11 h-11 rounded-full" :src="urlProfile" alt="">
+                    <img class="w-11 h-11 rounded-full object-cover" :src="urlProfile" alt="">
                     <p class="ml-3 text-[22px] font-medium">{{ userData.userData.first_name }} {{ userData.userData.last_name }}</p>
                 </router-link>
                 <router-link v-if="userRole == 'ero'" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'ero_profile' }" class="mr-6 py-1 rounded-lg px-4 flex items-center" to="/ero_profile">
-                    <img class="w-11 rounded-full" :src="urlProfile" alt="">
+                    <img class="w-11 h-11 rounded-full object-cover" :src="urlProfile" alt="">
                     <p class="ml-3 text-[22px] font-medium">{{ userData.userData.first_name }} {{ userData.userData.last_name }}</p>
                 </router-link>
                 <button @click="logout" :class="{ 'hover:bg-gray-200 hover:text-black': this.$route.name != 'logout' }" class="flex py-2 px-4 rounded-lg items-center">

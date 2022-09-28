@@ -138,7 +138,7 @@
                 if(this.isValidated()){
                     let companyInfor = this.userData.companyList.find((company) => company.id == this.companyId)
                     let userExperience = {
-                        user_id: 1,
+                        user_id: this.userData.userData.id,
                         company_id: companyInfor.id,
                         position: this.position,
                         start_date: this.start_date,
