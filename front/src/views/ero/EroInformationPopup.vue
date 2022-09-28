@@ -2,7 +2,7 @@
     <popup-component>
         <card-components>
             <form @submit.prevent="saveUpdate" class="bg-white">
-                <h1 class="text-center font-bold text-2xl bg-white">Email Address</h1>
+                <h1 class="text-center font-bold text-2xl bg-white">General Information</h1>
                 <div class="flex flex-col bg-white mt-3">
                     <div class="flex w-full">
                         <div class="w-[50%] bg-white mr-2">

@@ -1,6 +1,6 @@
 <template>
     <popup-component>
-        <card-components class="p-[0rem] ">
+        <card-components class="w-[60.1%] p-[0.9rem]">
             <img v-if="!showNewImage" class="object-cover object-center w-full m-auto h-[300px] rounded-t-lg" :src="urlCover" alt="">
             <img v-if="showNewImage" class="object-cover object-center w-full m-auto h-[300px] rounded-t-lg" :src="coverImage" alt="">
             <div class="flex justify-end item-center w-full relative -top-[0.30rem] bg-red-700">
