@@ -300,6 +300,8 @@ class UserController extends Controller
     public function updateEroInfor(Request $request, $id) {
         $user = User::findOrFail($id);
         $user->email = $request->email;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
         $user->save();
 
         return response()->Json(["message"=>"information is updated successfully!"]);
