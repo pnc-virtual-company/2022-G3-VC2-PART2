@@ -39,7 +39,24 @@ DB_USERNAME= root
 ### Step 4: Migrate default admin user to database with seeder
 > <code> php artisan db:seed </code>
 
-### Step 5: Running Application
+### Step 5: Set up your email in .env file
+#### Example:
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=587
+MAIL_USERNAME=you@gmail.com
+MAIL_PASSWORD=sadanfsnskadf
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=you@gmail.com
+MAIL_FROM_NAME=PNCAA
+```
+
+### Step 6: Create app key
+> <code> php artisan key:generate </code>
+
+
+### Step 7: Running Application
 - [x] If you are in local development environments
 > <code> php artisan serve </code> --port=YOUR_PORT (port is optional) 
 
