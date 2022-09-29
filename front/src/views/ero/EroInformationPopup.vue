@@ -111,4 +111,5 @@
             this.last_name = this.data.userData.last_name;
         }
     }
+
 </script>

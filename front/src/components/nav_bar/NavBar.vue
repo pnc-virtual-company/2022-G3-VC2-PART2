@@ -92,6 +92,7 @@
         },
         
         methods: {
+
             logout(){
                 this.userCookie.deleteCookie('user_token')
                 this.userCookie.deleteCookie('user_id')
@@ -99,6 +100,7 @@
                 this.$router.go('login')
                 axiosClient.post('users/logout');
             }
+            
         },
 
         mounted() {
